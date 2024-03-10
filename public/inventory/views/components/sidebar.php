@@ -11,7 +11,7 @@
 <ul class="mt-3">
 
     <li class="mb-1 hover:bg-slate-400 rounded-xl">
-        <a route='/inv/Dashboard' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+        <a route='/inv/main' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
             <i class="ri-speed-up-line mr-3 text-lg"></i>
             <span class="text-sm font-medium">Dashboard</span>
             <i class="ri-arrow-down-s-line ml-auto"></i>
@@ -19,17 +19,9 @@
     </li>
 
     <li class="mb-1 hover:bg-slate-400 rounded-xl">
-        <a route='/inv/main' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
-            <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
-            <span class="text-sm font-medium">Inventory</span>
-            <i class="ri-arrow-down-s-line ml-auto"></i>
-        </a>
-    </li>
-
-    <li class="mb-1 hover:bg-slate-400 rounded-xl">
         <a route='/inv/inventoryProducts' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
             <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
-            <span class="text-sm font-medium">Product Inventory</span>
+            <span class="text-sm font-medium">Inventory</span>
             <i class="ri-arrow-down-s-line ml-auto"></i>
         </a>
     </li>
