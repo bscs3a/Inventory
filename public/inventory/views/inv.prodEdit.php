@@ -12,7 +12,7 @@
 
 <body>
 
-<?php include "components/sidebar.php" ?>
+    <?php include "components/sidebar.php" ?>
     
     <!-- Start: Dashboard -->
 

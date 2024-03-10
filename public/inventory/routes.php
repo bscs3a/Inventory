@@ -4,18 +4,16 @@ $path = './public/inventory/views';
 $basePath = "$path/inv.";
 
 $inv = [
-    // Sample (can remove)
-    '/inv/sample' => $basePath . "sample.php",
-    '/inv/link' => $basePath . "test-link.php",
-
     // Main
     '/inv/main' => $basePath . "main.php",
+
+    // Inventory Products
+    '/inv/inventoryProducts' => $basePath . "products.php",
 
     // Edit Product
     '/inv/prod-edit' => $basePath . "prodEdit.php",
 
-    // Product Order (can remove)
-    '/inv/product_order' =>  "prod.ord.main.php",
-    '/inv/product_shop' =>"prod.ord.shop.php",
-    '/inv/product_checkout' =>  "prod.ord.orders.php",
+    // Finance Request
+    '/inv/req-finance' => $basePath . "fin.request.php",
+    
 ];
