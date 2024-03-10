@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory</title>
+    <title>Inventory Dashboard</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
     
@@ -49,6 +49,21 @@
             <div class="flex items-center m-3"> 
               <div class="flex flex-col justify-between flex-grow">
                   <p class="text-5xl font-semibold text-center mb-4">5 item(s)</p>
+              </div>
+            </div>
+
+            <div class="flex place-content-end mt-2 m-3">
+              <button class="items-end rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                  View </button>
+              </div>
+        </div>
+
+        <div class="flex px-4 w-96 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
+            <h1 class= "text-black font-bold mt-2 mb-4">Total Products</h1>
+
+            <div class="flex items-center m-3"> 
+              <div class="flex flex-col justify-between flex-grow">
+                  <p class="text-5xl font-semibold text-center mb-4">1234</p>
               </div>
             </div>
 

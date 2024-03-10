@@ -26,16 +26,28 @@
         <h1>Product Lists</h1>
     </div>
 
-    <div class="flex justify-between px-6 mt-1 mb-4">
 
-        <div class="flex place-content-end mt-2 m-3">
-            <button route='/inv/prod-edit' class="items-end rounded-full px-2 py-1 bg-violet-950 text-white">
-            <i class="ri-add-circle-line"></i>
-            <span>Request</span> 
-            </button>
+    <div class="flex justify-between items-center mt-4 p-4">
+    <div class="flex items-center">
+        <!-- Dropdown button -->
+        <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0">
+            Filter
+        </button>
+        <!-- Dropdown end-->
+        <!-- Search Bar -->
+        <div class="relative">
+            <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80" placeholder="Search by ID...">
         </div>
-      </div>
-    <!--End: Product-->
+        <!-- Searchbar end -->
+    </div>
+    <!-- Product Request Start -->
+    <button route='/inv/prod-edit' class="items-end rounded-full px-2 py-1 bg-violet-950 text-white">
+        <i class="ri-add-circle-line"></i>
+        <span>Request</span> 
+    </button>
+    <!-- Product Request End -->
+</div>
+
 
     <!--Start: Table-->
     <div class="ml-3 mr-3 flex justify-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
