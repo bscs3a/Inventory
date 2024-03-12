@@ -26,25 +26,55 @@
         <h1>Stats</h1>
     </div>
 
-    <div class="flex flex-row flex-wrap justify-evenly m-2">
+    <div class="grid grid-cols-2 gap-4 m-2">
         
-        <div class="flex px-4 w-96 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
-            <h1 class= "text-black font-bold mt-2 mb-4">Total Products</h1>
+        <div class="flex px-4 w-full rounded-lg bg-white border border-gray-600 flex-col shadow-md">
+            <h1 class= "text-black font-bold mt-2 mb-4">Total Stocks *</h1> 
 
             <div class="flex items-center m-3"> 
               <div class="flex flex-col justify-between flex-grow">
-                  <p class="text-5xl font-semibold text-center mb-4">1234</p>
+                  <p class="text-5xl font-semibold text-center mb-4">1234 Items</p>
               </div>
             </div>
 
             <div class="flex place-content-end mt-2 m-3">
-              <button class="items-end rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+              <button class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                  Go to Product List </button>
+              </div>
+        </div>
+
+        <div class="flex px-4 w-full rounded-lg bg-white border border-gray-600 flex-col shadow-md">
+            <h1 class= "text-black font-bold mt-2 mb-4">Incoming Stocks</h1>
+
+            <div class="flex items-center m-3"> 
+              <div class="flex flex-col justify-between flex-grow">
+                  <p class="text-5xl font-semibold text-center mb-4">1234 items</p>
+              </div>
+            </div>
+
+            <div class="flex place-content-end mt-2 m-3">
+              <button class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                   View </button>
               </div>
         </div>
 
-        <div class="flex px-4 w-96 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
+        <div class="flex px-4 w-full rounded-lg bg-red-300 border border-gray-600 flex-col shadow-md">
             <h1 class= "text-black font-bold mt-2 mb-4">Out of Stock</h1>
+
+            <div class="flex items-center m-3"> 
+              <div class="flex flex-col justify-between flex-grow">
+                  <p class="text-5xl text-red-950 font-semibold text-center mb-4">5 product(s)</p>
+              </div>
+            </div>
+
+            <div class="flex place-content-end mt-2 m-3">
+              <button class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                  View </button>
+              </div>
+        </div>
+
+        <div class="flex px-4 w-full rounded-lg bg-white border border-gray-600 flex-col shadow-md">
+            <h1 class= "text-black font-bold mt-2 mb-4">Returns</h1>
 
             <div class="flex items-center m-3"> 
               <div class="flex flex-col justify-between flex-grow">
@@ -53,37 +83,7 @@
             </div>
 
             <div class="flex place-content-end mt-2 m-3">
-              <button class="items-end rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                  View </button>
-              </div>
-        </div>
-
-        <div class="flex px-4 w-96 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
-            <h1 class= "text-black font-bold mt-2 mb-4">Total Products</h1>
-
-            <div class="flex items-center m-3"> 
-              <div class="flex flex-col justify-between flex-grow">
-                  <p class="text-5xl font-semibold text-center mb-4">1234</p>
-              </div>
-            </div>
-
-            <div class="flex place-content-end mt-2 m-3">
-              <button class="items-end rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                  View </button>
-              </div>
-        </div>
-
-        <div class="flex px-4 w-96 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
-            <h1 class= "text-black font-bold mt-2 mb-4">Total Products</h1>
-
-            <div class="flex items-center m-3"> 
-              <div class="flex flex-col justify-between flex-grow">
-                  <p class="text-5xl font-semibold text-center mb-4">1234</p>
-              </div>
-            </div>
-
-            <div class="flex place-content-end mt-2 m-3">
-              <button class="items-end rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+              <button class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                   View </button>
               </div>
         </div>
@@ -101,7 +101,7 @@
             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black bg-gray-200 hover:bg-slate-400 font-medium 
             rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
                 <i class="ri-arrow-up-s-line mr-3"></i>
-                <span class="ml-0.5">Categories</span>
+                <span class="ml-0.5">Recently Added</span>
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
             </button>
 
@@ -124,12 +124,6 @@
             </div>
         </div>
 
-        <div class="flex place-content-end mt-2 m-3">
-            <button route='/inv/prod-edit' class="items-end rounded-full px-2 py-1 bg-violet-950 text-white">
-            <i class="ri-add-circle-line"></i>
-            <span>Add Product</span> 
-            </button>
-        </div>
       </div>
     <!--End: Product-->
 
