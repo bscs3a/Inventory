@@ -40,12 +40,6 @@
         </div>
         <!-- Searchbar end -->
     </div>
-    <!-- Product Request Start -->
-    <button route='/inv/prod-edit' class="items-end rounded-full px-2 py-1 bg-violet-950 text-white">
-        <i class="ri-add-circle-line"></i>
-        <span>Request</span> 
-    </button>
-    <!-- Product Request End -->
 </div>
 
 

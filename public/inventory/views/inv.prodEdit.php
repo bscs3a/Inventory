@@ -58,21 +58,7 @@
         </div>
     </div>
     <!-- End: Edit content -->
-
-    <!-- Start: Brand Variations -->
-    <div class="text-2xl font-semibold px-6 pt-3 pb-3 ml-3 mt-5">
-        <h1>Available Brand Variations</h1>
-    </div>
-
-    <div class="flex flex-row flex-wrap justify-evenly">
-        <div class="flex-1 w-64 p-4 mb-6 shadow-md rounded-lg border border-gray-500 bg-white">Item 1</div>
-        <div class="flex-1 w-64 p-4 mb-6 shadow-md rounded-lg border border-gray-500 bg-white">Item 2</div>
-        <div class="flex-1 w-64 p-4 mb-6 shadow-md rounded-lg border border-gray-500 bg-white">Item 3</div>
-        <div class="flex-1 w-64 p-4 mb-6 shadow-md rounded-lg border border-gray-500 bg-white">Item 4</div>
-        <div class="flex-1 w-64 p-4 mb-6 shadow-md rounded-lg border border-gray-500 bg-white">Item 5</div>
-        <div class="flex-1 w-64 py-3 mb-6 text-5xl text-primary"><i class="ri-add-circle-fill"></i></div>
-    </div>
-    <!-- End: Brand Variations -->
+        
 
     <!-- Start: Buttons -->
     <div class="flex flex-row flex-wrap justify-between m-3">

@@ -36,7 +36,7 @@
         <!-- Dropdown end-->
         <!-- Search Bar -->
         <div class="relative">
-            <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80" placeholder="Search by ID...">
+            <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80" placeholder="Search by Category...">
         </div>
         <!-- Searchbar end -->
     </div>
@@ -61,16 +61,16 @@
                     Category
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Availability
-                </th>
-                <th scope="col" class="px-6 py-3">
                     Quantity
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    Price Each
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                    Availability
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Product Status
                 </th>
             </tr>
         </thead>
@@ -84,36 +84,58 @@
                     Pliers
                 </td>
                 <td class="px-6 py-4 font-semibold text-black">
+                    1234
+                </td>
+                <td class="px-6 py-4 font-semibold text-black">
+                    Php500
+                </td>
+                <td class="px-6 py-4 font-semibold text-black">
                     Available
                 </td>
                 <td class="px-6 py-4 font-semibold text-black">
-                    299
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    Php 500
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    <a route='/inv/prod-edit' class="font-medium hover:underline">Edit</a>
+                    Good Condition
                 </td>
             </tr>
             <tr class="bg-white">
-                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                    ACE 4-TIER HEAVY DUTY INDUSTRIAL STORAGE RACK
+                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
+                <img src="image.jpg" alt="PICSUR" class="mr-4">
+                    Stanley 84-073 Flat Nose Pliers 6"
                 </th>
                 <td class="px-6 py-4 font-semibold text-black">
-                    Shelves
+                    Pliers
+                </td>
+                <td class="px-6 py-4 font-semibold text-red-500">
+                    0
                 </td>
                 <td class="px-6 py-4 font-semibold text-black">
-                    Available
+                    Php500
+                </td>
+                <td class="px-6 py-4 font-semibold text-red-500">
+                    Out of Stock
+                </td>
+                <td class="px-6 py-4 font-semibold text-red-500">
+                    Defective
+                </td>
+            </tr>
+            <tr class="bg-white">
+            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
+                <img src="image.jpg" alt="PICSUR" class="mr-4">
+                    Stanley 84-073 Flat Nose Pliers 6"
+                </th>
+                <td class="px-6 py-4 font-semibold text-black">
+                    Pliers
                 </td>
                 <td class="px-6 py-4 font-semibold text-black">
-                    10
+                    1234
                 </td>
                 <td class="px-6 py-4 font-semibold text-black">
-                    Php 5000
+                    Php500
                 </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    <a route='/inv/prod-edit' class="font-medium hover:underline">Edit</a>
+                <td class="px-6 py-4 font-semibold text-red-500">
+                    Out of Stock
+                </td>
+                <td class="px-6 py-4 font-semibold text-red-500">
+                    Not Found
                 </td>
             </tr>
         </tbody>
