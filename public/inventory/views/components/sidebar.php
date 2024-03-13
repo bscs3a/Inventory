@@ -21,7 +21,7 @@
     <li class="mb-1 hover:bg-slate-400 rounded-xl">
         <a route='/inv/inventoryProducts' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
             <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
-            <span class="text-sm font-medium">Inventory</span>
+            <span class="text-sm font-medium">Product List</span>
             <i class="ri-arrow-down-s-line ml-auto"></i>
         </a>
     </li>

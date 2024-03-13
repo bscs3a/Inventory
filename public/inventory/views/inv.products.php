@@ -75,7 +75,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white">
+            <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" 
+                onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'"> <!-- Route/Href not working -->
+
                 <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                 <img src="image.jpg" alt="PICSUR" class="mr-4">
                     Stanley 84-073 Flat Nose Pliers 6"
@@ -96,7 +98,9 @@
                     Good Condition
                 </td>
             </tr>
-            <tr class="bg-white">
+            <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
+                onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'"> <!-- Route/Href not working -->
+
                 <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                 <img src="image.jpg" alt="PICSUR" class="mr-4">
                     Stanley 84-073 Flat Nose Pliers 6"
@@ -104,20 +108,22 @@
                 <td class="px-6 py-4 font-semibold text-black">
                     Pliers
                 </td>
-                <td class="px-6 py-4 font-semibold text-red-500">
+                <td class="px-6 py-4 font-semibold text-danger">
                     0
                 </td>
                 <td class="px-6 py-4 font-semibold text-black">
                     Php500
                 </td>
-                <td class="px-6 py-4 font-semibold text-red-500">
+                <td class="px-6 py-4 font-semibold text-danger">
                     Out of Stock
                 </td>
-                <td class="px-6 py-4 font-semibold text-red-500">
+                <td class="px-6 py-4 font-semibold text-danger">
                     Defective
                 </td>
             </tr>
-            <tr class="bg-white">
+            <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" 
+                onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'"> <!-- Route/Href not working -->
+
             <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                 <img src="image.jpg" alt="PICSUR" class="mr-4">
                     Stanley 84-073 Flat Nose Pliers 6"
@@ -131,11 +137,34 @@
                 <td class="px-6 py-4 font-semibold text-black">
                     Php500
                 </td>
-                <td class="px-6 py-4 font-semibold text-red-500">
+                <td class="px-6 py-4 font-semibold text-danger">
                     Out of Stock
                 </td>
-                <td class="px-6 py-4 font-semibold text-red-500">
+                <td class="px-6 py-4 font-semibold text-danger">
                     Not Found
+                </td>
+            </tr>
+            <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"      
+                onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'"> <!-- Route/Href not working -->
+
+            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
+                <img src="image.jpg" alt="PICSUR" class="mr-4">
+                    Stanley 84-073 Flat Nose Pliers 6"
+                </th>
+                <td class="px-6 py-4 font-semibold text-black">
+                    Pliers
+                </td>
+                <td class="px-6 py-4 font-semibold text-black">
+                    1234
+                </td>
+                <td class="px-6 py-4 font-semibold text-black">
+                    Php500
+                </td>
+                <td class="px-6 py-4 font-semibold text-warning">
+                    Temporary Unavailable
+                </td>
+                <td class="px-6 py-4 font-semibold text-warning">
+                    Recounting Product
                 </td>
             </tr>
         </tbody>
