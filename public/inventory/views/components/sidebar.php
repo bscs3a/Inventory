@@ -27,14 +27,6 @@
     </li>
 
     <li class="mb-1 hover:bg-slate-400 rounded-xl">
-        <a route='/inv/inventoryProductsProcess' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
-            <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
-            <span class="text-sm font-medium">On Process</span>
-            <i class="ri-arrow-down-s-line ml-auto"></i>
-        </a>
-    </li>
-
-    <li class="mb-1 hover:bg-slate-400 rounded-xl">
         <a route='/inv/req-finance' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
             <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
             <span class="text-sm font-medium">Finance Request</span>

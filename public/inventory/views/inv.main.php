@@ -38,8 +38,9 @@
             </div>
 
             <div class="flex place-content-end mt-2 m-3">
-              <button data-modal-target="totalstock-modal" data-modal-toggle="totalstock-modal" class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                  Go to Product List </button>
+                <button  class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md" id="openModal">
+                Go to Product List
+                </button>
               </div>
         </div>  
 
@@ -53,7 +54,7 @@
             </div>
 
             <div class="flex place-content-end mt-2 m-3">
-              <button class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+              <button data-modal-target="incomingstock-modal" data-modal-toggle="incomingstock-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                   View </button>
               </div>
         </div>
@@ -68,7 +69,7 @@
             </div>
 
             <div class="flex place-content-end mt-2 m-3">
-              <button class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+              <button data-modal-target="outstock-modal" data-modal-toggle="outstock-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                   View </button>
               </div>
         </div>
@@ -83,7 +84,7 @@
             </div>
 
             <div class="flex place-content-end mt-2 m-3">
-              <button class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+              <button data-modal-target="return-modal" data-modal-toggle="return-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                   View </button>
               </div>
         </div>
@@ -96,15 +97,51 @@
     </div>
 
     <div class="flex justify-between px-6 mt-1 mb-4">
-        
-        <div class="flex place-content-end mt-2 m-3">
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black bg-gray-200 hover:bg-slate-400 font-medium 
-            rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
-                <i class="ri-arrow-up-s-line mr-3"></i>
-                <span class="ml-0.5">Recently Added</span>
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-            </button>
+    <div>
+        Recently Added
+    </div>
+    <div class="flex items-center">
+        <!-- Dropdown button -->
+        <div class="relative inline-block text-left">
+    <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0" id="dropdownButton">
+        Filter
+    </button>
+        <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden overflow-auto max-h-60" id="dropdownMenu">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
+                    <input type="radio" name="filter" class="mr-1" value="All">
+                    All
+                </label>
+                <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
+                    <input type="radio" name="filter" class="mr-1" value="Pliers">
+                    Pliers
+                </label>
+                <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
+                    <input type="radio" name="filter" class="mr-1" value="Grippers">
+                    Grippers
+                </label>
+                <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
+                    <input type="radio" name="filter" class="mr-1" value="Hammers">
+                    Hammers
+                </label>
+        </div>
+    </div>
+</div>
 
+<!-- JavaScript for Dropdown -->
+<script>
+    document.getElementById('dropdownButton').addEventListener('click', function() {
+        document.getElementById('dropdownMenu').classList.toggle('hidden');
+    });
+</script>
+        <!-- Dropdown end-->
+        <!-- Search Bar -->
+        <div class="relative">
+            <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80" placeholder="Search by ID...">
+        </div>
+        <!-- Searchbar end -->
+    </div>
+</div>
             <!-- Dropdown menu -->
             <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
@@ -147,9 +184,6 @@
                 <th scope="col" class="px-6 py-3">
                     Price
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -169,9 +203,6 @@
                 <td class="px-6 py-4 font-semibold text-black">
                     Php 500
                 </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    <a route='/inv/prod-edit' class="font-medium hover:underline">Edit</a>
-                </td>
             </tr>
             <tr class="bg-white">
                 <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
@@ -188,9 +219,6 @@
                 </td>
                 <td class="px-6 py-4 font-semibold text-black">
                     Php 500
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    <a route='/inv/prod-edit' class="font-medium hover:underline">Edit</a>
                 </td>
             </tr>
         </tbody>
@@ -198,120 +226,118 @@
 </div>
     <!--End: Table-->
     <script  src="./../src/route.js"></script>
-    <!-- Main modal -->
-    <div id="totalstock-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative p-4 w-full max-w-2xl max-h-full">
-                <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <!-- Modal header -->
-                
-                    <!-- Modal body -->
-                <table class="w-full text-sm text-left rtl:text-right text-black">
-        <thead class="text-xs text-black uppercase bg-gray-200 ">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    id
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Ordered Products
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Status
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Arrival
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Suggested Actions -X-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white">
-                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                    1
-                </th>
-                <td class="px-6 py-4 font-semibold text-black">
-                    Stanley 84-073 Flat Nose Pliers 6"
-                </td>
-                <td class="px-6 py-4 font-semibold text-green-500">
-                    Out for Delivery
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    2/20/34
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-500">
-                    None
-                </td>
-            </tr>
-            <tr class="bg-white">
-                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                    2
-                </th>
-                <td class="px-6 py-4 font-semibold text-black">
-                    Milwaukee M18CHM-902C Cordless SDS...
-                </td>
-                <td class="px-6 py-4 font-semibold text-red-500">
-                    Failed
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    2/20/34
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    Request Order
-                </td>
-            </tr>
-            <tr class="bg-white">
-                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                    3
-                </th>
-                <td class="px-6 py-4 font-semibold text-black">
-                    Hammer
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    Processing
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    2/20/34
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-500">
-                    None
-                </td>
-            </tr>
-            <tr class="bg-white">
-                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                    4
-                </th>
-                <td class="px-6 py-4 font-semibold text-black">
-                    Drill
-                </td>
-                <td class="px-6 py-4 font-semibold text-yellow-500">
-                    Delayed 1 day(s)
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    2/20/34
-                </td>
-                <td class="px-6 py-4 font-semibold text-black">
-                    Expedite Order
-                </td>
-            </tr>
-        </tbody>
-    </table>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <button data-modal-hide="totalstock-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
-                        <button data-modal-hide="totalstock-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
-                    </div>
+
+                <!-- Modals -->
+ 
+            <!-- Incoming Stock Modal -->
+                <div id="incomingstock-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                    <div class="bg-white rounded shadow-lg w-1/3 border border-black">
+                        <div class="border-b pl-3 pr-3 pt-3 flex">  
+                            <h5 class="font-bold uppercase text-gray-600">Incoming Stocks</h5>
+                            <button data-modal-hide="incomingstock-modal" class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
+                                <i class="ri-close-line"></i>
+                            </button>
+                        </div>
+                        <table class="w-full text-sm text-left rtl:text-right text-black border border-black divide-y">
+                        <thead class="text-xs text-black uppercase bg-gray-200 ">
+                        <tr class="bg-white border-b border-black">
+                            <th scope="col" class="px-6 py-3">
+                                id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Ordered Products
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Arrival
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Suggested Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b border-black">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                1
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Stanley 84-073 Flat Nose Pliers 6"
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-green-500">
+                                Out for Delivery
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                2/20/34
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-500">
+                                None
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b border-black">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                2
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Milwaukee M18CHM-902C Cordless SDS...
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-red-500">
+                                Failed
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                2/20/34
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Request Order
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b border-black">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                3
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Hammer
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Processing
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                2/20/34
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-500">
+                                None
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b border-black">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                4
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Drill
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-yellow-500">
+                                Delayed 1 day(s)
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                2/20/34
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Expedite Order
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
-        <!-- Modal JS -->
+        <!-- Incoming Stock Modal JS -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                var modal = document.getElementById('totalstock-modal');
-                var closeButtons = document.querySelectorAll('[data-modal-hide="totalstock-modal"]');
-                var openButton = document.querySelector('[data-modal-target="totalstock-modal"]');
+                var modal = document.getElementById('incomingstock-modal');
+                var closeButtons = document.querySelectorAll('[data-modal-hide="incomingstock-modal"]');
+                var openButton = document.querySelector('[data-modal-target="incomingstock-modal"]');
             
                 closeButtons.forEach(function(button) {
                     button.addEventListener('click', function() {
@@ -323,11 +349,193 @@
                     modal.classList.remove('hidden');
                 });
             });
-        </script>                        
-         <!-- <script src="path/to/your/javascript/file.js"></script> if ever lalagay sa JS na file -->   
-        <!-- End of Modal -->
+        </script>
+        <!-- Incoming Stock Modal JS end -->
+
+                <!-- Out of Stock Modal -->
+                <div id="outstock-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                    <div class="bg-white rounded shadow-lg w-1/3">
+                        <div class="border-b pl-3 pr-3 pt-3 flex">  
+                            <h5 class="font-bold uppercase text-gray-600">Out of Stock</h5>
+                            <button data-modal-hide="outstock-modal" class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
+                                <i class="ri-close-line"></i>
+                            </button>
+                        </div>
+                    <table class="w-full text-sm text-left rtl:text-right text-black">
+                    <thead class="text-xs text-black uppercase bg-gray-200 ">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Out of Stock Products
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Date Sold Out:
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                Stanley 84-073 Flat Nose Pliers 6" 
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                2/20/34
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Order
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                Milwaukee M18CHM-902C Cordless SDS...
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                2/20/34
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Order
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                Hammer
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                2/20/34
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Order
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                Drill
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                2/20/34
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Order
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var modal = document.getElementById('outstock-modal');
+                var closeButtons = document.querySelectorAll('[data-modal-hide="outstock-modal"]');
+                var openButton = document.querySelector('[data-modal-target="outstock-modal"]');
+            
+                closeButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        modal.classList.add('hidden');
+                    });
+                });
+            
+                openButton.addEventListener('click', function() {
+                    modal.classList.remove('hidden');
+                });
+            });
+        </script>
+                    <!-- Return Stock Modal -->
+                    <div id="return-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                    <div class="bg-white rounded shadow-lg w-1/3">
+                        <div class="border-b pl-3 pr-3 pt-3 flex">  
+                            <h5 class="font-bold uppercase text-gray-600">Returned Products</h5>
+                            <button data-modal-hide="return-modal" class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
+                                <i class="ri-close-line"></i>
+                            </button>
+                        </div>
+                    <table class="w-full text-sm text-left rtl:text-right text-black">
+                    <thead class="text-xs text-black uppercase bg-gray-200 ">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Returned Products
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Quantity
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                1
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Stanley 84-073 Flat Nose Pliers 6"
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                123
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Retrieved Product
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                2
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Milwaukee M18CHM-902C Cordless SDS...
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                123
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Retrieved Product
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                3
+                            </th>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Hammer
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                123
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                Retrieved Product
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+         <!-- Return Stock Modal JS -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var modal = document.getElementById('return-modal');
+                var closeButtons = document.querySelectorAll('[data-modal-hide="return-modal"]');
+                var openButton = document.querySelector('[data-modal-target="return-modal"]');
+            
+                closeButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        modal.classList.add('hidden');
+                    });
+                });
+            
+                openButton.addEventListener('click', function() {
+                    modal.classList.remove('hidden');
+                });
+            });
+        </script>
+        <!-- Return Stock Modal JS End -->
 </body>
 </html>
-
 
 
