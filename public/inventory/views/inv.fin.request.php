@@ -107,7 +107,6 @@
             </table>
         </div>
         <!--End: Table-->
-        <script src="./../src/route.js"></script>
 
 </body>
 

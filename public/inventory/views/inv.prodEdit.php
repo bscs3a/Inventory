@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+    <?php include __DIR__ . '/../functions/prod_edit.php'; ?>
     <?php include "components/sidebar.php" ?>
 
     <!-- Start: Dashboard -->
@@ -52,22 +52,22 @@
 
             <div class="flex-1 p-4 w-96 max-w-5xl">
                 <div class="mb-6 ml-3">
+                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                         Name</label>
-                    <input type="text" id="large-input"
+                    <input type="text" id="product" name="product" value="<?php echo $product['product']; ?>"
                         class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
-
                 <div class="mb-6 ml-3">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Category</label>
-                    <input type="text" id="large-input"
+                    <input type="text" id="category" name="category" value="<?php echo $product['category']; ?>"
                         class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
 
                 <div class="mb-6 ml-3">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                         Price</label>
-                    <input type="text" id="large-input"
+                    <input type="text" id="price" name="price" value="<?php echo $product['price']; ?>"
                         class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
             </div>
@@ -88,7 +88,10 @@
 
                     <div class="flex justify-evenly">
                         <div class="px-2">
-                            <p class="font-bold">100</p>
+                            <p class="font-bold">
+                                <?php
+                                echo $product['quantity']; ?>
+                            </p>
                         </div>
 
                         <div class="px-2">
@@ -108,7 +111,10 @@
                         <p>Availability</p>
                     </div>
                     <div>
-                        <p class="font-bold">Available</p>
+                        <p class="font-bold">
+                            <?php
+                            echo $product['availability']; ?>
+                        </p>
                     </div>
                 </div>
 
@@ -119,14 +125,17 @@
                         <p>Product Status</p>
                     </div>
                     <div>
-                        <p class="font-bold">Good Condition</p>
+                        <p class="font-bold">
+                            <?php
+                            echo $product['prod_stat']; ?>
+                        </p>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="flex place-content-end mr-40">
+        <!-- <div class="flex place-content-end mr-40">
             <div class="flex justify-end px-4 mt-0">
                 <div class="flex place-content-end mt-10 mr-2">
                     <button route='/inv/inv/main'
@@ -139,7 +148,7 @@
                     class="items-end rounded-lg w-24 px-2 py-1 font-bold border border-black bg-button1 hover:bg-yellow-600 active:bg-yellow-700 text-black duration-300">
                     Save </button>
             </div>
-        </div>
+        </div> -->
 
 </body>
 
