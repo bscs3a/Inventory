@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <?php require __DIR__ . '/../functions/db.php'; ?>
-
+    <?php require_once __DIR__ . "/../functions/db.php"; ?>
+    <?php include __DIR__ . '/../functions/q_counter.php'; ?>
     <?php include "components/sidebar.php" ?>
     <!-- Start: Dashboard -->
 
@@ -33,7 +33,10 @@
 
                 <div class="flex items-center m-3">
                     <div class="flex flex-col justify-between flex-grow">
-                        <p class="text-5xl font-semibold text-center mb-4">1234 Items</p>
+                        <p class="text-5xl font-semibold text-center mb-4">
+                            <?php
+                            echo $total_quantity . " Item(s)"; ?>
+                        </p>
                     </div>
                 </div>
 
@@ -45,13 +48,15 @@
                     </button>
                 </div>
             </div>
-
             <div class="flex px-4 w-full rounded-lg bg-white border border-gray-600 flex-col shadow-md">
                 <h1 class="text-black font-bold mt-2 mb-4">Incoming Stocks</h1>
 
                 <div class="flex items-center m-3">
                     <div class="flex flex-col justify-between flex-grow">
-                        <p class="text-5xl font-semibold text-center mb-4">1234 items</p>
+                        <p class="text-5xl font-semibold text-center mb-4">
+                            <?php
+                            echo $total_incoming . " Item(s)"; ?>
+                        </p>
                     </div>
                 </div>
 
@@ -67,7 +72,10 @@
 
                 <div class="flex items-center m-3">
                     <div class="flex flex-col justify-between flex-grow">
-                        <p class="text-5xl text-red-950 font-semibold text-center mb-4">5 product(s)</p>
+                        <p class="text-5xl text-red-950 font-semibold text-center mb-4">
+                            <?php
+                            echo $no_stock_count . " Product(s)"; ?>
+                        </p>
                     </div>
                 </div>
 
@@ -83,7 +91,12 @@
 
                 <div class="flex items-center m-3">
                     <div class="flex flex-col justify-between flex-grow">
-                        <p class="text-5xl font-semibold text-center mb-4">5 item(s)</p>
+                        <p class="text-5xl font-semibold text-center mb-4">
+                        <p class="text-5xl text-red-950 font-semibold text-center mb-4">
+                            <?php
+                            echo $return_stock . " Item(s)"; ?>
+                        </p>
+                        </p>
                     </div>
                 </div>
 
@@ -196,43 +209,36 @@
                         <th scope="col" class="px-6 py-3">
                             Price
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Date Added
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white">
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                            Stanley 84-073 Flat Nose Pliers 6"
-                        </th>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Pliers
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Available
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            2999
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Php 500
-                        </td>
-                    </tr>
-                    <tr class="bg-white">
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                            Stanley 84-073 Flat Nose Pliers 6"
-                        </th>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Pliers
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Available
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            2999
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Php 500
-                        </td>
-                    </tr>
+                    <?php
+                    require_once __DIR__ . '/../functions/total_stock.php';
+                    foreach ($rowsTStock as $rowTStock): ?>
+                        <tr class="bg-white border-b border-black">
+                            <td class="px-6 py-4 font-semibold text-black">
+                                <?php echo $rowTStock['product']; ?>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                <?php echo $rowTStock['category']; ?>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                <?php echo $rowTStock['availability']; ?>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                <?php echo $rowTStock['quantity']; ?>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                <?php echo $rowTStock['price']; ?>
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                <?php echo $rowTStock['date_added']; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -268,30 +274,40 @@
                                 Arrival
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Number of Orders
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Suggested Actions
                             </th>
                         </tr>
                     </thead>
-                    <tbody id="table-body">
+                    <tbody>
+                        <!-- eee -->
                         <?php
-                        $sql = "SELECT id, ord_product, status, arrival FROM inc_stocks";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute();
-
-                        if ($stmt->rowCount() > 0) {
-                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                echo "<tr>";
-                                echo "<td>" . $row["stock_id"] . "</td>";
-                                echo "<td>" . $row["ord_product"] . "</td>";
-                                echo "<td>" . $row["status"] . "</td>";
-                                echo "<td>" . $row["arrival"] . "</td>";
-                                echo "<td>Suggested Actions</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        ?>
+                        require_once __DIR__ . '/../functions/inc_stock.php';
+                        foreach ($rowsStock as $rowStock): ?>
+                            <tr class="bg-white border-b border-black">
+                                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                    <?php echo $rowStock['stock_id']; ?>
+                                </th>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowStock['ord_product']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold <?php echo ($rowStock['status']); ?>">
+                                    <?php echo $rowStock['status']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowStock['arrival']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowStock['no_of_order']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowStock['rec_action']; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <!-- eee -->
                     </tbody>
                 </table>
             </div>
@@ -332,6 +348,9 @@
                     <thead class="text-xs text-black uppercase bg-gray-200 ">
                         <tr>
                             <th scope="col" class="px-6 py-3">
+                                Stock ID
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Out of Stock Products
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -343,50 +362,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                Stanley 84-073 Flat Nose Pliers 6"
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                2/20/34
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Order
-                            </td>
-                        </tr>
-                        <tr class="bg-white">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                Milwaukee M18CHM-902C Cordless SDS...
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                2/20/34
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Order
-                            </td>
-                        </tr>
-                        <tr class="bg-white">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                Hammer
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                2/20/34
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Order
-                            </td>
-                        </tr>
-                        <tr class="bg-white">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                Drill
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                2/20/34
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Order
-                            </td>
-                        </tr>
+
+                        <?php
+                        require_once __DIR__ . '/../functions/no_stock.php';
+                        foreach ($rowsNoStock as $rowNoStock): ?>
+                            <tr class="bg-white border-b border-black">
+                                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                    <?php echo $rowNoStock['stock_id']; ?>
+                                </th>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowNoStock['product']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowNoStock['soldout_date']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowNoStock['action']; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -438,48 +432,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                1
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Stanley 84-073 Flat Nose Pliers 6"
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                123
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Retrieved Product
-                            </td>
-                        </tr>
-                        <tr class="bg-white">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                2
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Milwaukee M18CHM-902C Cordless SDS...
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                123
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Retrieved Product
-                            </td>
-                        </tr>
-                        <tr class="bg-white">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                3
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Hammer
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                123
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Retrieved Product
-                            </td>
-                        </tr>
+
+                        <?php
+                        require_once __DIR__ . '/../functions/return.php';
+                        foreach ($rowsReturn as $rowReturn): ?>
+                            <tr class="bg-white border-b border-black">
+                                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                    <?php echo $rowReturn['return_id']; ?>
+                                </th>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowReturn['product']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowReturn['quantity']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $rowReturn['actions']; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
