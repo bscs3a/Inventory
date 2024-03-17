@@ -12,8 +12,7 @@
 </head>
 
 <body>
-    <?php require __DIR__ . '/../functions/db.php'; ?>
-
+    <?php require_once __DIR__ . "/../functions/db.php"; ?>
     <?php include "components/sidebar.php" ?>
     <!-- Start: Dashboard -->
 
@@ -243,7 +242,7 @@
 
         <!-- Incoming Stock Modal -->
         <div id="incomingstock-modal"
-            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
             <div class="bg-white rounded shadow-lg w-1/3 border border-black">
                 <div class="border-b pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Incoming Stocks</h5>
@@ -272,26 +271,30 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody id="table-body">
+                    <tbody>
+                        <!-- eee -->
                         <?php
-                        $sql = "SELECT id, ord_product, status, arrival FROM inc_stocks";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute();
-
-                        if ($stmt->rowCount() > 0) {
-                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                echo "<tr>";
-                                echo "<td>" . $row["stock_id"] . "</td>";
-                                echo "<td>" . $row["ord_product"] . "</td>";
-                                echo "<td>" . $row["status"] . "</td>";
-                                echo "<td>" . $row["arrival"] . "</td>";
-                                echo "<td>Suggested Actions</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        ?>
+                        require_once __DIR__ . '/../functions/inc_stock.php';
+                        foreach ($rows as $row): ?>
+                            <tr class="bg-white border-b border-black">
+                                <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                    <?php echo $row['stock_id']; ?>
+                                </th>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $row['ord_product']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold <?php echo ($row['status']); ?>">
+                                    <?php echo $row['status']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $row['arrival']; ?>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-black">
+                                    <?php echo $row['rec_action']; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <!-- eee -->
                     </tbody>
                 </table>
             </div>
