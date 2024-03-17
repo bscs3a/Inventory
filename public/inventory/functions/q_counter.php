@@ -5,14 +5,14 @@ require_once 'db.php';
 $query = "SELECT SUM(quantity) AS total_quantity FROM total_stocks";
 $stmt = $conn->prepare($query);
 $stmt->execute();
-$rowTot = $stmt->fetch(PDO::FETCH_ASSOC);
-$total_quantity = $rowTot['total_quantity'];
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$total_quantity = $row['total_quantity'];
 
 $query = "SELECT SUM(no_of_order) AS total_incoming FROM inc_stock";
 $stmt = $conn->prepare($query);
 $stmt->execute();
-$rowTot = $stmt->fetch(PDO::FETCH_ASSOC);
-$total_incoming = $rowTot['total_incoming'];
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$total_incoming = $row['total_incoming'];
 
 $query = "SELECT COUNT(*) AS no_stock_count FROM no_stock";
 $stmt = $conn->prepare($query);
