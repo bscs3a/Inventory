@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+    <?php require __DIR__ . '/../functions/db.php'; ?>
 
     <?php include "components/sidebar.php" ?>
     <!-- Start: Dashboard -->
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button
+                    <button route='/inv/inventoryProducts'
                         class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md"
                         id="openModal">
                         Go to Product List
@@ -243,7 +243,7 @@
 
         <!-- Incoming Stock Modal -->
         <div id="incomingstock-modal"
-            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white rounded shadow-lg w-1/3 border border-black">
                 <div class="border-b pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Incoming Stocks</h5>
@@ -272,75 +272,26 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="bg-white border-b border-black">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                1
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Stanley 84-073 Flat Nose Pliers 6"
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-green-500">
-                                Out for Delivery
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                2/20/34
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-gray-500">
-                                None
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b border-black">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                2
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Milwaukee M18CHM-902C Cordless SDS...
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-red-500">
-                                Failed
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                2/20/34
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Request Order
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b border-black">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                3
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Hammer
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Processing
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                2/20/34
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-gray-500">
-                                None
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b border-black">
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                4
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Drill
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-yellow-500">
-                                Delayed 1 day(s)
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                2/20/34
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                Expedite Order
-                            </td>
-                        </tr>
+                    <tbody id="table-body">
+                        <?php
+                        $sql = "SELECT id, ord_product, status, arrival FROM inc_stocks";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute();
+
+                        if ($stmt->rowCount() > 0) {
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo "<tr>";
+                                echo "<td>" . $row["stock_id"] . "</td>";
+                                echo "<td>" . $row["ord_product"] . "</td>";
+                                echo "<td>" . $row["status"] . "</td>";
+                                echo "<td>" . $row["arrival"] . "</td>";
+                                echo "<td>Suggested Actions</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -368,7 +319,7 @@
 
         <!-- Out of Stock Modal -->
         <div id="outstock-modal"
-            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white rounded shadow-lg w-1/3">
                 <div class="border-b pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Out of Stock</h5>
@@ -460,7 +411,7 @@
         </script>
         <!-- Return Stock Modal -->
         <div id="return-modal"
-            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+            class="modal fixed top-0 left-0 w-full h-full flex items-center hidden justify-center bg-black bg-opacity-50">
             <div class="bg-white rounded shadow-lg w-1/3">
                 <div class="border-b pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Returned Products</h5>

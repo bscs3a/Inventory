@@ -71,9 +71,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!--Need Fixing: location.href-->
                     <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                        onclick="location.href='MASTER/inv.prodEdit.php'"> <!-- Route/Href not working -->
+                        onclick="location.href='/master/inv/prod-edit'">
 
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
@@ -96,7 +95,7 @@
                         </td>
                     </tr>
                     <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                        onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
+                        onclick="location.href='/master/inv/prod-edit'">
                         <!-- Route/Href not working -->
 
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
@@ -120,8 +119,7 @@
                         </td>
                     </tr>
                     <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                        onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
-                        <!-- Route/Href not working -->
+                        onclick="location.href='/master/inv/prod-edit'">
 
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
@@ -144,8 +142,7 @@
                         </td>
                     </tr>
                     <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                        onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
-                        <!-- Route/Href not working -->
+                        onclick="location.href='/master/inv/prod-edit'">
 
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
