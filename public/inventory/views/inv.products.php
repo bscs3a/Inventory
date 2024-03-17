@@ -79,7 +79,7 @@
                         <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
                             onclick="location.href='/master/inv/prod-edit?id=<?php echo $rowTStock['id']; ?>'">
                             <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                                <img src="<?php echo $rowTStock['image']; ?>" alt="PICSUR" class="mr-4">
+                                <img src="<?php echo $rowTStock['image']; ?>" alt="Image" class="mr-4">
                             </th>
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['product']; ?>
