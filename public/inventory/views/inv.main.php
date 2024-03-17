@@ -94,7 +94,7 @@
                         <p class="text-5xl font-semibold text-center mb-4">
                         <p class="text-5xl text-red-950 font-semibold text-center mb-4">
                             <?php
-                            echo $return_stock . " Item(s)"; ?>
+                            echo $return_stock . " Product(s)"; ?>
                         </p>
                         </p>
                     </div>
@@ -249,7 +249,7 @@
 
         <!-- Incoming Stock Modal -->
         <div id="incomingstock-modal"
-            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white rounded shadow-lg w-1/3 border border-black">
                 <div class="border-b pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Incoming Stocks</h5>

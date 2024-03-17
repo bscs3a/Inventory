@@ -25,3 +25,10 @@ $stmt = $conn->prepare($query);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $return_stock = $row['return_stock'];
+
+
+$query = "SELECT SUM(quantity) AS tot_ret FROM return_stock";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$tot_ret = $row['tot_ret'];
