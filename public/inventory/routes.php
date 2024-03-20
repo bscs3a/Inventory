@@ -10,13 +10,13 @@ $inv = [
     // Inventory Products
     '/inv/inventoryProducts' => $basePath . "products.php",
 
-    // Product Process
-    '/inv/inventoryProductsProcess' => $basePath . "prod.process.php",
+    // Product Returns
+    '/inv/returns' => $basePath . "returns.php",
 
     // Edit Product
     '/inv/prod-edit' => $basePath . "prodEdit.php",
 
     // Finance Request
     '/inv/req-finance' => $basePath . "fin.request.php",
-    
+
 ];

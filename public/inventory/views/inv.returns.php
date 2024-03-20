@@ -51,9 +51,6 @@
                 <thead class="text-xs text-black uppercase bg-gray-200 ">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Product
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -77,9 +74,7 @@
                     <!--Need Fixing: location.href-->
                     <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
                         onclick="location.href='MASTER/inv.prodEdit.php'"> <!-- Route/Href not working -->
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                            1
-                        </th>
+
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
                             Stanley 84-073 Flat Nose Pliers 6"
@@ -103,9 +98,7 @@
                     <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
                         onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
                         <!-- Route/Href not working -->
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                            2
-                        </th>
+
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
                             Stanley 84-073 Flat Nose Pliers 6"
@@ -129,9 +122,7 @@
                     <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
                         onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
                         <!-- Route/Href not working -->
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                            3
-                        </th>
+
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
                             Stanley 84-073 Flat Nose Pliers 6"
@@ -155,9 +146,7 @@
                     <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
                         onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
                         <!-- Route/Href not working -->
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                            4
-                        </th>
+
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
                             Stanley 84-073 Flat Nose Pliers 6"
