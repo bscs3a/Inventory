@@ -23,12 +23,16 @@
 
         <!--Start: Finance Request-->
         <div class="text-2xl font-semibold px-6 pt-3 pb-3">
-            <h1>Product Lists</h1>
+            <h1>Returns</h1>
         </div>
 
 
-        <div class="flex justify-between items-center mt-4 p-4">
-            <div class="flex items-center">
+        <div class="flex justify-between items-center mt-2 px-2">
+            <div class="px-4">
+                <p class="">Today</p>
+            </div>
+
+            <div class="flex items-center px-4">
                 <!-- Dropdown button -->
                 <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0">
                     Filter
@@ -41,7 +45,8 @@
                 </div>
                 <!-- Searchbar end -->
             </div>
-            <!-- Product Request End -->
+
+
         </div>
 
 
@@ -50,6 +55,9 @@
             <table class="w-full text-sm text-left rtl:text-right text-black">
                 <thead class="text-xs text-black uppercase bg-gray-200 ">
                     <tr>
+                        <th scope="col" class="px-6 py-3">
+                            ID
+                        </th>
                         <th scope="col" class="px-6 py-3">
                             Product
                         </th>
@@ -63,18 +71,17 @@
                             Price Each
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Availability
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Product Status
+                            Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <!--Need Fixing: location.href-->
-                    <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                        onclick="location.href='MASTER/inv.prodEdit.php'"> <!-- Route/Href not working -->
-
+                    <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200">
+                        <!-- Route/Href not working -->
+                        <th scope=" row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                            1
+                        </th>
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
                             Stanley 84-073 Flat Nose Pliers 6"
@@ -89,40 +96,16 @@
                             Php500
                         </td>
                         <td class="px-6 py-4 font-semibold text-black">
-                            Available
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Good Condition
+                            <button
+                                class="items-end rounded-full w-32 py-2 px-4 bg-violet-950 text-white duration-300 shadow-md">
+                                Retrieve Product </button>
                         </td>
                     </tr>
-                    <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                        onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
+                    <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200">
                         <!-- Route/Href not working -->
-
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                            <img src="image.jpg" alt="PICSUR" class="mr-4">
-                            Stanley 84-073 Flat Nose Pliers 6"
+                        <th scope=" row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                            2
                         </th>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Pliers
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-danger">
-                            0
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Php500
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-danger">
-                            Out of Stock
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-danger">
-                            Defective
-                        </td>
-                    </tr>
-                    <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                        onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
-                        <!-- Route/Href not working -->
-
                         <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                             <img src="image.jpg" alt="PICSUR" class="mr-4">
                             Stanley 84-073 Flat Nose Pliers 6"
@@ -136,35 +119,10 @@
                         <td class="px-6 py-4 font-semibold text-black">
                             Php500
                         </td>
-                        <td class="px-6 py-4 font-semibold text-warning">
-                            Temporary Unavailable
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-danger">
-                            Not Found
-                        </td>
-                    </tr>
-                    <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                        onclick="location.href='MASTER/public/inventory/views/inv.prodEdit.php'">
-                        <!-- Route/Href not working -->
-
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                            <img src="image.jpg" alt="PICSUR" class="mr-4">
-                            Stanley 84-073 Flat Nose Pliers 6"
-                        </th>
                         <td class="px-6 py-4 font-semibold text-black">
-                            Pliers
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            1234
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Php500
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-warning">
-                            Temporary Unavailable
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black italic">
-                            Recounting Product
+                            <button
+                                class="items-end rounded-full w-32 py-2 px-4 bg-violet-950 text-white duration-300 shadow-md">
+                                Retrieve Product </button>
                         </td>
                     </tr>
                 </tbody>
