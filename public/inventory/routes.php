@@ -14,9 +14,15 @@ $inv = [
     '/inv/inventoryProductsProcess' => $basePath . "prod.process.php",
 
     // Edit Product
-    '/inv/prod-edit' => $basePath . "prodEdit.php",
+    '/inv/prod-edit={id}' => function ($id) use ($basePath) {
+        $_SESSION['id'] = $id;
+        include $basePath . "prodEdit.php";
+    },
+
+
+
 
     // Finance Request
     '/inv/req-finance' => $basePath . "fin.request.php",
-    
+
 ];
