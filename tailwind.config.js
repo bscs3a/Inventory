@@ -7,6 +7,7 @@ module.exports = {
         sans: ["Montserrat", "sans-serif"],
         russo: ["Russo One"],
       },
+
       colors: {
         sidebar: "#262261",
         'header': "#d6d5e1",
@@ -14,6 +15,10 @@ module.exports = {
         'green' : '#008D1F', 
         'warning': '#E29A00',
         'danger': '#C91F41', 
+      },
+
+      screens:{,
+        'mobile': {max: '768px'},
       },
     },
   },
