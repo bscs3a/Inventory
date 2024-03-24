@@ -9,6 +9,7 @@ module.exports = {
       },
       colors: {
         sidebar: "#262261",
+        'header': "#d6d5e1",
         'button1': '#FFC955',
         'green' : '#008D1F', 
         'warning': '#E29A00',

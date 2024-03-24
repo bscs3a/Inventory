@@ -26,7 +26,7 @@
             <h1>Stats</h1>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 m-2">
+        <div class="grid grid-cols-2 gap-4 m-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-4">
 
             <div class="flex px-4 w-full rounded-lg bg-white border border-gray-600 flex-col shadow-md">
                 <h1 class="text-black font-bold mt-2 mb-4">Total Stocks *</h1>
