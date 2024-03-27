@@ -1,6 +1,6 @@
 <!-- Start: Header -->
 
-<div class="py-4 px-7 bg-white flex items-center shadow-md sticky">
+<div class="py-4 px-7 bg-header flex items-center shadow-md sticky">
 
     <!-- Start: Active Menu -->
 

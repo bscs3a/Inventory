@@ -29,7 +29,7 @@
         <div class="grid grid-cols-2 gap-4 m-2">
 
             <div class="flex px-4 w-full rounded-lg bg-white border border-gray-600 flex-col shadow-md">
-                <h1 class="text-black font-bold mt-2 mb-4">Total Stocks *</h1>
+                <h1 class="text-black font-bold mt-2 mb-4">Total Stocks</h1>
 
                 <div class="flex items-center m-3">
                     <div class="flex flex-col justify-between flex-grow">
