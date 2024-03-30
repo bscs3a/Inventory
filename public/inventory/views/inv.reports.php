@@ -23,7 +23,7 @@
 
         <!--Start: Finance Request-->
         <div class="text-2xl font-semibold px-6 pt-3 pb-3">
-            <h1>Returns</h1>
+            <h1>Incident Reports</h1>
         </div>
 
 
@@ -52,12 +52,12 @@
                             Quantity
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Product Status
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white">
+                    <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200">
                         <th scope=" row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
                             1
                         </th>
@@ -71,13 +71,11 @@
                         <td class="px-6 py-4 font-semibold text-black">
                             1234
                         </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            <button
-                                class="items-end rounded-full w-34 py-2 px-4 bg-violet-950 text-white shadow-md hover:bg-slate-600 active:bg-slate-700 duration-75">
-                                Retrieve Product </button>
+                        <td class="px-6 py-4 font-semibold text-danger">
+                            Defective
                         </td>
                     </tr>
-                    <tr class="bg-white">
+                    <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200">
                         <th scope=" row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
                             2
                         </th>
@@ -91,15 +89,14 @@
                         <td class="px-6 py-4 font-semibold text-black">
                             1234
                         </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            <button
-                                class="items-end rounded-full w-34 py-2 px-4 bg-violet-950 text-white shadow-md  hover:bg-slate-600 active:bg-slate-700 duration-75">
-                                Retrieve Product </button>
+                        <td class="px-6 py-4 font-semibold text-danger">
+                            Item Lost
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
         <!--End: Table-->
         <script src="./../src/route.js"></script>
 

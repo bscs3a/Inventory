@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./**/**/**/*.{html,js,php}"],
@@ -17,8 +18,12 @@ module.exports = {
         'danger': '#C91F41', 
       },
 
-      screens:{,
-        'mobile': {max: '768px'},
+      size: {
+        '2xl': '48rem',
+      },
+
+      screens: {
+        'hide-sidebar': {'max': '767px'},
       },
     },
   },

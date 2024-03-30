@@ -1,6 +1,6 @@
 <!-- Start: Header -->
 
-<div class="py-4 px-7 bg-header flex items-center shadow-md sticky">
+<div id="header" class="py-4 px-7 bg-header flex items-center shadow-md sticky">
 
     <!-- Start: Active Menu -->
 
@@ -32,3 +32,26 @@
 </div>
 
 <!-- End: Header -->
+
+
+<script>
+    document.addEventListener("alpine:init", () => {
+        Alpine.data("layout", () => ({
+            profileOpen: false,
+            asideOpen: true,
+        }));
+    });
+</script>
+
+<script>
+    document.querySelector('.sidebar-toggle').addEventListener('click', function () {
+        document.getElementById('sidebar-menu').classList.toggle('hidden');
+        document.getElementById('sidebar-menu').classList.toggle('transform');
+        document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
+        document.getElementById('mainContent').classList.toggle('md:w-full');
+        document.getElementById('mainContent').classList.toggle('md:ml-64');
+
+        var sidebarMenu = document.getElementById('sidebar-menu');
+        var grid = document.querySelector('.grid');
+    });
+</script>

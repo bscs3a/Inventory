@@ -23,51 +23,30 @@
         <!-- Start: Edit content -->
         <div class="flex flex-row flex-wrap justify-center mx-24 mt-8">
 
-            <div class="flex-1 p-4 mt-5 max-w-lg rounded-lg bg-white border border-gray-600 flex-col shadow-md">
-                <!--Need Fixing: Image Input-->
-                <img class="flex mx-24" id="image-preview" src="" alt="Image Preview" style="display: none;">
-                <input type="file" accept="image/*" id="photo-upload" onchange="previewImage(event)">
+            <div class="flex-1 p-4 mt-5 max-w-sm rounded-lg bg-transparent border border-gray-600 flex-col shadow-md">
             </div>
 
-            <script>
-                function previewImage(event) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var img = new Image();
-                        img.onload = function () {
-                            if (this.width > 800 || this.height > 400) {
-                                alert('Image dimensions must be less than 800 x 400 pixels.');
-                                document.getElementById('photo-upload').value = '';
-                            } else {
-                                var output = document.getElementById('image-preview');
-                                output.src = reader.result;
-                                output.style.display = 'block';
-                            }
-                        };
-                        img.src = e.target.result;
-                    };
-                    reader.readAsDataURL(event.target.files[0]);
-                }
-            </script>
-
-            <div class="flex-1 p-4 w-96 max-w-5xl">
+            <div class="flex-1 p-4 w-full max-w-5xl">
                 <div class="mb-6 ml-3">
-                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+
+                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>" disabled>
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                         Name</label>
-                    <input type="text" id="product" name="product" value="<?php echo $product['product']; ?>"
+                    <input type="text" id="product" name="product" value="<?php echo $product['product']; ?>" disabled
                         class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
+
                 <div class="mb-6 ml-3">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Category</label>
                     <input type="text" id="category" name="category" value="<?php echo $product['category']; ?>"
+                        disabled
                         class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
 
                 <div class="mb-6 ml-3">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                         Price</label>
-                    <input type="text" id="price" name="price" value="<?php echo $product['price']; ?>"
+                    <input type="text" id="price" name="price" value="<?php echo $product['price']; ?>" disabled
                         class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
             </div>
@@ -76,12 +55,12 @@
 
 
         <!-- Start: Details -->
-        <div class="flex flex-row flex-wrap justify-between mx-24 mt-10">
+        <div class="flex flex-row flex-wrap justify-between mx-24 mt-10 mb-12">
 
-            <div class="flex-1 p-4 mx-16 mt-5 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
+            <div class="flex-1 p-4 mx-5 mt-5 mb-5 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
                 <h1 class="text-black text-2xl font-bold ml-2 mt-2">Details</h1>
 
-                <div class="flex justify-between mx-36 my-5 text-2xl">
+                <div class="flex justify-between mx-36 my-3 text-xl">
                     <div>
                         <p>Stocks</p>
                     </div>
@@ -95,7 +74,8 @@
                         </div>
 
                         <div class="px-2">
-                            <button class="items-end rounded-full text-lg bg-violet-950 text-white px-6 py-1">
+                            <button
+                                class="items-end rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
                                 <i class="ri-add-circle-line"></i>
                                 <span>Order</span>
                             </button>
@@ -104,9 +84,9 @@
                     </div>
                 </div>
 
-                <hr class="h-px my-8 bg-gray-200 border-0 mx-24">
+                <hr class="h-px my-4 bg-gray-200 border-0 mx-24">
 
-                <div class="flex justify-between mx-36 my-5 text-2xl">
+                <div class="flex justify-between mx-36 my-5 text-xl">
                     <div>
                         <p>Availability</p>
                     </div>
@@ -118,9 +98,9 @@
                     </div>
                 </div>
 
-                <hr class="h-px my-8 bg-gray-200 border-0 mx-24">
+                <hr class="h-px my-6 bg-gray-200 border-0 mx-24">
 
-                <div class="flex justify-between mx-36 my-5 text-2xl">
+                <div class="flex justify-between mx-36 my-5 text-xl">
                     <div>
                         <p>Product Status</p>
                     </div>
@@ -128,6 +108,19 @@
                         <p class="font-bold">
                             <?php
                             echo $product['prod_stat']; ?>
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="h-px my-6 bg-gray-200 border-0 mx-24">
+
+                <div class="flex flex-col mx-36 my-5 text-xl">
+                    <div class="mb-8">
+                        <p>Description</p>
+                    </div>
+                    <div class="font-bold">
+                        <p>
+                            lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem
                         </p>
                     </div>
                 </div>
