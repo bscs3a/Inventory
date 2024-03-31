@@ -38,7 +38,9 @@
 
         <!-- Start: Full Screen Icon -->
         <div class="absolute top-0 right-0">
-            <i id="fullscreenIcon" class="fas fa-expand" x-data="{ isFullScreen: false }" @click="isFullScreen = !isFullScreen" :class="{ 'p-3 text-lg': isFullScreen, 'pt-14 pr-3 text-lg': !isFullScreen }"></i>
+            <i id="fullscreenIcon" class="fas fa-expand" x-data="{ isFullScreen: false }"
+                @click="isFullScreen = !isFullScreen"
+                :class="{ 'p-3 text-lg': isFullScreen, 'pt-14 pr-3 text-lg': !isFullScreen }"></i>
         </div>
         <!-- End: Full Screen Icon -->
 
@@ -75,36 +77,52 @@
 
         </div>
 
-        <div class="min-h-screen" x-data="{ sidebarOpen: false, cartOpen: false }" :class="{ 'sidebar-open': sidebarOpen, 'sidebar-closed': !sidebarOpen }">
+        <div class="min-h-screen" x-data="{ sidebarOpen: false, cartOpen: false }"
+            :class="{ 'sidebar-open': sidebarOpen, 'sidebar-closed': !sidebarOpen }">
 
             <div class="flex justify-between items-center w-full pt-10 pl-10">
 
                 <form class="max-w-lg mb-3 w-2/5 pl-10">
                     <div class="flex">
-                        <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only">Your Email</label>
-                        <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100" type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                        <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only">Your
+                            Email</label>
+                        <button id="dropdown-button" data-dropdown-toggle="dropdown"
+                            class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
+                            type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg></button>
-                        <div id="dropdown" class="absolute z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-10">
+                        <div id="dropdown"
+                            class="absolute z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-10">
                             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdown-button">
                                 <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Mockups</button>
+                                    <button type="button"
+                                        class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Mockups</button>
                                 </li>
                                 <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Templates</button>
+                                    <button type="button"
+                                        class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Templates</button>
                                 </li>
                                 <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Design</button>
+                                    <button type="button"
+                                        class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Design</button>
                                 </li>
                                 <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Logos</button>
+                                    <button type="button"
+                                        class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Logos</button>
                                 </li>
                             </ul>
                         </div>
                         <div class="relative w-full">
-                            <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Search Hardware, Tools, Supplies..." required /> <button type="submit" class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            <input type="search" id="search-dropdown"
+                                class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Search Hardware, Tools, Supplies..." required /> <button type="submit"
+                                class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                                 <span class="sr-only">Search</span>
                             </button>
@@ -113,15 +131,15 @@
                 </form>
 
                 <script>
-                    document.addEventListener("DOMContentLoaded", function() {
+                    document.addEventListener("DOMContentLoaded", function () {
                         const dropdownButton = document.getElementById('dropdown-button');
                         const dropdown = document.getElementById('dropdown');
 
-                        dropdownButton.addEventListener('click', function() {
+                        dropdownButton.addEventListener('click', function () {
                             dropdown.classList.toggle('hidden');
                         });
 
-                        document.addEventListener('click', function(event) {
+                        document.addEventListener('click', function (event) {
                             const isDropdownButton = event.target.matches('#dropdown-button');
                             const isDropdown = event.target.closest('#dropdown');
                             if (!isDropdownButton && !isDropdown) {
@@ -132,9 +150,11 @@
                 </script>
 
 
-                <div class=" right-0 fixed flex items-center border-2 border-gray-300 rounded-l-md bg-gray-200" x-show="!sidebarOpen">
+                <div class=" right-0 fixed flex items-center border-2 border-gray-300 rounded-l-md bg-gray-200"
+                    x-show="!sidebarOpen">
                     <div class="flex items-center">
-                        <button type="button" @click="sidebarOpen = !sidebarOpen; cartOpen = !cartOpen" class="items-center flex bg-gray-200  py-2 w-full justify-between sidebar-toggle2">
+                        <button type="button" @click="sidebarOpen = !sidebarOpen; cartOpen = !cartOpen"
+                            class="items-center flex bg-gray-200  py-2 w-full justify-between sidebar-toggle2">
                             <i class="ri-arrow-left-s-line ml-5 mr-5 text-xl"></i>
                             <div class="border-r border-gray-400 h-6"></div>
                             <div class="px-5">
@@ -147,12 +167,14 @@
 
             </div>
 
-            <div class="flex flex-col items-center min-h-screen w-full" :class="{ 'w-full': !sidebarOpen, 'w-9/12': sidebarOpen }">
+            <div class="flex flex-col items-center min-h-screen w-full"
+                :class="{ 'w-full': !sidebarOpen, 'w-9/12': sidebarOpen }">
                 <div>
                     <div class="text-xl font-bold divide-y ml-3">Most Sold</div>
                     <hr class="w-full border-gray-300 my-2"> <!-- Horizontal line -->
                     <div id="grid" :class="!cartOpen ? 'grid grid-cols-6 gap-4' : 'grid grid-cols-5 gap-4'">
-                        <div class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
+                        <div
+                            class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
                             <div class="size-24 rounded-full shadow-md bg-yellow-200 mb-4">
                                 <!-- SVG icon -->
                             </div>
@@ -162,7 +184,8 @@
                             <div class="mt-6 text-lg font-semibold text-gray-700">Php500</div>
                             <div class="text-gray-500 text-sm">Stocks: 1</div>
                         </div>
-                        <div class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
+                        <div
+                            class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
                             <div class="size-24 rounded-full shadow-md bg-yellow-200 mb-4">
                                 <!-- SVG icon -->
                             </div>
@@ -172,7 +195,8 @@
                             <div class="mt-6 text-lg font-semibold text-gray-700">Php500</div>
                             <div class="text-gray-500 text-sm">Stocks: 1</div>
                         </div>
-                        <div class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
+                        <div
+                            class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
                             <div class="size-24 rounded-full shadow-md bg-yellow-200 mb-4">
                                 <!-- SVG icon -->
                             </div>
@@ -182,7 +206,8 @@
                             <div class="mt-6 text-lg font-semibold text-gray-700">Php500</div>
                             <div class="text-gray-500 text-sm">Stocks: 1</div>
                         </div>
-                        <div class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
+                        <div
+                            class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
                             <div class="size-24 rounded-full shadow-md bg-yellow-200 mb-4">
                                 <!-- SVG icon -->
                             </div>
@@ -192,7 +217,8 @@
                             <div class="mt-6 text-lg font-semibold text-gray-700">Php500</div>
                             <div class="text-gray-500 text-sm">Stocks: 1</div>
                         </div>
-                        <div class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
+                        <div
+                            class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
                             <div class="size-24 rounded-full shadow-md bg-yellow-200 mb-4">
                                 <!-- SVG icon -->
                             </div>
@@ -202,7 +228,8 @@
                             <div class="mt-6 text-lg font-semibold text-gray-700">Php500</div>
                             <div class="text-gray-500 text-sm">Stocks: 1</div>
                         </div>
-                        <div class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
+                        <div
+                            class="w-52 h-70 p-6 flex flex-col items-center border rounded-lg border-solid border-gray-300 shadow-lg">
                             <div class="size-24 rounded-full shadow-md bg-yellow-200 mb-4">
                                 <!-- SVG icon -->
                             </div>
@@ -217,9 +244,12 @@
             </div>
 
             <!-- Cart -->
-            <div id="sidebar sidebar-toggle cart" class="fixed right-0 top-10 w-96 overflow-auto sidebar rounded-l-lg border-2 border-gray-300 bg-white shadow mt-12" style="height: 88vh;" x-show="sidebarOpen">
+            <div id="sidebar sidebar-toggle cart"
+                class="fixed right-0 top-10 w-96 overflow-auto sidebar rounded-l-lg border-2 border-gray-300 bg-white shadow mt-12"
+                style="height: 88vh;" x-show="sidebarOpen">
                 <!-- Close Sidebar Button -->
-                <div @click="sidebarOpen = false; cartOpen = !cartOpen" class="flex items-center py-2 text-black no-underline bg-gray-200 border-b border-gray-300 cursor-pointer">
+                <div @click="sidebarOpen = false; cartOpen = !cartOpen"
+                    class="flex items-center py-2 text-black no-underline bg-gray-200 border-b border-gray-300 cursor-pointer">
                     <i class="ri-arrow-right-s-line text-xl ml-5 mr-5"></i>
                     <div class="border-r border-gray-400 h-6"></div>
                     <div class="mx-3">
@@ -267,7 +297,8 @@
 
                 <!-- Add Coupon Section -->
                 <div class="absolute bottom-52 w-full p-3">
-                    <div class="flex items-center justify-between bg-gray-200 p-3 rounded-lg" style="background-color: #FFEEA5;">
+                    <div class="flex items-center justify-between bg-gray-200 p-3 rounded-lg"
+                        style="background-color: #FFEEA5;">
                         <label for="coupon" class="mr-2 font-bold">Add</label>
                         <label for="coupon" class="mr-2 font-bold" style="color: #C91F41;">Discount Coupon</label>
                     </div>
@@ -307,11 +338,13 @@
                         }
                     </style>
                     <div class="flex justify-between px-5 py-1 mb-1 space-x-4">
-                        <button class="flex items-center justify-center font-bold py-1 px-4 rounded w-1/2 border border-black shadow custom-button">
+                        <button
+                            class="flex items-center justify-center font-bold py-1 px-4 rounded w-1/2 border border-black shadow custom-button">
                             <i class="ri-pause-line text-lg mr-2"></i>
                             Hold
                         </button>
-                        <button class="flex items-center justify-center font-bold py-1 px-4 rounded w-1/2 border border-black shadow custom-button">
+                        <button
+                            class="flex items-center justify-center font-bold py-1 px-4 rounded w-1/2 border border-black shadow custom-button">
                             <i class="ri-shopping-basket-2-fill mr-2"></i>
                             Proceed
                         </button>
@@ -332,7 +365,7 @@
     </script>
 
     <script>
-        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+        document.querySelector('.sidebar-toggle').addEventListener('click', function () {
             document.getElementById('sidebar-menu').classList.toggle('hidden');
             document.getElementById('sidebar-menu').classList.toggle('transform');
             document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
@@ -351,7 +384,7 @@
             }
         });
 
-        document.querySelector('.sidebar-toggle2').addEventListener('click', function() {
+        document.querySelector('.sidebar-toggle2').addEventListener('click', function () {
             var sidebarMenu = document.getElementById('sidebar-menu');
             var mainContent = document.getElementById('mainContent');
 
@@ -366,7 +399,7 @@
     </script>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             var grid = document.getElementById('grid');
             grid.classList.remove('grid-cols-6');
             grid.classList.add('grid-cols-5');
@@ -374,7 +407,7 @@
     </script>
 
     <script>
-        document.getElementById('fullscreenIcon').addEventListener('click', function() {
+        document.getElementById('fullscreenIcon').addEventListener('click', function () {
             var header = document.getElementById('header');
             var sidebarMenu = document.getElementById('sidebar-menu');
             var cart = document.getElementById('cart');
@@ -403,7 +436,7 @@
         });
     </script>
 
-<script  src="./../src/route.js"></script>
+    <script src="./../src/route.js"></script>
 </body>
 
 </html>

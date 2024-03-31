@@ -27,8 +27,6 @@ $inv = [
     '/inv/prod-edit={id}' => function ($id) use ($basePath) {
         $_SESSION['id'] = $id;
         include $basePath . "prodEdit.php";
-
-
     },
 
 

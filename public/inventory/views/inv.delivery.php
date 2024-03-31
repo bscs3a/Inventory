@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory</title>
+    <title>Incoming Stocks</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
@@ -42,6 +42,9 @@
                             Quantity
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Weight(kg)
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Delivery Status
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -65,6 +68,9 @@
                             1234
                         </td>
                         <td class="px-6 py-4 font-semibold text-black">
+                            13kg
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-black">
                             <p class="italic">Pending</p>
                         </td>
                         <td class="px-6 py-4 font-semibold text-black">
@@ -84,6 +90,9 @@
                         </td>
                         <td class="px-6 py-4 font-semibold text-black">
                             1234
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-black">
+                            12kg
                         </td>
                         <td class="px-6 py-4 font-semibold text-black">
                             In Transit

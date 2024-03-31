@@ -33,6 +33,88 @@
 
 <!-- End: Header -->
 
+<!-- top drawer component -->
+<div id="hs-overlay-top"
+    class="w-68 h-full hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform max-h-40 size-full z-[80] bg-white border-b hidden"
+    tabindex="-1">
+    <div class="fixed bg-sidebar left-0 top-0 w-64 h-full p-4 z-50 sidebar-menu transition-transform">
+
+        <div route="/" class="flex items-center pb-4">
+            <img src="https://placehold.co/50x50" alt="" class="w-10 h-10 rounded object-cover">
+
+            <span class="cursor-pointer text-4xl font-russo text-white ml-3">BSCS 3A</span>
+        </div>
+
+        <ul class="mt-3">
+
+            <li class="mb-1 hover:bg-slate-400 rounded-xl">
+                <a route='/inv/main' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+                    <i class="ri-speed-up-line mr-3 text-lg"></i>
+                    <span class="text-sm font-medium">Dashboard</span>
+                    <i class="ri-arrow-down-s-line ml-auto"></i>
+                </a>
+            </li>
+
+            <li class="mb-1 hover:bg-slate-400 rounded-xl">
+                <a route='/inv/inventoryProducts'
+                    class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+                    <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
+                    <span class="text-sm font-medium">Product List</span>
+                    <i class="ri-arrow-down-s-line ml-auto"></i>
+                </a>
+            </li>
+
+            <li class="mb-1 hover:bg-slate-400 rounded-xl">
+                <a route='/inv/delivery' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+                    <i class="ri-inbox-archive-line mr-3 text-lg"></i>
+                    <span class="text-sm font-medium">Incoming Stocks</span>
+                    <i class="ri-arrow-down-s-line ml-auto"></i>
+                </a>
+            </li>
+
+            <li class="mb-1 hover:bg-slate-400 rounded-xl">
+                <a route='/inv/returns' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+                    <i class="ri-arrow-go-back-line mr-3 text-lg"></i>
+                    <span class="text-sm font-medium">Returns</span>
+                    <i class="ri-arrow-down-s-line ml-auto"></i>
+                </a>
+            </li>
+
+            <li class="mb-1 hover:bg-slate-400 rounded-xl">
+                <a route='/inv/reports' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+                    <i class="ri-file-warning-line mr-3 text-lg"></i>
+                    <span class="text-sm font-medium">Incident Reports</span>
+                    <i class="ri-arrow-down-s-line ml-auto"></i>
+                </a>
+            </li>
+
+            <li class="mb-1 hover:bg-slate-400 rounded-xl">
+                <a route='/inv/req-finance'
+                    class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+                    <i class="ri-draft-line mr-3 text-lg"></i>
+                    <span class="text-sm font-medium">Finance Request</span>
+                    <i class="ri-arrow-down-s-line ml-auto"></i>
+                </a>
+            </li>
+
+            <button type="button"
+                class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                data-hs-overlay="#hs-overlay-top">
+                <span class="sr-only">Close modal</span>
+                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+    </div>
+    <div class="p-4">
+        <p class="text-gray-800 dark:text-gray-400">
+        </p>
+    </div>
+</div>
+<!-- end drawer component -->
 
 <script>
     document.addEventListener("alpine:init", () => {
@@ -45,13 +127,36 @@
 
 <script>
     document.querySelector('.sidebar-toggle').addEventListener('click', function () {
-        document.getElementById('sidebar-menu').classList.toggle('hidden');
-        document.getElementById('sidebar-menu').classList.toggle('transform');
-        document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
-        document.getElementById('mainContent').classList.toggle('md:w-full');
-        document.getElementById('mainContent').classList.toggle('md:ml-64');
+        // Check if the screen width is less than or equal to 767px
+        if (window.innerWidth <= 767) {
+            // Select the overlay
+            var overlay = document.getElementById('hs-overlay-top');
 
-        var sidebarMenu = document.getElementById('sidebar-menu');
-        var grid = document.querySelector('.grid');
+            // If the overlay is hidden, show it
+            if (overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+            }
+            // If the overlay is shown, hide it
+            else {
+                overlay.classList.add('hidden');
+            }
+        }
+        else {
+            document.getElementById('sidebar-menu').classList.toggle('hidden');
+            document.getElementById('sidebar-menu').classList.toggle('transform');
+            document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
+            // Toggle main content width and margin
+            document.getElementById('mainContent').classList.toggle('md:w-full');
+            document.getElementById('mainContent').classList.toggle('md:ml-64');
+        }
+
+        var content = document.getElementById('mainContent');
+
+        if (content.classList.contains('hide-sidebar')) {
+            document.getElementById('sidebar-menu').classList.toggle('transform');
+            document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
+            document.getElementById('mainContent').classList.toggle('md:w-full');
+            document.getElementById('mainContent').classList.toggle('md:ml-64');
+        }
     });
 </script>
