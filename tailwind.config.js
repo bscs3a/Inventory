@@ -10,7 +10,7 @@ module.exports = {
       },
 
       colors: {
-        sidebar: "#262261",
+        sidebar: '#262261',
         'header': "#d6d5e1",
         'button1': '#FFC955',
         'green' : '#008D1F', 
@@ -20,10 +20,12 @@ module.exports = {
 
       size: {
         '2xl': '48rem',
+        'fullscreen': '100%',
       },
 
       screens: {
         'hide-sidebar': {'max': '767px'},
+        'mobile': {'max': '640px'},
       },
     },
   },

@@ -16,7 +16,7 @@
 
     <!-- Start: Dashboard -->
 
-    <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
+    <main id="mainContent" class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
 
         <?php include "components/header.php" ?>
 

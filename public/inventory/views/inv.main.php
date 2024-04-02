@@ -20,7 +20,7 @@
     <main id="mainContent" class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
 
         <?php include "components/header.php" ?>
-
+        
         <!-- Start: Stats -->
         <div class="text-2xl font-semibold px-6 py-5">
             <h1>Stats</h1>
@@ -33,7 +33,7 @@
 
                 <div class="flex items-center m-3">
                     <div class="flex flex-col justify-between flex-grow">
-                        <p class="text-5xl font-semibold text-center mb-4">
+                        <p class="text-5xl font-semibold text-center mb-4 ">
                             <?php
                             echo $total_quantity . " Item(s)"; ?>
                         </p>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="flex place-content-end mt-2 m-3">
+                <div class="flex place-content-end mt-2 m-3 mobile:place-content-center">
                     <button data-modal-target="incomingstock-modal" data-modal-toggle="incomingstock-modal"
                         class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                         View </button>
@@ -70,16 +70,16 @@
             <div class="flex px-4 w-full rounded-lg bg-red-300 border border-gray-600 flex-col shadow-md">
                 <h1 class="text-black font-bold mt-2 mb-4">Out of Stock</h1>
 
-                <div class="flex items-center m-3">
+                <div class="flex items-center m-3 mobile:place-content-center">
                     <div class="flex flex-col justify-between flex-grow">
-                        <p class="text-5xl text-red-950 font-semibold text-center mb-4">
+                        <p class="text-5xl text-red-950 font-semibold text-center mb-4 mobile:items-center mobile:text-4xl mobile:mt-2">
                             <?php
                             echo $no_stock_count . " Product(s)"; ?>
                         </p>
                     </div>
                 </div>
 
-                <div class="flex place-content-end mt-2 m-3">
+                <div class="flex place-content-end mt-6 m-3 mobile:place-content-center">
                     <button data-modal-target="outstock-modal" data-modal-toggle="outstock-modal"
                         class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                         View </button>
@@ -89,10 +89,10 @@
             <div class="flex px-4 w-full rounded-lg bg-white border border-gray-600 flex-col shadow-md">
                 <h1 class="text-black font-bold mt-2 mb-4">Returns</h1>
 
-                <div class="flex items-center m-3">
+                <div class="flex items-center m-0 mobile:place-content-center">
                     <div class="flex flex-col justify-between flex-grow">
                         <p class="text-5xl font-semibold text-center mb-4">
-                        <p class="text-5xl text-red-950 font-semibold text-center mb-4">
+                        <p class="text-5xl text-black font-semibold text-center mb-4 mobile:items-center mobile:text-4xl mobile:mt-2">
                             <?php
                             echo $return_stock . " Product(s)"; ?>
                         </p>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
 
-                <div class="flex place-content-end mt-2 m-3">
+                <div class="flex place-content-end mt-8 m-3 mobile:place-content-center">
                     <button data-modal-target="return-modal" data-modal-toggle="return-modal"
                         class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                         View </button>
@@ -121,7 +121,7 @@
             <div class="flex items-center">
                 <!-- Dropdown button -->
                 <div class="relative inline-block text-left">
-                    <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0"
+                    <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0 mobile:py-0.5"
                         id="dropdownButton">
                         Filter
                     </button>
@@ -161,7 +161,7 @@
                 <!-- Dropdown end-->
                 <!-- Search Bar -->
                 <div class="relative">
-                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80"
+                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80 mobile:py-0.5 mobile:w-36"
                         placeholder="Search by ID...">
                 </div>
                 <!-- Searchbar end -->
@@ -190,9 +190,9 @@
         <!--End: Product-->
 
         <!--Start: Table-->
-        <div class="ml-3 mr-3 flex justify-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
+        <div class="ml-3 mr-3 flex overflow-x-auto overflow-y-auto shadow-md border border-gray-600 m-4">
             <table class="w-full text-sm text-left rtl:text-right text-black">
-                <thead class="text-xs text-black uppercase bg-gray-200 ">
+                <thead class="w-full w-fitext-xs text-black uppercase bg-gray-200 ">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Product

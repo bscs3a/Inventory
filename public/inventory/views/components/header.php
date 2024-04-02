@@ -35,15 +35,31 @@
 
 <!-- top drawer component -->
 <div id="hs-overlay-top"
-    class="w-68 h-full hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform max-h-40 size-full z-[80] bg-white border-b hidden"
+    class="h-full mt-20 hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-transform duration-300 transform max-h-40 size-full z-[80] 
+    border-b hidden"
     tabindex="-1">
-    <div class="fixed bg-sidebar left-0 top-0 w-64 h-full p-4 z-50 sidebar-menu transition-transform">
+
+    <div class="mt-20 bg-sidebar h-screen left-0 top-0 w-64 px-4 pt-4 z-100 transition-transform duration-100 transform translate-x-0">
+        <div class="flex justify-end mb-2">
+            <button id="close button" type="button"
+                class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                data-hs-overlay="#hs-overlay-top">
+                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+        </div>
 
         <div route="/" class="flex items-center pb-4">
             <img src="https://placehold.co/50x50" alt="" class="w-10 h-10 rounded object-cover">
 
             <span class="cursor-pointer text-4xl font-russo text-white ml-3">BSCS 3A</span>
         </div>
+
+      
 
         <ul class="mt-3">
 
@@ -97,34 +113,13 @@
                 </a>
             </li>
 
-            <button type="button"
-                class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                data-hs-overlay="#hs-overlay-top">
-                <span class="sr-only">Close modal</span>
-                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M18 6 6 18" />
-                    <path d="m6 6 12 12" />
-                </svg>
-            </button>
     </div>
     <div class="p-4">
-        <p class="text-gray-800 dark:text-gray-400">
+        <p class="text-gray-800">
         </p>
     </div>
 </div>
 <!-- end drawer component -->
-
-<script>
-    document.addEventListener("alpine:init", () => {
-        Alpine.data("layout", () => ({
-            profileOpen: false,
-            asideOpen: true,
-        }));
-    });
-</script>
-
 <script>
     document.querySelector('.sidebar-toggle').addEventListener('click', function () {
         // Check if the screen width is less than or equal to 767px
@@ -135,6 +130,7 @@
             // If the overlay is hidden, show it
             if (overlay.classList.contains('hidden')) {
                 overlay.classList.remove('hidden');
+                
             }
             // If the overlay is shown, hide it
             else {
@@ -142,8 +138,7 @@
             }
         }
         else {
-            document.getElementById('sidebar-menu').classList.toggle('hidden');
-            document.getElementById('sidebar-menu').classList.toggle('transform');
+            document.getElementById('.sidebar-toggle').classList.toggle('-translate-x-full');
             document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
             // Toggle main content width and margin
             document.getElementById('mainContent').classList.toggle('md:w-full');
@@ -153,10 +148,31 @@
         var content = document.getElementById('mainContent');
 
         if (content.classList.contains('hide-sidebar')) {
+            document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
             document.getElementById('sidebar-menu').classList.toggle('transform');
             document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
             document.getElementById('mainContent').classList.toggle('md:w-full');
             document.getElementById('mainContent').classList.toggle('md:ml-64');
         }
+        
+        document.getElementById('close button').addEventListener('click', function () {
+        var overlay = document.getElementById('hs-overlay-top');
+         overlay.classList.add('hidden');
+        });
+
+        window.addEventListener('resize', function() {
+            // Check if the screen width is more than 767px
+            if (window.innerWidth > 767) {
+                // Select the overlay
+                var overlay = document.getElementById('hs-overlay-top');
+
+                // If the overlay is shown, hide it
+                if (!overlay.classList.contains('hidden')) {
+                    overlay.classList.add('hidden');
+                }
+            }
+        });
     });
 </script>
+
+

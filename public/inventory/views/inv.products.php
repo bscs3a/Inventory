@@ -23,12 +23,12 @@
 
         <!--Start: Finance Request-->
         <div class="text-2xl font-semibold px-6 pt-3 pb-3">
-            <h1>Product Lists</h1>
+            <h1>Product List</h1>
         </div>
 
 
-        <div class="flex justify-between items-center mt-4 p-4">
-            <div class="flex items-center">
+        <div class="flex justify-between mt-4 p-4">
+            <div class="flex items-center ">
                 <!-- Dropdown button -->
                 <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0">
                     Filter
@@ -36,7 +36,7 @@
                 <!-- Dropdown end-->
                 <!-- Search Bar -->
                 <div class="relative">
-                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80"
+                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80 mobile:w-96"
                         placeholder="Search by Category...">
                 </div>
                 <!-- Searchbar end -->
