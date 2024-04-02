@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory</title>
+    <title>Inventory/Products</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 
@@ -17,7 +17,7 @@
     <?php include "components/sidebar.php" ?>
     <!-- Start: Dashboard -->
 
-    <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
+    <main id="mainContent" class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
 
         <?php include "components/header.php" ?>
 
@@ -67,9 +67,6 @@
                         <th scope="col" class="px-6 py-3">
                             Availability
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Product Status
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,9 +92,6 @@
                             </td>
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['availability']; ?>
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                <?php echo $rowTStock['prod_stat']; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

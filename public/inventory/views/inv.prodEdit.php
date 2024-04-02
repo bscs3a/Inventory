@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Product</title>
+    <title>Product Details</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 
@@ -16,58 +16,49 @@
 
     <!-- Start: Dashboard -->
 
-    <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
+    <main id="mainContent" class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
 
         <?php include "components/header.php" ?>
 
         <!-- Start: Edit content -->
         <div class="flex flex-row flex-wrap justify-center mx-24 mt-8">
 
-            <div class="flex-1 p-4 mt-5 max-w-lg rounded-lg bg-white border border-gray-600 flex-col shadow-md">
-                <!--Need Fixing: Image Input-->
-                <img class="flex mx-24" id="image-preview" src="" alt="Image Preview" style="display: none;">
-                <input type="file" accept="image/*" id="photo-upload" onchange="previewImage(event)">
+            <div class="flex-1 p-4 mt-5 max-w-sm rounded-lg bg-transparent border border-gray-600 flex-col shadow-md">
             </div>
 
-            <script>
-                function previewImage(event) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var img = new Image();
-                        img.onload = function () {
-                            if (this.width > 800 || this.height > 400) {
-                                alert('Image dimensions must be less than 800 x 400 pixels.');
-                                document.getElementById('photo-upload').value = '';
-                            } else {
-                                var output = document.getElementById('image-preview');
-                                output.src = reader.result;
-                                output.style.display = 'block';
-                            }
-                        };
-                        img.src = e.target.result;
-                    };
-                    reader.readAsDataURL(event.target.files[0]);
-                }
-            </script>
+            <div class="flex-1 p-4 w-full max-w-5xl">
 
-            <div class="flex-1 p-4 w-96 max-w-5xl">
-                <div class="mb-6 ml-3">
-                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                    <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
-                        Name</label>
-                    <input type="text" id="product" name="product" value="<?php echo $product['product']; ?>"
-                        class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
+                <div class="flex items-start">
+                    <!-- ID div -->
+                    <div class="mb-6 ml-3 w-1/4 flex-shrink-0">
+                        <input type="hidden" name="id" value="<?php echo $product['id']; ?>" disabled>
+                        <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">ID</label>
+                        <input type="text" id="product" name="product" value="<?php echo $product['id']; ?>" disabled
+                            class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+
+                    <!-- Product Name div -->
+                    <div class="mb-6 ml-3 flex-1">
+                        <input type="hidden" name="id" value="<?php echo $product['id']; ?>" disabled>
+                        <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
+                            Name</label>
+                        <input type="text" id="product" name="product" value="<?php echo $product['product']; ?>"
+                            disabled
+                            class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
+                    </div>
                 </div>
+
                 <div class="mb-6 ml-3">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Category</label>
                     <input type="text" id="category" name="category" value="<?php echo $product['category']; ?>"
+                        disabled
                         class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
 
                 <div class="mb-6 ml-3">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                         Price</label>
-                    <input type="text" id="price" name="price" value="<?php echo $product['price']; ?>"
+                    <input type="text" id="price" name="price" value="<?php echo $product['price']; ?>" disabled
                         class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
             </div>
@@ -76,12 +67,12 @@
 
 
         <!-- Start: Details -->
-        <div class="flex flex-row flex-wrap justify-between mx-24 mt-10">
+        <div class="flex flex-row justify-between mx-24 mt-5 relative">
 
-            <div class="flex-1 p-4 mx-16 mt-5 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
+            <div class="flex-1 p-4 mx-5 mt-5 mb-5 rounded-lg bg-white border border-gray-600 flex-col shadow-md">
                 <h1 class="text-black text-2xl font-bold ml-2 mt-2">Details</h1>
 
-                <div class="flex justify-between mx-36 my-5 text-2xl">
+                <div class="flex justify-between mx-36 my-3 text-xl">
                     <div>
                         <p>Stocks</p>
                     </div>
@@ -95,7 +86,8 @@
                         </div>
 
                         <div class="px-2">
-                            <button class="items-end rounded-full text-lg bg-violet-950 text-white px-6 py-1">
+                            <button data-modal-target="order-modal" data-modal-toggle="order-modal"
+                                class="items-end rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
                                 <i class="ri-add-circle-line"></i>
                                 <span>Order</span>
                             </button>
@@ -104,9 +96,9 @@
                     </div>
                 </div>
 
-                <hr class="h-px my-8 bg-gray-200 border-0 mx-24">
+                <hr class="h-px my-4 bg-gray-200 border-0 mx-24">
 
-                <div class="flex justify-between mx-36 my-5 text-2xl">
+                <div class="flex justify-between mx-36 my-5 text-xl">
                     <div>
                         <p>Availability</p>
                     </div>
@@ -118,9 +110,9 @@
                     </div>
                 </div>
 
-                <hr class="h-px my-8 bg-gray-200 border-0 mx-24">
+                <hr class="h-px my-6 bg-gray-200 border-0 mx-24">
 
-                <div class="flex justify-between mx-36 my-5 text-2xl">
+                <div class="flex justify-between mx-36 my-5 text-xl">
                     <div>
                         <p>Product Status</p>
                     </div>
@@ -131,24 +123,122 @@
                         </p>
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <hr class="h-px my-6 bg-gray-200 border-0 mx-24">
 
-        <!-- <div class="flex place-content-end mr-40">
-            <div class="flex justify-end px-4 mt-0">
-                <div class="flex place-content-end mt-10 mr-2">
-                    <button route='/inv/inv/main'
-                        class="items-end rounded-lg w-24 px-2 py-1 border border-black bg-yellow text-black hover:bg-gray-200 active:bg-gray-300 duration-100">
-                        Cancel </button>
+                <div class="flex flex-col mx-36 my-5 text-xl">
+                    <div class="mb-8">
+                        <p>Description</p>
+                    </div>
+                    <div class="font-bold">
+                        <p>
+                            lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="flex place-content-end mt-10">
-                <button
-                    class="items-end rounded-lg w-24 px-2 py-1 font-bold border border-black bg-button1 hover:bg-yellow-600 active:bg-yellow-700 text-black duration-300">
-                    Save </button>
+        </div>
+        <div class="flex justify-end mb-4 mx-4">
+            <div class="">
+                <button route='/inv/inventoryProducts' ;
+                    class="rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
+                    Back
+                </button>
             </div>
-        </div> -->
+        </div>
+
+
+
+
+
+        <!-- Order Stock Modal -->
+        <div id="order-modal"
+            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div
+                class="bg-white rounded shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 h-3/4 sm:h-2/3 md:h-1/2 lg:h-1/2 overflow-auto">
+                <div class="pl-3 pr-3 pt-3 flex">
+                    <h5 class="font-bold uppercase text-gray-600">Order Products</h5>
+                    <button data-modal-hide="order-modal"
+                        class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                <div class="flex justify-center">
+                    <div
+                        class="p-4 mt-5 rounded-lg bg-transparent border border-gray-600 flex-col shadow-md inline-block">
+                        <img src="https://via.placeholder.com/150" alt="Placeholder image">
+                    </div>
+                </div>
+                <div class="flex-1 p-4 w-full max-w-5xl">
+                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                    <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
+                        Name</label>
+                    <select id="product" name="product"
+                        class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
+                        <option value="<?php echo $product['product']; ?>">
+                            <?php echo $product['product']; ?>
+                        </option>
+                        <option value="<?php echo $product['product']; ?>">
+                            <?php echo $product['product']; ?>
+                        </option>
+                        <option value="<?php echo $product['product']; ?>">
+                            <?php echo $product['product']; ?>
+                        </option>
+                    </select>
+                </div>
+
+                <div class="flex-1 p-4 w-full max-w-5xl">
+                    <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Category</label>
+                    <input type="text" id="category" name="category" value="<?php echo $product['category']; ?>"
+                        disabled
+                        class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <div class="flex-1 p-4 w-full max-w-5xl">
+                    <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Amount of
+                        Products</label>
+                    <input type="number" id="price" name="price" value="<?php echo $product['price']; ?>"
+                        class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500"
+                        onkeydown="return event.key !== 'e' event.key !== 'E'">
+                </div>
+                <div class="flex justify-center items-center mt-4 mb-4 space-x-4">
+                    <div>
+                        <button data-modal-hide="order-modal"
+                            class="rounded-full text-lg border border-black text-black px-6 py-1 hover:bg-gray-100 active:bg-gray-300 duration-75">
+                            Back
+                        </button>
+                    </div>
+                    <div>
+                        <!-- ORDER CONFIRMATION -->
+                        <button route='/inv/inventoryProducts'
+                            class="rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
+                            Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Order Stock Modal JS -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var modal = document.getElementById('order-modal');
+                var closeButtons = document.querySelectorAll('[data-modal-hide="order-modal"]');
+                var openButton = document.querySelector('[data-modal-target="order-modal"]');
+
+                closeButtons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        modal.classList.add('hidden');
+                    });
+                });
+
+                openButton.addEventListener('click', function () {
+                    modal.classList.remove('hidden');
+                });
+            });
+        </script>
 
 </body>
 
