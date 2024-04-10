@@ -63,8 +63,8 @@
 
 </div>
 
-<div class="top-0 left-0 w-full h-full z-40 sidebar-overlay">
 
 </div>
 <!-- End: Sidebar -->
 <script src="./../src/route.js"></script>
+
