@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
 
-<!--Start: Empty Reports-->
-<!--This page occurs if Return Page is empty-->
+<!--Start: Empty Returns-->
+
 <body>
 
     <?php include "components/sidebar.php" ?>
-    <!-- Start: Empty Reports-->
+    <!-- Start: Empty Returns-->
 
     <main id="mainContent" class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
 
@@ -41,6 +41,6 @@
         <script src="./../src/route.js"></script>
 
 </body>
-<!--END: Empty Reports-->
+<!--END: Empty Returns-->
 
 </html>

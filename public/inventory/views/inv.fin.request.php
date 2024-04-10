@@ -21,88 +21,27 @@
 
         <!--Start: Finance Request-->
         <div class="text-2xl font-semibold px-6 pt-3 pb-3">
-            <h1>Request Inventory Needs</h1>
+            <h1>Finance Request</h1>
         </div>
 
-        <div class="flex justify-between px-6 mt-1 mb-4">
-
-            <div class="flex place-content-end mt-2 m-3">
-                <button route='/inv/prod-edit' class="items-end rounded-full px-2 py-1 bg-violet-950 text-white">
-                    <i class="ri-add-circle-line"></i>
-                    <span>Request</span>
-                </button>
-            </div>
-        </div>
-        <!--End: Product-->
 
         <!--Start: Table-->
-        <div class="ml-3 mr-3 flex overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
-            <table class="w-full text-sm text-left rtl:text-right text-black">
-                <thead class="text-xs text-black uppercase bg-gray-200 ">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Product
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Category
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Availability
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Quantity
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Price
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white">
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                            Greenmade 27 gal Black/Yellow Storage Tote 14.7 in. H X 20.4 in. W X 30.4 in. D Stackable
-                        </th>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Bins & Baskets
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Available
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            20
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Php 4000
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            <a route='/inv/prod-edit' class="font-medium hover:underline">Edit</a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white">
-                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                            ACE 4-TIER HEAVY DUTY INDUSTRIAL STORAGE RACK
-                        </th>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Shelves
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Available
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            10
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            Php 5000
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-black">
-                            <a route='/inv/prod-edit' class="font-medium hover:underline">Edit</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div
+            class="mx-auto max-w-sm p-4 flex flex-col justify-center items-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600">
+            <h1 class="text-center text-lg font-semibold mb-4">Pay Using</h1>
+            <!-- Dropdown button -->
+            <select class="w-full border border-gray-300 rounded p-2 text-center mb-2">
+                <option value="">Select an option</option>
+                <option value="option1">Paymaya</option>
+                <option value="option2">Gcash</option>
+                <option value="option2">MetroBank</option>
+            </select>
+            <h1 class="text-center text-lg font-semibold mb-4">Amount</h1>
+            <!-- Number only input with Philippine peso sign -->
+            <div class="w-full flex items-center border border-gray-300 rounded p-2">
+                <span class="mr-2">₱</span>
+                <input type="number" min="0" step="1" class="w-full focus:outline-none" />
+            </div>
         </div>
         <!--End: Table-->
 

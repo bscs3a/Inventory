@@ -22,6 +22,9 @@ $inv = [
     // Product Incoming Stocks
     '/inv/delivery' => $basePath . "delivery.php",
 
+    // Account Settings
+    '/inv/accountsett' => $basePath . "accountsett.php",
+
 
     // Edit Product
     '/inv/prod-edit={id}' => function ($id) use ($basePath) {

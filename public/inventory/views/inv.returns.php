@@ -33,7 +33,7 @@
 
 
         <!--Start: Table-->
-        <div class="ml-3 mr-3 flex overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
+        <div class="ml-3 mr-3 flex justify-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
             <table class="w-full text-sm text-left rtl:text-right text-black">
                 <thead class="text-xs text-black uppercase bg-gray-200 ">
                     <tr>
@@ -72,8 +72,8 @@
                         <td class="px-6 py-4 font-semibold text-black">
                             1234
                         </td>
-                        <td class="px-6 py-4 font-semibold text-danger">
-                            Defective
+                        <td class=" px-6 py-4 font-semibold">
+                            <a route='/inv/reports' class=" text-danger"> Defective</a>
                         </td>
                         <td class="px-6 py-4 font-semibold text-black">
                             <button
