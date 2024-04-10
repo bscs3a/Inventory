@@ -31,23 +31,20 @@
                 <li class="px-4 py-2 hover:bg-gray-200 text-center cursor-pointer rounded-lg">Log out</li>
             </ul>
         </li>
-    </ul>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(' .dropdown').click(function() {
-                $(this).find('ul').toggleClass('hidden');
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $(' .dropdown').click(function() {
+                    $(this).find('ul').toggleClass('hidden');
+                });
             });
-        });
-    </script>
-    <!-- End: Profile -->
-
+        </script>
+        <!-- End: Profile -->
 </div>
-
-<!-- End: Header -->
-
 <!-- top drawer component -->
-<div id="hs-overlay-top" class="w-68 h-full hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform max-h-40 size-full z-[80] bg-white border-b hidden" tabindex="-1">
+<div id="hs-overlay-top" class="h-full mt-20 hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-transform duration-300 transform max-h-40 size-full z-[80] 
+    border-b hidden" tabindex="-1">
+
 
     <div class="mt-20 bg-sidebar h-screen left-0 top-0 w-64 px-4 pt-4 z-100 transition-transform duration-100 transform translate-x-0">
         <div class="flex justify-end mb-2">
@@ -125,6 +122,14 @@
 </div>
 <!-- end drawer component -->
 <script>
+    document.addEventListener("alpine:init", () => {
+        Alpine.data("layout", () => ({
+            profileOpen: false,
+            asideOpen: true,
+        }));
+    });
+</script>
+<script>
     document.querySelector('.sidebar-toggle').addEventListener('click', function() {
         // Check if the screen width is less than or equal to 767px
         if (window.innerWidth <= 767) {
@@ -175,5 +180,14 @@
                 }
             }
         });
+    });
+</script>
+<script>
+    document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+        document.getElementById('sidebar-menu').classList.toggle('hidden');
+        document.getElementById('sidebar-menu').classList.toggle('transform');
+        document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
+        document.getElementById('mainContent').classList.toggle('md:w-full');
+        document.getElementById('mainContent').classList.toggle('md:ml-64');
     });
 </script>
