@@ -13,6 +13,16 @@ $inv = [
     // Product Process
     '/inv/inventoryProductsProcess' => $basePath . "prod.process.php",
 
+    // Product Returns
+    '/inv/returns' => $basePath . "returns.php",
+
+    // Product Incident Reports  
+    '/inv/reports' => $basePath . "reports.php",
+
+    // Product Incoming Stocks
+    '/inv/delivery' => $basePath . "delivery.php",
+
+
     // Edit Product
     '/inv/prod-edit={id}' => function ($id) use ($basePath) {
         $_SESSION['id'] = $id;

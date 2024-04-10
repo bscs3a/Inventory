@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory</title>
+    <title>Financial Request</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 
@@ -16,9 +16,7 @@
 
     <?php include "components/sidebar.php" ?>
     <!-- Start: Dashboard -->
-
-    <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
-
+    <main id="mainContent" class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
         <?php include "components/header.php" ?>
 
         <!--Start: Finance Request-->
@@ -38,7 +36,7 @@
         <!--End: Product-->
 
         <!--Start: Table-->
-        <div class="ml-3 mr-3 flex justify-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
+        <div class="ml-3 mr-3 flex overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
             <table class="w-full text-sm text-left rtl:text-right text-black">
                 <thead class="text-xs text-black uppercase bg-gray-200 ">
                     <tr>

@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./**/**/**/*.{html,js,php}"],
@@ -7,12 +8,24 @@ module.exports = {
         sans: ["Montserrat", "sans-serif"],
         russo: ["Russo One"],
       },
+
       colors: {
-        sidebar: "#262261",
+        sidebar: '#262261',
+        'header': "#d6d5e1",
         'button1': '#FFC955',
         'green' : '#008D1F', 
         'warning': '#E29A00',
         'danger': '#C91F41', 
+      },
+
+      size: {
+        '2xl': '48rem',
+        'fullscreen': '100%',
+      },
+
+      screens: {
+        'hide-sidebar': {'max': '767px'},
+        'mobile': {'max': '640px'},
       },
     },
   },
