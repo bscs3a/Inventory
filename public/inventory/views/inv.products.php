@@ -36,8 +36,7 @@
                 <!-- Dropdown end-->
                 <!-- Search Bar -->
                 <div class="relative">
-                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80 mobile:w-96"
-                        placeholder="Search by Category...">
+                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80 mobile:w-96" placeholder="Search by Category...">
                 </div>
                 <!-- Searchbar end -->
             </div>
@@ -72,11 +71,10 @@
                 <tbody>
                     <?php
                     require_once __DIR__ . '/../functions/total_stock.php';
-                    foreach ($rowsTStock as $rowTStock): ?>
-                        <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                            onclick="location.href='/master/inv/prod-edit=<?php echo $rowTStock['id']; ?>'">
+                    foreach ($rowsTStock as $rowTStock) : ?>
+                        <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" onclick="location.href='/master/inv/prod-edit=<?php echo $rowTStock['id']; ?>'">
                             <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                                <img src="<?php echo $rowTStock['image']; ?>" alt="Image" class="mr-4">
+                                <img src="<?php echo empty($rowTStock['image']) ? 'assets/default.png' : $rowTStock['image']; ?>" alt="Image" class="mr-4">
                             </th>
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['product']; ?>
@@ -91,7 +89,17 @@
                                 <?php echo $rowTStock['price']; ?>
                             </td>
                             <td class="px-6 py-4 font-semibold text-black">
-                                <?php echo $rowTStock['availability']; ?>
+                                <?php
+                                if ($rowTStock['quantity'] == 0) {
+                                    echo "<span style='color:red'>Out of Stock</span>";
+                                } elseif ($rowTStock['quantity'] <= 500) {
+                                    echo "<span style='color:yellow'>Understock</span>";
+                                } elseif ($rowTStock['quantity'] >= 501 && $rowTStock['quantity'] <= 999) {
+                                    echo "<span style='color:green'>Stable Stock</span>";
+                                } else {
+                                    echo "<span style='color:#ff9933'>Overstock</span>";
+                                }
+                                ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

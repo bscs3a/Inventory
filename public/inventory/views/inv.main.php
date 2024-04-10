@@ -41,9 +41,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button route='/inv/inventoryProducts'
-                        class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md"
-                        id="openModal">
+                    <button route='/inv/inventoryProducts' class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md" id="openModal">
                         Go to Product List
                     </button>
                 </div>
@@ -61,8 +59,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button data-modal-target="incomingstock-modal" data-modal-toggle="incomingstock-modal"
-                        class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    <button data-modal-target="incomingstock-modal" data-modal-toggle="incomingstock-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                         View </button>
                 </div>
             </div>
@@ -80,8 +77,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button data-modal-target="outstock-modal" data-modal-toggle="outstock-modal"
-                        class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    <button data-modal-target="outstock-modal" data-modal-toggle="outstock-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                         View </button>
                 </div>
             </div>
@@ -101,8 +97,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button data-modal-target="return-modal" data-modal-toggle="return-modal"
-                        class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    <button data-modal-target="return-modal" data-modal-toggle="return-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                         View </button>
                 </div>
             </div>
@@ -121,30 +116,24 @@
             <div class="flex items-center">
                 <!-- Dropdown button -->
                 <div class="relative inline-block text-left">
-                    <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0"
-                        id="dropdownButton">
+                    <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0" id="dropdownButton">
                         Filter
                     </button>
-                    <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden overflow-auto max-h-60"
-                        id="dropdownMenu">
+                    <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden overflow-auto max-h-60" id="dropdownMenu">
                         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
+                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
                                 <input type="radio" name="filter" class="mr-1" value="All">
                                 All
                             </label>
-                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
+                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
                                 <input type="radio" name="filter" class="mr-1" value="Pliers">
                                 Pliers
                             </label>
-                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
+                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
                                 <input type="radio" name="filter" class="mr-1" value="Grippers">
                                 Grippers
                             </label>
-                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
+                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
                                 <input type="radio" name="filter" class="mr-1" value="Hammers">
                                 Hammers
                             </label>
@@ -154,15 +143,14 @@
 
                 <!-- JavaScript for Dropdown -->
                 <script>
-                    document.getElementById('dropdownButton').addEventListener('click', function () {
+                    document.getElementById('dropdownButton').addEventListener('click', function() {
                         document.getElementById('dropdownMenu').classList.toggle('hidden');
                     });
                 </script>
                 <!-- Dropdown end-->
                 <!-- Search Bar -->
                 <div class="relative">
-                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80"
-                        placeholder="Search by ID...">
+                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80" placeholder="Search by ID...">
                 </div>
                 <!-- Searchbar end -->
             </div>
@@ -201,9 +189,6 @@
                             Category
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Availability
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Quantity
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -217,16 +202,13 @@
                 <tbody>
                     <?php
                     require_once __DIR__ . '/../functions/total_stock.php';
-                    foreach ($rowsTStock as $rowTStock): ?>
+                    foreach ($rowsTStock as $rowTStock) : ?>
                         <tr class="bg-white">
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['product']; ?>
                             </td>
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['category']; ?>
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-black">
-                                <?php echo $rowTStock['availability']; ?>
                             </td>
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['quantity']; ?>
@@ -247,13 +229,11 @@
         <!-- Modals -->
 
         <!-- Incoming Stock Modal -->
-        <div id="incomingstock-modal"
-            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div id="incomingstock-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white rounded shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 h-3/4 sm:h-2/3 md:h-1/2 lg:h-1/2">
                 <div class="pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Incoming Stock</h5>
-                    <button data-modal-hide="incomingstock-modal"
-                        class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
+                    <button data-modal-hide="incomingstock-modal" class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
@@ -285,7 +265,7 @@
                             <!-- eee -->
                             <?php
                             require_once __DIR__ . '/../functions/inc_stock.php';
-                            foreach ($rowsStock as $rowStock): ?>
+                            foreach ($rowsStock as $rowStock) : ?>
                                 <tr class="bg-white">
                                     <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
                                         <?php echo $rowStock['stock_id']; ?>
@@ -315,18 +295,18 @@
         </div>
         <!-- Incoming Stock Modal JS -->
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 var modal = document.getElementById('incomingstock-modal');
                 var closeButtons = document.querySelectorAll('[data-modal-hide="incomingstock-modal"]');
                 var openButton = document.querySelector('[data-modal-target="incomingstock-modal"]');
 
-                closeButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
+                closeButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
                         modal.classList.add('hidden');
                     });
                 });
 
-                openButton.addEventListener('click', function () {
+                openButton.addEventListener('click', function() {
                     modal.classList.remove('hidden');
                 });
             });
@@ -334,13 +314,11 @@
         <!-- Incoming Stock Modal JS end -->
 
         <!-- Out of Stock Modal -->
-        <div id="outstock-modal"
-            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div id="outstock-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white rounded shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 h-3/4 sm:h-2/3 md:h-1/2 lg:h-1/2">
                 <div class=" pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Out of Stock</h5>
-                    <button data-modal-hide="outstock-modal"
-                        class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
+                    <button data-modal-hide="outstock-modal" class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
@@ -366,7 +344,7 @@
 
                             <?php
                             require_once __DIR__ . '/../functions/no_stock.php';
-                            foreach ($rowsNoStock as $rowNoStock): ?>
+                            foreach ($rowsNoStock as $rowNoStock) : ?>
                                 <tr class="bg-white">
                                     <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
                                         <?php echo $rowNoStock['stock_id']; ?>
@@ -388,29 +366,27 @@
             </div>
         </div>
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 var modal = document.getElementById('outstock-modal');
                 var closeButtons = document.querySelectorAll('[data-modal-hide="outstock-modal"]');
                 var openButton = document.querySelector('[data-modal-target="outstock-modal"]');
-                closeButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
+                closeButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
                         modal.classList.add('hidden');
                     });
                 });
 
-                openButton.addEventListener('click', function () {
+                openButton.addEventListener('click', function() {
                     modal.classList.remove('hidden');
                 });
             });
         </script>
         <!-- Return Stock Modal -->
-        <div id="return-modal"
-            class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div id="return-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white rounded shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 h-3/4 sm:h-2/3 md:h-1/2 lg:h-1/2">
                 <div class="pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Returns</h5>
-                    <button data-modal-hide="return-modal"
-                        class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
+                    <button data-modal-hide="return-modal" class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
                         <i class="ri-close-line"></i>
                     </button>
                 </div>
@@ -428,6 +404,9 @@
                                     Quantity
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Reason
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Actions
                                 </th>
                             </tr>
@@ -436,7 +415,7 @@
 
                             <?php
                             require_once __DIR__ . '/../functions/return.php';
-                            foreach ($rowsReturn as $rowReturn): ?>
+                            foreach ($rowsReturn as $rowReturn) : ?>
                                 <tr class="bg-white">
                                     <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
                                         <?php echo $rowReturn['return_id']; ?>
@@ -446,6 +425,9 @@
                                     </td>
                                     <td class="px-6 py-4 font-semibold text-black">
                                         <?php echo $rowReturn['quantity']; ?>
+                                    </td>
+                                    <td class="px-6 py-4 font-semibold text-black">
+                                        Placeholder
                                     </td>
                                     <td class="px-6 py-4 font-semibold text-black">
                                         <?php echo $rowReturn['actions']; ?>
@@ -459,18 +441,18 @@
         </div>
         <!-- Return Stock Modal JS -->
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 var modal = document.getElementById('return-modal');
                 var closeButtons = document.querySelectorAll('[data-modal-hide="return-modal"]');
                 var openButton = document.querySelector('[data-modal-target="return-modal"]');
 
-                closeButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
+                closeButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
                         modal.classList.add('hidden');
                     });
                 });
 
-                openButton.addEventListener('click', function () {
+                openButton.addEventListener('click', function() {
                     modal.classList.remove('hidden');
                 });
             });
