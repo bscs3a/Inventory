@@ -63,6 +63,39 @@
 
 </div>
 
+<script>
+        document.querySelector('.sidebar-toggle').addEventListener('click', function () {
+            document.getElementById('sidebar-menu').classList.toggle('hidden');
+            document.getElementById('sidebar-menu').classList.toggle('transform');
+            document.getElementById('sidebar-menu').classList.toggle('-translate-x-full');
+            document.getElementById('mainContent').classList.toggle('md:w-full');
+            document.getElementById('mainContent').classList.toggle('md:ml-64');
+
+            var sidebarMenu = document.getElementById('sidebar-menu');
+            var grid = document.querySelector('.grid');
+
+            if (!sidebarMenu.classList.contains('hidden')) {
+                grid.classList.remove('grid-cols-6');
+                grid.classList.add('grid-cols-5');
+            } else {
+                grid.classList.remove('grid-cols-5');
+                grid.classList.add('grid-cols-6');
+            }
+        });
+
+        document.querySelector('.sidebar-toggle2').addEventListener('click', function () {
+            var sidebarMenu = document.getElementById('sidebar-menu');
+            var mainContent = document.getElementById('mainContent');
+
+            if (!sidebarMenu.classList.contains('hidden')) {
+                sidebarMenu.classList.toggle('hidden');
+                sidebarMenu.classList.toggle('transform');
+                sidebarMenu.classList.toggle('-translate-x-full');
+                mainContent.classList.toggle('md:w-full');
+                mainContent.classList.toggle('md:ml-64');
+            }
+        });
+    </script>
 
 </div>
 <!-- End: Sidebar -->
