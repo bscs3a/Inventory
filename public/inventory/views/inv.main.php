@@ -256,9 +256,6 @@
                                 <th scope="col" class="px-6 py-3">
                                     Number of Orders
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Suggested Actions
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -266,7 +263,7 @@
                             <?php
                             require_once __DIR__ . '/../functions/inc_stock.php';
                             foreach ($rowsStock as $rowStock) : ?>
-                                <tr class="bg-white">
+                                <tr class="bg:white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" onclick="location.href='/master/inv/delivery'">
                                     <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
                                         <?php echo $rowStock['stock_id']; ?>
                                     </th>
@@ -281,9 +278,6 @@
                                     </td>
                                     <td class="px-6 py-4 font-semibold text-black">
                                         <?php echo $rowStock['no_of_order']; ?>
-                                    </td>
-                                    <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowStock['rec_action']; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -416,7 +410,7 @@
                             <?php
                             require_once __DIR__ . '/../functions/return.php';
                             foreach ($rowsReturn as $rowReturn) : ?>
-                                <tr class="bg-white">
+                                <tr class="bg:white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" onclick="location.href='/master/inv/returns'">
                                     <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
                                         <?php echo $rowReturn['return_id']; ?>
                                     </th>
