@@ -78,8 +78,16 @@
             <button type="submit" class="btn">Submit</button>
         </form>
 
+        <br><br><br>
+        <button route='/inv/update'">Update</button>
+    <button route='/inv/add'">Add</button>
+        <button route='/inv/delete'">Delete</button>
+    <button route='/inv/main'">Home</button>
+        <button route='/inv/incoming'">Incoming Stocks</button>
+    <button route='/inv/testreturns'">Returns</button>
+        <button route='/inv/incidents'">Incident Reports</button>
         <script src=" ./../src/route.js"></script>
-        <script src="./../src/form.js"></script>
+            <script src="./../src/form.js"></script>
 </body>
 
 </html>
