@@ -155,7 +155,7 @@
                     </div>
                 </div>
                 <div class="flex-1 p-4 w-full max-w-5xl">
-                    <input type="hidden" name="id" value="<?php echo $product['product_id']; ?>">
+                    <input type="hidden" name="stock_id" value="<?php echo $product['stock_id']; ?>">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                         Name</label>
                     <select id="product" name="product" class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
