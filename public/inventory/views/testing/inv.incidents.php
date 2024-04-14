@@ -10,7 +10,7 @@
 <body>
 
     <div class="container">
-        <h2>Incoming Stocks</h2>
+        <h2>Incident Reports</h2>
         <?php
         require_once __DIR__ . "/../../functions/db.php";
         $stmt = $conn->query("SELECT * FROM incidents");
