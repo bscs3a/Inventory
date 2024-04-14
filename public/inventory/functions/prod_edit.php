@@ -3,10 +3,10 @@ require_once __DIR__ . '/../functions/db.php';
 
 $product = null;
 
-if (isset ($_SESSION['id'])) {
-    $id = $_SESSION['id'];
-    $stmt = $conn->prepare("SELECT * FROM total_stocks WHERE id = :id");
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+if (isset($_SESSION['stock_id'])) {
+    $id = $_SESSION['stock_id'];
+    $stmt = $conn->prepare("SELECT * FROM total_stocks WHERE stock_id = :stock_id");
+    $stmt->bindParam(':stock_id', $stock_id, PDO::PARAM_INT);
     $stmt->execute();
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {

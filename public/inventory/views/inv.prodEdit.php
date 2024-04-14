@@ -31,9 +31,9 @@
                 <div class="flex items-start">
                     <!-- ID div -->
                     <div class="mb-6 ml-3 w-1/4 flex-shrink-0">
-                        <input type="hidden" name="id" value="<?php echo $product['id']; ?>" disabled>
+                        <input type="hidden" name="id" value="<?php echo $product['stock_id']; ?>" disabled>
                         <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product ID</label>
-                        <input type="text" id="product" name="product" value="<?php echo $product['id']; ?>" disabled class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
+                        <input type="text" id="product" name="product" value="<?php echo $product['stock_id']; ?>" disabled class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                     </div>
 
                     <!-- Product Name div -->
@@ -139,7 +139,9 @@
 
 
         <!-- Order Stock Modal -->
+
         <div id="order-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+
             <div class="bg-white rounded shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 h-3/4 sm:h-2/3 md:h-1/2 lg:h-1/2 overflow-auto">
                 <div class="pl-3 pr-3 pt-3 flex">
                     <h5 class="font-bold uppercase text-gray-600">Order Products</h5>
@@ -153,31 +155,24 @@
                     </div>
                 </div>
                 <div class="flex-1 p-4 w-full max-w-5xl">
-                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $product['product_id']; ?>">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                         Name</label>
                     <select id="product" name="product" class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                         <option value="<?php echo $product['product']; ?>">
                             <?php echo $product['product']; ?>
                         </option>
-                        <option value="<?php echo $product['product']; ?>">
-                            <?php echo $product['product']; ?>
-                        </option>
-                        <option value="<?php echo $product['product']; ?>">
-                            <?php echo $product['product']; ?>
-                        </option>
                     </select>
                 </div>
-
                 <div class="flex-1 p-4 w-full max-w-5xl">
                     <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Category</label>
                     <input type="text" id="category" name="category" value="<?php echo $product['category']; ?>" disabled class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                 </div>
 
                 <div class="flex-1 p-4 w-full max-w-5xl">
-                    <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Amount of
+                    <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Number of
                         Products</label>
-                    <input type="number" id="price" name="price" value="<?php echo $product['price']; ?>" class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" onkeydown="return event.key !== 'e' event.key !== 'E'">
+                    <input type="number" id="quantity" name="quantity" value="<?php echo $product['quantity']; ?>" class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" onkeydown="return event.key !== 'e' event.key !== 'E'">
                 </div>
                 <div class="flex justify-center items-center mt-4 mb-4 space-x-4">
                     <div>
@@ -187,14 +182,13 @@
                     </div>
                     <div>
                         <!-- ORDER CONFIRMATION -->
-                        <button route='/inv/inventoryProducts' class="rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
+                        <button route='/inv/prod-edit' class="rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
                             Order
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
 
 
         <!-- Order Stock Modal JS -->
@@ -215,6 +209,8 @@
                 });
             });
         </script>
+        <script src=" ./../src/form.js"></script>
+        <script src="./../src/route.js"></script>
 
 </body>
 

@@ -1,7 +1,7 @@
 <?php
 require_once 'db.php';
 
-$query = "SELECT * FROM return_stock";
+$query = "SELECT * FROM returns";
 
 $stmt = $conn->prepare($query);
 $stmt->execute();

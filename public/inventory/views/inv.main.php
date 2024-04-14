@@ -262,22 +262,34 @@
                             <!-- eee -->
                             <?php
                             require_once __DIR__ . '/../functions/inc_stock.php';
-                            foreach ($rowsStock as $rowStock) : ?>
-                                <tr class="bg:white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" onclick="location.href='/master/inv/delivery'">
+                            foreach ($IncStock as $rowStock) : ?>
+                                <tr class="bg:white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" onclick="location.href='/master/inv/incStock'">
                                     <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                        <?php echo $rowStock['stock_id']; ?>
+                                        <?php echo $rowStock['product_id']; ?>
                                     </th>
                                     <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowStock['ord_product']; ?>
+                                        <?php echo $rowStock['product_name']; ?>
                                     </td>
-                                    <td class="px-6 py-4 font-semibold <?php echo ($rowStock['status']); ?>">
-                                        <?php echo $rowStock['status']; ?>
+                                    <td class="px-6 py-4 font-semibold">
+                                        <?php
+                                        if ($rowStock['status'] == 'In Transit') {
+                                            echo "<span class='italic text-yellow-500'>{$rowStock['status']}</span>";
+                                        } elseif ($rowStock['status'] == 'Shipped') {
+                                            echo "<span class='text-yellow-300'>{$rowStock['status']}</span>";
+                                        } elseif ($rowStock['status'] == 'Delivered') {
+                                            echo "<span class='font-bold text-green-500'>{$rowStock['status']}</span>";
+                                        } elseif ($rowStock['status'] == 'Pending') {
+                                            echo "<span class='italic text-red-500'>{$rowStock['status']}</span>";
+                                        } else {
+                                            echo $rowStock['status'];
+                                        }
+                                        ?>
                                     </td>
                                     <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowStock['arrival']; ?>
+                                        <?php echo $rowStock['delivery_date']; ?>
                                     </td>
                                     <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowStock['no_of_order']; ?>
+                                        <?php echo $rowStock['quantity']; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -327,33 +339,34 @@
                                     Out of Stock Products
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Date Sold Out:
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Action
+                                    Recommended Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-
                             <?php
                             require_once __DIR__ . '/../functions/no_stock.php';
-                            foreach ($rowsNoStock as $rowNoStock) : ?>
-                                <tr class="bg-white">
-                                    <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
-                                        <?php echo $rowNoStock['stock_id']; ?>
-                                    </th>
-                                    <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowNoStock['product']; ?>
-                                    </td>
-                                    <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowNoStock['soldout_date']; ?>
-                                    </td>
-                                    <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowNoStock['action']; ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
+                            if ($count > 0) {
+                                foreach ($rowsNoStock as $rowNoStock) :
+                            ?>
+                                    <tr class="bg-white">
+                                        <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap">
+                                            <?php echo $rowNoStock['stock_id']; ?>
+                                        </th>
+                                        <td class="px-6 py-4 font-semibold text-black">
+                                            <?php echo $rowNoStock['product']; ?>
+                                        </td>
+                                        <td class="px-6 py-4 font-semibold text-black">
+                                            <button onclick="location.href='/master/inv/prod-edit=<?php echo $rowNoStock['stock_id']; ?>'" class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4">Order</button>
+
+                                        </td>
+                                    </tr>
+                            <?php
+                                endforeach;
+                            } else {
+                                echo "<tr><td colspan='4'>All Products are on stock</td></tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -400,9 +413,6 @@
                                 <th scope="col" class="px-6 py-3">
                                     Reason
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Actions
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -415,16 +425,13 @@
                                         <?php echo $rowReturn['return_id']; ?>
                                     </th>
                                     <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowReturn['product']; ?>
+                                        <?php echo $rowReturn['product_name']; ?>
                                     </td>
                                     <td class="px-6 py-4 font-semibold text-black">
                                         <?php echo $rowReturn['quantity']; ?>
                                     </td>
                                     <td class="px-6 py-4 font-semibold text-black">
-                                        Placeholder
-                                    </td>
-                                    <td class="px-6 py-4 font-semibold text-black">
-                                        <?php echo $rowReturn['actions']; ?>
+                                        <?php echo $rowReturn['reason']; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
