@@ -30,9 +30,7 @@
                     <a href="#" class="tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="1">
                         Product Returns List
                     </a>
-                    <a href="#"
-                        class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm"
-                        data-tab="2">
+                    <a href="#" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="2">
                         Add Product Return
                     </a>
                 </nav>
@@ -40,8 +38,7 @@
 
 
             <!--Start: Table-->
-            <div
-                class="tab-content ml-3 mr-3 flex justify-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
+            <div class="tab-content ml-3 mr-3 flex justify-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
                 <table class="w-full text-sm text-left rtl:text-right text-black" data-tab="1">
                     <thead class="text-xs text-black uppercase bg-gray-200 ">
                         <tr>
@@ -72,12 +69,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($returns as $row): ?>
+                        <?php foreach ($returns as $row) : ?>
                             <tr class="bg-white">
                                 <td class="px-6 py-4 font-semibold text-black whitespace-nowrap"><?= $row['return_id'] ?>
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                                    <img src="<?= $row['image'] ?>" alt="Image" class="mr-4">
+                                    <?php if (empty($row['image'])) : ?>
+                                        <img src="../public/inventory/views/assets/default.png" class="mr-4" style="width: 4em; height: 4em;">
+                                    <?php else : ?>
+                                        <img src="<?php echo '/' . $row['image']; ?>" alt="Image" class="mr-4" style="width: 4em; height: 4em;">
+                                    <?php endif; ?>
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-black"><?= $row['product_name'] ?></td>
                                 <td class="px-6 py-4 font-semibold text-black"><?= $row['category'] ?></td>
@@ -99,8 +100,7 @@
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-black"><?= $row['date_added'] ?></td>
                                 <td class="px-6 py-4 font-semibold text-black">
-                                    <button
-                                        class="items-end rounded-full w-34 py-2 px-4 bg-violet-950 text-white shadow-md hover:bg-slate-600 active:bg-slate-700 duration-75">
+                                    <button class="items-end rounded-full w-34 py-2 px-4 bg-violet-950 text-white shadow-md hover:bg-slate-600 active:bg-slate-700 duration-75">
                                         Retrieve Product </button>
                                 </td>
                             </tr>
@@ -138,8 +138,7 @@
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" class="border p-1"
-                            onkeydown="return event.key !== 'e' && event.key !== 'E'">
+                        <input type="number" id="quantity" name="quantity" class="border p-1" onkeydown="return event.key !== 'e' && event.key !== 'E'">
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="category" class="w-20 text-right mx-4">Return Date:</label>
@@ -159,8 +158,7 @@
                         </select>
                     </div>
                     <input type="hidden" id="date_added" name="date_added">
-                    <input type="submit"
-                        class="mt-4 mx-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    <input type="submit" class="mt-4 mx-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
                 </form>
             </div>
             <!-- End: Add -->

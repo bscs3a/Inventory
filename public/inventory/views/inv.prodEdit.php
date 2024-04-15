@@ -24,6 +24,11 @@
         <div class="flex flex-row flex-wrap justify-center mx-24 mt-8">
 
             <div class="flex-1 p-4 mt-5 max-w-sm rounded-lg bg-transparent border border-gray-600 flex-col shadow-md">
+                <?php if (empty($product['image'])) : ?>
+                    <img src="../public/inventory/views/assets/default.png" class="mr-4">
+                <?php else : ?>
+                    <img src="<?php echo '/' . $product['image']; ?>" alt="Image" class="mr-4">
+                <?php endif; ?>
             </div>
 
             <div class="flex-1 p-4 w-full max-w-5xl">
@@ -151,7 +156,11 @@
                 </div>
                 <div class="flex justify-center">
                     <div class="p-4 mt-5 rounded-lg bg-transparent border border-gray-600 flex-col shadow-md inline-block">
-                        <img src="https://via.placeholder.com/150" alt="Placeholder image">
+                        <?php if (empty($product['image'])) : ?>
+                            <img src="../public/inventory/views/assets/default.png" class="mr-4" style="width: 150px; height: 150px;">
+                        <?php else : ?>
+                            <img src="<?php echo '/' . $product['image']; ?>" alt="Image" class="mr-4" style="width: 150px; height: 150px;">
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="flex-1 p-4 w-full max-w-5xl">

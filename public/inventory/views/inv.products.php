@@ -125,9 +125,9 @@
                             </td>
                             <td scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                                 <?php if (empty($rowTStock['image'])) : ?>
-                                    <img src="/assets/default.png" class="mr-4">
+                                    <img src="../public/inventory/views/assets/default.png" class="mr-4" style="width: 4em; height: 4em;">
                                 <?php else : ?>
-                                    <img src="<?php echo '/' . $rowTStock['image']; ?>" alt="Image" class="mr-4">
+                                    <img src="<?php echo '/' . $rowTStock['image']; ?>" alt="Image" class="mr-4" style="width: 4em; height: 4em;">
                                 <?php endif; ?>
                                 <?php echo $rowTStock['product']; ?>
                             </td>

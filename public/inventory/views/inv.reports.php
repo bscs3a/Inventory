@@ -31,9 +31,7 @@
                     <a href="#" class="tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="1">
                         Product Incidents List
                     </a>
-                    <a href="#"
-                        class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm"
-                        data-tab="2">
+                    <a href="#" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="2">
                         Add Product Incident
                     </a>
                 </nav>
@@ -72,16 +70,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($incidents as $incident): ?>
-                            <tr data-modal-target="<?= $incident['status'] ?>-modal"
-                                data-modal-toggle="<?= $incident['status'] ?>-modal"
-                                class="clickableRow bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200">
+                        <?php foreach ($incidents as $incident) : ?>
+                            <tr data-modal-target="<?= $incident['status'] ?>-modal" data-modal-toggle="<?= $incident['status'] ?>-modal" class="clickableRow bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200">
                                 <td class="px-6 py-4 font-semibold text-black whitespace-nowrap">
                                     <?= $incident['incident_id'] ?>
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-black"> 123</td>
                                 <td class="px-6 py-6 font-semibold text-black whitespace-nowrap flex items-center">
-                                    <img src="<?= $incident['image'] ?>" alt="Image" class="mr-4">
+
+                                    <?php if (empty($incident['image'])) : ?>
+                                        <img src="../public/inventory/views/assets/default.png" class="mr-4" style="width: 4em; height: 4em;">
+                                    <?php else : ?>
+                                        <img src="<?php echo '/' . $incident['image']; ?>" alt="Image" class="mr-4" style="width: 4em; height: 4em;">
+                                    <?php endif; ?>
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-black"><?= $incident['product_name'] ?></td>
                                 <td class="px-6 py-4 font-semibold text-black"><?= $incident['category'] ?></td>
@@ -123,8 +124,7 @@
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" class="border p-1"
-                            onkeydown="return event.key !== 'e' && event.key !== 'E'">
+                        <input type="number" id="quantity" name="quantity" class="border p-1" onkeydown="return event.key !== 'e' && event.key !== 'E'">
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="category" class="w-20 text-right mx-4">Date of Incident:</label>
@@ -147,20 +147,16 @@
                         </select>
                     </div>
                     <input type="hidden" id="date_added" name="date_added">
-                    <input type="submit"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
+                    <input type="submit" class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
                 </form>
             </div>
             <!-- End: Add -->
             <!-- Defective Modal -->
-            <div id="defect-modal"
-                class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
-                <div
-                    class="bg-white rounded shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 h-3/4 sm:h-2/3 md:h-1/2 lg:h-1/3 overflow-auto">
+            <div id="defect-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+                <div class="bg-white rounded shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 h-3/4 sm:h-2/3 md:h-1/2 lg:h-1/3 overflow-auto">
                     <div class="pl-3 pr-3 pt-3 flex">
                         <h5 class="font-bold uppercase text-gray-600">Item Report</h5>
-                        <button data-modal-hide="defect-modal"
-                            class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
+                        <button data-modal-hide="defect-modal" class="ml-auto text-gray-600 hover:text-gray-800 cursor-pointer">
                             <i class="ri-close-line"></i>
                         </button>
                     </div>
@@ -187,8 +183,7 @@
                         ?>
                     </div>
                     <div class="flex items-center justify-center mb-8">
-                        <button
-                            class="rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
+                        <button class="rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
                             Send Item for Recount
                         </button>
                     </div>
@@ -198,19 +193,19 @@
 
                 <!-- Defective Stock Modal JS -->
                 <script>
-                    document.addEventListener('DOMContentLoaded', function () {
+                    document.addEventListener('DOMContentLoaded', function() {
                         var modal = document.getElementById('defect-modal');
                         var closeButtons = document.querySelectorAll('[data-modal-hide="defect-modal"]');
                         var openButtons = document.querySelectorAll('.clickableRow');
 
-                        closeButtons.forEach(function (button) {
-                            button.addEventListener('click', function () {
+                        closeButtons.forEach(function(button) {
+                            button.addEventListener('click', function() {
                                 modal.classList.add('hidden');
                             });
                         });
 
-                        openButtons.forEach(function (button) {
-                            button.addEventListener('click', function () {
+                        openButtons.forEach(function(button) {
+                            button.addEventListener('click', function() {
                                 modal.classList.remove('hidden');
                             });
                         });
