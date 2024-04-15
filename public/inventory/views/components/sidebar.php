@@ -29,14 +29,6 @@
         </li>
 
         <li class="mb-1 hover:bg-slate-400 rounded-xl">
-            <a route='/inv/delivery' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
-                <i class="ri-inbox-archive-line mr-3 text-lg"></i>
-                <span class="text-sm font-medium">Incoming Stocks</span>
-                <i class="ri-arrow-down-s-line ml-auto"></i>
-            </a>
-        </li>
-
-        <li class="mb-1 hover:bg-slate-400 rounded-xl">
             <a route='/inv/returns' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
                 <i class="ri-arrow-go-back-line mr-3 text-lg"></i>
                 <span class="text-sm font-medium">Returns</span>
@@ -47,7 +39,7 @@
         <li class="mb-1 hover:bg-slate-400 rounded-xl">
             <a route='/inv/manageProducts'
                 class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
-                <i class="ri-file-warning-line mr-3 text-lg"></i>
+                <i class="ri-file-copy-2-line mr-3 text-lg"></i>
                 <span class="text-sm font-medium">Manage Products</span>
                 <i class="ri-arrow-down-s-line ml-auto"></i>
             </a>
