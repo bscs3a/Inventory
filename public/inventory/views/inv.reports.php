@@ -148,7 +148,7 @@
                     </div>
                     <input type="hidden" id="date_added" name="date_added">
                     <input type="submit"
-                        class="mt-4 mx-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
                 </form>
             </div>
             <!-- End: Add -->

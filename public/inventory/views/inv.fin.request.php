@@ -24,26 +24,163 @@
             <h1>Finance Request</h1>
         </div>
 
-
-        <!--Start: Table-->
-        <div
-            class="mx-auto max-w-sm p-4 flex flex-col justify-center items-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600">
-            <h1 class="text-center text-lg font-semibold mb-4">Pay Using</h1>
-            <!-- Dropdown button -->
-            <select class="w-full border border-gray-300 rounded p-2 text-center mb-2">
-                <option value="">Select an option</option>
-                <option value="option1">Paymaya</option>
-                <option value="option2">Gcash</option>
-                <option value="option2">MetroBank</option>
-            </select>
-            <h1 class="text-center text-lg font-semibold mb-4">Amount</h1>
-            <!-- Number only input with Philippine peso sign -->
-            <div class="w-full flex items-center border border-gray-300 rounded p-2">
-                <span class="mr-2">₱</span>
-                <input type="number" min="0" step="1" class="w-full focus:outline-none" />
+        <div class="flex justify-center gap-4 px-6">
+            <div class="w-1/4">
+                <h1 class="text-lg font-semibold mb-4">Pay Using</h1>
+                <!-- Dropdown button -->
+                <select class="w-full border border-gray-300 rounded p-2 text-center mb-2 block">
+                    <option value="">Select an option</option>
+                    <option value="option1">Debit</option>
+                    <option value="option2">Credit</option>
+                    <option value="option2">Cash</option>
+                </select>
+            </div>
+            <div class="w-1/4">
+                <h1 class="text-lg font-semibold mb-4">Amount</h1>
+                <!-- Number only input with Philippine peso sign -->
+                <div class="w-full flex items-center border border-gray-300 rounded p-2 block">
+                    <span class="mr-2">₱</span>
+                    <input type="number" min="0" step="1" class="w-full focus:outline-none" />
+                </div>
             </div>
         </div>
+
+        <!--Start: Table-->
+        <div class="ml-3 mr-3 flex overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
+            <table class="w-full text-sm text-left rtl:text-right text-black">
+                <thead class="text-xs text-black uppercase bg-gray-200 ">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Inventory Expenses
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Cost (PHP)
+                        <th scope="col" class="px-6 py-3">
+                            Additional Details
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Ordering Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            5000
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost Associated with placing orders
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Inventory Holding Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            3000
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost of storing inventory
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Shortage Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            1000
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost of stockouts and lost sales
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Spoilage/Defect Products Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            2000
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost of damaged or defective inventory
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Inventory Carrying Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            4000
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost of holding inventory (storage, insurance)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Dead Stock Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            1500
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost of obsolete or slow-moving inventory
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Excess Stock Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            2500
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost of excess inventory
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Ordering Risk Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            1800
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost associated with inventory risk
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Inventory Service Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            2200
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost of managing and servicing inventory
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Operational and Administrative Costs
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            3500
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Cost of operational and administrative tasks
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
         <!--End: Table-->
+        <div class="text-right pr-4">
+            <input type="submit"
+                class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
+        </div>
+
 
 </body>
 
