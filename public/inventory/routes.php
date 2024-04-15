@@ -21,6 +21,8 @@ $inv = [
     '/inv/accountsett' => $basePath . "accountsett.php",
     // Finance Request
     '/inv/req-finance' => $basePath . "fin.request.php",
+    // Manage Products
+    '/inv/manageProducts' => $basePath . "manage-prod.php",
 
 
     //------------------TESTING------------------------
@@ -59,7 +61,7 @@ Router::post('/inv/Add', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
     $date_added = date('Y-m-d H:i:s');
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (isset ($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
@@ -101,10 +103,10 @@ Router::post('/inv/Update', function () {
     $product_id = $_POST['product_id'];
     $quantity = $_POST['quantity'];
 
-    if (empty($product_id) || empty($quantity)) {
+    if (empty ($product_id) || empty ($quantity)) {
         $rootFolder = dirname($_SERVER['PHP_SELF']);
         header("Location: $rootFolder/inv/update");
-        exit();
+        exit ();
     }
 
     $stmt = $conn->prepare("UPDATE total_stocks SET quantity = :quantity WHERE id = :product_id");
@@ -114,7 +116,7 @@ Router::post('/inv/Update', function () {
 
     $rootFolder = dirname($_SERVER['PHP_SELF']);
     header("Location: $rootFolder/inv/update");
-    exit();
+    exit ();
 });
 Router::post('/inv/delete', function () {
     $db = Database::getInstance();
@@ -130,7 +132,7 @@ Router::post('/inv/delete', function () {
 
     $rootFolder = dirname($_SERVER['PHP_SELF']);
     header("Location: $rootFolder/inv/delete");
-    exit();
+    exit ();
 });
 //------------END Product List----------------
 //-------------Incoming Stocks-----------------
@@ -138,7 +140,7 @@ Router::post('/inv/incoming', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
     $date_added = date('Y-m-d H:i:s');
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (isset ($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
@@ -183,7 +185,7 @@ Router::post('/inv/testreturns', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (isset ($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
@@ -225,7 +227,7 @@ Router::post('/inv/incidents', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (isset ($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
@@ -275,15 +277,15 @@ Router::post('/inv/prod-edit', function () {
     $date_added = date('Y-m-d H:i:s');
 
     // Sanitize and validate input
-    $prodId = isset($_POST['id']) ? intval($_POST['id']) : null;
-    $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 0;
+    $prodId = isset ($_POST['id']) ? intval($_POST['id']) : null;
+    $quantity = isset ($_POST['quantity']) ? intval($_POST['quantity']) : 0;
 
     // Check if required fields are empty
-    if (empty($prodId) || empty($quantity)) {
+    if (empty ($prodId) || empty ($quantity)) {
         // Redirect if required fields are empty
         $rootFolder = dirname($_SERVER['PHP_SELF']);
         header("Location: $rootFolder/inv/main");
-        exit();
+        exit ();
     }
 
     // Assuming you have a table called 'total_stocks' where product stock information is stored
@@ -296,7 +298,7 @@ Router::post('/inv/prod-edit', function () {
         // Redirect if product ID not found in total_stocks
         $rootFolder = dirname($_SERVER['PHP_SELF']);
         header("Location: $rootFolder/inv/main");
-        exit();
+        exit ();
     }
 
     $stockId = $result['stock_id'];
@@ -311,7 +313,7 @@ Router::post('/inv/prod-edit', function () {
     // Redirect after successful insertion
     $rootFolder = dirname($_SERVER['PHP_SELF']);
     header("Location: $rootFolder/inv/incStock");
-    exit();
+    exit ();
 });
 
 
