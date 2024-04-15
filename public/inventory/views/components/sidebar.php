@@ -42,13 +42,13 @@
             </a>
         </li>
 
-        <li class="mb-1 hover:bg-slate-400 rounded-xl">
+        <!-- <li class="mb-1 hover:bg-slate-400 rounded-xl">
             <a route='/inv/manageProducts' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
                 <i class="ri-file-warning-line mr-3 text-lg"></i>
                 <span class="text-sm font-medium">Manage Products</span>
                 <i class="ri-arrow-down-s-line ml-auto"></i>
             </a>
-        </li>
+        </li> -->
 
         <li class="mb-1 hover:bg-slate-400 rounded-xl">
             <a route='/inv/reports' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">

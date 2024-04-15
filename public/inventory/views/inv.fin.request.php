@@ -36,11 +36,11 @@
                 </select>
             </div>
             <div class="w-1/4">
-                <h1 class="text-lg font-semibold mb-4">Amount</h1>
+                <h1 class="text-lg font-semibold mb-4">Funds</h1>
                 <!-- Number only input with Philippine peso sign -->
                 <div class="w-full flex items-center border border-gray-300 rounded p-2 block">
-                    <span class="mr-2">₱</span>
-                    <input type="number" min="0" step="1" class="w-full focus:outline-none" />
+                    <span class="mr-2">₱100,000</span>
+                    <input type="hidden" name="currency" value="PHP" min="0" step="1" class="w-full focus:outline-none" />
                 </div>
             </div>
         </div>
@@ -171,14 +171,25 @@
                             Cost of operational and administrative tasks
                         </td>
                     </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap font-bold">
+                            Total Cost
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap font-bold">
+                            <?php echo 5000 + 3000 + 1000 + 2000 + 4000 + 1500 + 2500 + 1800 + 2200 + 3500; ?>
+
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <!-- Empty cell -->
+                        </td>
+                    </tr>
 
                 </tbody>
             </table>
         </div>
         <!--End: Table-->
         <div class="text-right pr-4">
-            <input type="submit"
-                class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
+            <input type="submit" class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
         </div>
 
 

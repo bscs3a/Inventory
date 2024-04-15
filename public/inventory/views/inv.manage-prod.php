@@ -24,14 +24,10 @@
                     <a href="#" class="tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="1">
                         Add
                     </a>
-                    <a href="#"
-                        class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm"
-                        data-tab="2">
+                    <a href="#" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="2">
                         Update
                     </a>
-                    <a href="#"
-                        class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm"
-                        data-tab="3">
+                    <a href="#" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="3">
                         Delete
                     </a>
                 </nav>
@@ -65,16 +61,14 @@
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" class="border p-1"
-                            onkeydown="return event.key !== 'e' && event.key !== 'E'">
+                        <input type="number" id="quantity" name="quantity" class="border p-1" onkeydown="return event.key !== 'e' && event.key !== 'E'">
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="prod_stat" class="w-20 text-right mx-4">Product Status:</label>
                         <input type="text" id="prod_stat" name="prod_stat" class="border p-1">
                     </div>
                     <input type="hidden" id="date_added" name="date_added">
-                    <input type="submit"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
+                    <input type="submit" class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
                 </form>
             </div>
             <!-- End: Add -->
@@ -93,11 +87,9 @@
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" class="border p-1"
-                            onkeydown="return event.key !== 'e' && event.key !== 'E'">
+                        <input type="number" id="quantity" name="quantity" class="border p-1" onkeydown="return event.key !== 'e' && event.key !== 'E'">
                     </div>
-                    <input type="submit"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
+                    <input type="submit" class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
             </div>
             </form>
 
@@ -108,8 +100,7 @@
                         <label for="id" class="w-20 text-center mx-4">ID:</label>
                         <input type="text" id="id" name="id" class="border p-1">
                     </div>
-                    <input type="submit" value="Delete"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
+                    <input type="submit" value="Delete" class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
                 </form>
             </div>
 
@@ -138,7 +129,8 @@
                     });
                 });
             </script>
-
+            <script src="./../src/route.js"></script>
+            <script src="./../src/form.js"></script>
 </body>
 
 </html>

@@ -8,6 +8,8 @@
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 
 </head>
 
@@ -36,9 +38,7 @@
                 <!-- Dropdown end-->
                 <!-- Search Bar -->
                 <div class="relative">
-                    <input type="text" id="simple-search"
-                        class="py-1 px-4 text-md text-black border border-black w-80 mobile:w-96"
-                        placeholder="Search by Category...">
+                    <input type="text" id="simple-search" class="py-1 px-4 text-md text-black border border-black w-80 mobile:w-96" placeholder="Search by Category...">
                 </div>
                 <!-- Searchbar end -->
             </div>
@@ -55,8 +55,7 @@
         <div class="flex items-center ml-5 mt-5 px-2 mb-3">
             <label for="entries" class="mr-2">Show</label>
             <div class="relative">
-                <select id="entries"
-                    class="border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                <select id="entries" class="border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                     <option>10</option>
                     <option>20</option>
                     <option>30</option>
@@ -73,23 +72,17 @@
         </div>
 
         <div class="inline-flex rounded-md shadow-sm mx-5" role="group">
-            <button type="button"
-                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
+            <button type="button" onclick="copyToClipboard()" class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
                 <span class="p-2 mx-4 my-2">Copy</span>
             </button>
-            <button type="button"
-                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
-                <span class="p-2 mx-4 my-2">PDF</span>
-            </button>
-            <button type="button"
-                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
+            <button type="button" onclick="exportToExcel()" class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
                 <span class="p-2 mx-4 my-2">Excel</span>
             </button>
-            <button type="button"
-                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
+            <button type="button" onclick="printTable()" class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
                 <span class="p-2 mx-4 my-2">Print</span>
             </button>
         </div>
+
         <!-- End: ShowEntries & Excel Print Buttons-->
 
         <!-- End: Filter Panel-->
@@ -102,8 +95,6 @@
                         <th scope="col" class="px-6 py-3">
                             Stock ID
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Image
                         <th scope="col" class="px-6 py-3">
                             Product
                         </th>
@@ -119,24 +110,28 @@
                         <th scope="col" class="px-6 py-3">
                             Availability
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Date Added
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     require_once __DIR__ . '/../functions/total_stock.php';
-                    foreach ($rowsTStock as $rowTStock): ?>
-                        <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
-                            onclick="location.href='/master/inv/prod-edit=<?php echo $rowTStock['stock_id']; ?>'">
+                    foreach ($rowsTStock as $rowTStock) : ?>
+                        <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" onclick="location.href='/master/inv/prod-edit=<?php echo $rowTStock['stock_id']; ?>'">
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['stock_id']; ?>
                             </td>
-                            <th scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                                <img src="<?php echo empty($rowTStock['image']) ? 'assets/default.png' : $rowTStock['image']; ?>"
-                                    alt="Image" class="mr-4">
-                            </th>
-                            <td class="px-6 py-4 font-semibold text-black">
+                            <td scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
+                                <?php if (empty($rowTStock['image'])) : ?>
+                                    <img src="/assets/default.png" class="mr-4">
+                                <?php else : ?>
+                                    <img src="<?php echo '/' . $rowTStock['image']; ?>" alt="Image" class="mr-4">
+                                <?php endif; ?>
                                 <?php echo $rowTStock['product']; ?>
                             </td>
+
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['category']; ?>
                             </td>
@@ -159,13 +154,74 @@
                                 }
                                 ?>
                             </td>
+                            <td class="px-6 py-4 font-semibold text-black">
+                                <?php echo $rowTStock['date_added']; ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
         <!--End: Table-->
+        <script>
+            function exportToExcel() {
+                var table = document.getElementsByTagName("table")[0];
+                var rows = table.getElementsByTagName("tr");
+                var wb = XLSX.utils.book_new();
+                var ws = XLSX.utils.table_to_sheet(table);
+                ws['!cols'] = [];
+                ws['!rows'] = [];
+                for (var i = 0; i < table.rows[0].cells.length; i++) {
+                    ws['!cols'].push({
+                        wch: 15
+                    });
+                }
 
+                ws['!cols'][0] = {
+                    hidden: true
+                };
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+                var fileName = getCurrentDateTime() + '.xlsx';
+                XLSX.writeFile(wb, fileName);
+            }
+
+            function getCurrentDateTime() {
+                var today = new Date();
+                var year = today.getFullYear();
+                var month = ('0' + (today.getMonth() + 1)).slice(-2);
+                var day = ('0' + today.getDate()).slice(-2);
+                var hours = ('0' + today.getHours()).slice(-2);
+                var minutes = ('0' + today.getMinutes()).slice(-2);
+                var seconds = ('0' + today.getSeconds()).slice(-2);
+                return year + '-' + month + '-' + day + '_' + hours + '-' + minutes + '-' + seconds;
+            }
+
+            function copyToClipboard() {
+                var table = document.getElementsByTagName("table")[0];
+                var range = document.createRange();
+                range.selectNode(table);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand("copy");
+                window.getSelection().removeAllRanges();
+                alert("Table copied to clipboard!");
+            }
+
+            function printTable() {
+                // Create a new window or tab
+                var printWindow = window.open('', '_blank');
+
+                // Write the HTML content of the table to the new window or tab
+                printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+                printWindow.document.write('<table border="1">' + document.getElementsByTagName("table")[0].innerHTML + '</table>');
+                printWindow.document.write('</body></html>');
+
+                // Trigger the print dialog for the new window or tab
+                printWindow.document.close(); // Close the document for writing
+                printWindow.print(); // Trigger the print dialog
+            }
+        </script>
+        <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 </body>
 
 </html>
