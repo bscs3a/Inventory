@@ -39,6 +39,8 @@ $inv = [
     '/inv/testreturns' => $testpath . "Testreturns.php",
     //incident reports
     '/inv/incidents' => $testpath . "incidents.php",
+    //table
+    '/inv/table' => $testpath . "table.php",
     //--------------END CRUD---------------
     //------------------END TESTING------------------------
 
