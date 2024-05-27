@@ -57,14 +57,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($IncStock as $row) : ?>
+                    <?php foreach ($IncStock as $row): ?>
                         <tr class="bg-white">
                             <td class="px-6 py-4 font-semibold text-black whitespace-nowrap"><?= $row['product_id'] ?></td>
                             <td class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                                <?php if (empty($row['image'])) : ?>
-                                    <img src="../public/inventory/views/assets/default.png" class="mr-4" style="width: 4em; height: 4em;">
-                                <?php else : ?>
-                                    <img src="<?php echo '/' . $row['image']; ?>" alt="Image" class="mr-4" style="width: 4em; height: 4em;">
+                                <?php if (empty($row['image'])): ?>
+                                    <img src="../public/inventory/views/assets/default.png" class="mr-4"
+                                        style="width: 4em; height: 4em;">
+                                <?php else: ?>
+                                    <img src="<?php echo '/' . $row['image']; ?>" alt="Image" class="mr-4"
+                                        style="width: 4em; height: 4em;">
                                 <?php endif; ?>
                             </td>
                             <td class="px-6 py-4 font-semibold text-black"><?= $row['product_name'] ?></td>
@@ -94,6 +96,21 @@
         </div>
         <!--End: Table-->
         <script src="./../src/route.js"></script>
+
+        <div>
+            <div class="flex place-content-end mt-2 m-3">
+                <button route='/inv/add-inc-stocks'
+                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    Add Incoming Stocks
+                </button>
+            </div>
+            <div class="flex place-content-end mt-2 m-3">
+                <button route='/inv/update-inc-stocks'
+                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    Update Incoming Stocks
+                </button>
+            </div>
+        </div>
 
 </body>
 

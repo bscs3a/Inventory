@@ -30,7 +30,7 @@
                 <th>Delivery Date</th>
                 <th>Date Added</th>
             </tr>
-            <?php foreach ($rows as $row) : ?>
+            <?php foreach ($rows as $row): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['product_id']; ?></td>
@@ -65,7 +65,8 @@
                 <label for="weight">Weight(kg):</label>
                 <input type="number" id="weight" name="weight" required><br>
                 <label for="delivery_date">Delivery Date:</label>
-                <input type="date" id="delivery_date" name="delivery_date" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required><br>
+                <input type="date" id="delivery_date" name="delivery_date"
+                    min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required><br>
                 <input type="hidden" id="date_added" name="date_added">
             </div>
             <div class="form-group">

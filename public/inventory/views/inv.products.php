@@ -38,7 +38,9 @@
                 <!-- Dropdown end-->
                 <!-- Search Bar -->
                 <div class="relative">
-                    <input type="text" id="simple-search" class="py-1 px-4 text-md text-black border border-black w-80 mobile:w-96" placeholder="Search by Category...">
+                    <input type="text" id="simple-search"
+                        class="py-1 px-4 text-md text-black border border-black w-80 mobile:w-96"
+                        placeholder="Search by Category...">
                 </div>
                 <!-- Searchbar end -->
             </div>
@@ -55,7 +57,8 @@
         <div class="flex items-center ml-5 mt-5 px-2 mb-3">
             <label for="entries" class="mr-2">Show</label>
             <div class="relative">
-                <select id="entries" class="border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                <select id="entries"
+                    class="border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                     <option>10</option>
                     <option>20</option>
                     <option>30</option>
@@ -72,13 +75,16 @@
         </div>
 
         <div class="inline-flex rounded-md shadow-sm mx-5" role="group">
-            <button type="button" onclick="copyToClipboard()" class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
+            <button type="button" onclick="copyToClipboard()"
+                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
                 <span class="p-2 mx-4 my-2">Copy</span>
             </button>
-            <button type="button" onclick="exportToExcel()" class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
+            <button type="button" onclick="exportToExcel()"
+                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
                 <span class="p-2 mx-4 my-2">Excel</span>
             </button>
-            <button type="button" onclick="printTable()" class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
+            <button type="button" onclick="printTable()"
+                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
                 <span class="p-2 mx-4 my-2">Print</span>
             </button>
         </div>
@@ -118,16 +124,19 @@
                 <tbody>
                     <?php
                     require_once __DIR__ . '/../functions/total_stock.php';
-                    foreach ($rowsTStock as $rowTStock) : ?>
-                        <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200" onclick="location.href='/master/inv/prod-edit=<?php echo $rowTStock['stock_id']; ?>'">
+                    foreach ($rowsTStock as $rowTStock): ?>
+                        <tr class="bg-white hover:bg-gray-300 cursor-pointer active:bg-gray-400 duration-200"
+                            onclick="location.href='/master/inv/prod-edit=<?php echo $rowTStock['stock_id']; ?>'">
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php echo $rowTStock['stock_id']; ?>
                             </td>
                             <td scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                                <?php if (empty($rowTStock['image'])) : ?>
-                                    <img src="../public/inventory/views/assets/default.png" class="mr-4" style="width: 4em; height: 4em;">
-                                <?php else : ?>
-                                    <img src="<?php echo '/' . $rowTStock['image']; ?>" alt="Image" class="mr-4" style="width: 4em; height: 4em;">
+                                <?php if (empty($rowTStock['image'])): ?>
+                                    <img src="../public/inventory/views/assets/default.png" class="mr-4"
+                                        style="width: 4em; height: 4em;">
+                                <?php else: ?>
+                                    <img src="<?php echo '/' . $rowTStock['image']; ?>" alt="Image" class="mr-4"
+                                        style="width: 4em; height: 4em;">
                                 <?php endif; ?>
                                 <?php echo $rowTStock['product']; ?>
                             </td>
@@ -222,6 +231,30 @@
             }
         </script>
         <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+        <div>
+            <div class="flex place-content-end mt-2 m-3">
+                <button route='/inv/add-prod'
+                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    Add Products
+                </button>
+            </div>
+            <div class="flex place-content-end mt-2 m-3">
+                <button route='/inv/inventoryProducts'
+                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md"
+                    id="openModal">
+                    Update Products
+                </button>
+            </div>
+            <div class="flex place-content-end mt-2 m-3">
+                <button route='/inv/inventoryProducts'
+                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md"
+                    id="openModal">
+                    Delete Products
+                </button>
+            </div>
+        </div>
+
+
 </body>
 
 </html>

@@ -2,7 +2,8 @@
 
 $path = './public/inventory/views';
 $basePath = "$path/inv.";
-$testpath = "$path/testing/inv.";
+$crudPath = "$path/inv-crud/inv.";
+$testPath = "$path/testing/inv.";
 
 $inv = [
     // Main
@@ -24,23 +25,42 @@ $inv = [
     // Manage Products
     '/inv/manageProducts' => $basePath . "manage-prod.php",
 
+    //--------------CRUD REAL---------------
+    //ADD PRODUCTS
+    '/inv/add-prod' => $basePath . "crud-add-prod.php",
+    //UPDATE PRODUCTS
+    '/inv/update-prod' => $basePath . "crud-update-prod.php",
+    //DELETE PRODUCTS 
+    '/inv/delete-prod' => $basePath . "crud-delete-prod.php",
+    //ADD INCOMING STOCKS
+    '/inv/add-inc-stocks' => $basePath . "crud-add-inc-stocks.php",
+    //UPDATE INCOMING STOCKS
+    '/inv/update-inc-stocks' => $basePath . "crud-update-inc-stocks.php",
+    //ADD RETURNS
+    '/inv/add-returns' => $basePath . "crud-add-returns.php",
+    //UPDATE RETURNS
+    '/inv/update-returns' => $basePath . "crud-update-returns.php",
+    //ADD PRODUCT INCIDENT
+    '/inv/add-incidents' => $basePath . "crud-add-incidents.php",
+    //UPDATE PRODUCT INCIDENT
+    '/inv/update-incidents' => $basePath . "crud-update-incidents.php",
 
     //------------------TESTING------------------------
     //--------------CRUD---------------
     //ADD
-    '/inv/add' => $testpath . "additem.php",
+    '/inv/add' => $testPath . "additem.php",
     //UPDATE
-    '/inv/update' => $testpath . "update.php",
+    '/inv/update' => $testPath . "update.php",
     //DELETE 
-    '/inv/delete' => $testpath . "delete.php",
+    '/inv/delete' => $testPath . "delete.php",
     //incoming stocs
-    '/inv/incoming' => $testpath . "incomingStocks.php",
+    '/inv/incoming' => $testPath . "incomingStocks.php",
     //returns
-    '/inv/testreturns' => $testpath . "Testreturns.php",
+    '/inv/testreturns' => $testPath . "Testreturns.php",
     //incident reports
-    '/inv/incidents' => $testpath . "incidents.php",
+    '/inv/incidents' => $testPath . "incidents.php",
     //table
-    '/inv/table' => $testpath . "table.php",
+    '/inv/table' => $testPath . "table.php",
     //--------------END CRUD---------------
     //------------------END TESTING------------------------
 
