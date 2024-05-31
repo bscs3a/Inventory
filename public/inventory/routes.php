@@ -36,14 +36,20 @@ $inv = [
     '/inv/add-inc-stocks' => $basePath . "crud-add-inc-stocks.php",
     //UPDATE INCOMING STOCKS
     '/inv/update-inc-stocks' => $basePath . "crud-update-inc-stocks.php",
+    //DELETE INCOMING STOCKS
+    '/inv/delete-inc-stocks' => $basePath . "crud-delete-inc-stocks.php",
     //ADD RETURNS
     '/inv/add-returns' => $basePath . "crud-add-returns.php",
     //UPDATE RETURNS
     '/inv/update-returns' => $basePath . "crud-update-returns.php",
+    //DELETE RETURNS
+    '/inv/delete-returns' => $basePath . "crud-delete-returns.php",
     //ADD PRODUCT INCIDENT
     '/inv/add-incidents' => $basePath . "crud-add-incidents.php",
     //UPDATE PRODUCT INCIDENT
     '/inv/update-incidents' => $basePath . "crud-update-incidents.php",
+    //DELETE PRODUCT INCIDENT
+    '/inv/delete-incidents' => $basePath . "crud-delete-incidents.php",
 
     //------------------TESTING------------------------
     //--------------CRUD---------------

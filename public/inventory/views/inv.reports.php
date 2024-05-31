@@ -20,22 +20,11 @@
 
         <?php include "components/header.php" ?>
 
-
         <div class="text-2xl font-semibold px-6 pt-3 pb-3">
             <h1>Incident Reports</h1>
         </div>
         <div class="p-6">
-            <div class="border-b border-gray-200">
-                <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                    <!-- Tabs -->
-                    <a href="#" class="tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="1">
-                        Product Incidents List
-                    </a>
-                    <a href="#" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm" data-tab="2">
-                        Add Product Incident
-                    </a>
-                </nav>
-            </div>
+
 
             <!--Start: Table-->
             <div class="tab-content ml-3 mr-3 flex justify-center overflow-x-auto shadow-md
@@ -96,61 +85,23 @@
             </div>
             <!--End: Table-->
 
-            <!-- Start: Add Prod Inci -->
-            <div class="tab-content ml-3 mt-6 hidden" data-tab="2">
-                <h1 class="text-lg font-medium text-gray-900">
-                    Add Product Incident
-                </h1>
-                <form action="/inv/Add" method="POST" enctype="multipart/form-data" class="space-y-4">
-                    <div class="flex items-center space-x-2">
-                        <label for="image" class="w-20 text-right mx-4">Image:</label>
-                        <input type="file" id="image" name="image" class="border p-1">
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <label for="stock_id" class="w-20 text-right mx-4">Incident ID:</label>
-                        <input type="text" id="stock_id" name="stock_id" class="border p-1">
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <label for="stock_id" class="w-20 text-right mx-4">Product ID:</label>
-                        <input type="text" id="stock_id" name="stock_id" class="border p-1">
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <label for="product" class="w-20 text-right mx-4">Product Name:</label>
-                        <input type="text" id="product" name="product" class="border p-1">
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <label for="category" class="w-20 text-right mx-4">Category:</label>
-                        <input type="text" id="category" name="category" class="border p-1">
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" class="border p-1" onkeydown="return event.key !== 'e' && event.key !== 'E'">
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <label for="category" class="w-20 text-right mx-4">Date of Incident:</label>
-                        <input type="date" id="category" name="category" class="border p-1">
-                    </div>
+            <!-- Buttons for CRUD -->
+            <div class="flex justify-center mt-2 m-3 space-x-8">
+    <button route='/inv/add-incidents'
+        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Add Incident Reports
+    </button>
+    <button route='/inv/update-incidents'
+        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Update Incident Reports
+    </button>
+    <button route='/inv/delete-incidents'
+        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Delete Incident Reports
+    </button>
+</div>
+            <!-- end Buttons for CRUD -->
 
-                    <div class="flex items-center space-x-2">
-                        <label for="prod" class="w-20 text-right mx-4">Status:</label>
-                        <select id="product" name="product" class="border p-1 w-40">
-                            <option value="">Select Status</option>
-                            <option value="product1">Damage in Transit</option>
-                            <option value="product2">Not Delivered</option>
-                            <option value="product3">Truck Accident</option>
-                            <option value="product4">Cancelled</option>
-                            <option value="product1">Stolen</option>
-                            <option value="product2">Item Lost</option>
-                            <option value="product1">Defective</option>
-                            <option value="product2">Other</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
-                    <input type="hidden" id="date_added" name="date_added">
-                    <input type="submit" class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
-                </form>
-            </div>
-            <!-- End: Add -->
             <!-- Defective Modal -->
             <div id="defect-modal" class="modal fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
                 <div class="bg-white rounded shadow-lg w-3/4 sm:w-2/3 md:w-1/2 lg:w-1/3 h-3/4 sm:h-2/3 md:h-1/2 lg:h-1/3 overflow-auto">
@@ -213,34 +164,8 @@
                 </script>
                 <!-- Defective Stock Modal JS end -->
 
-                <!-- Tabs JS Start -->
-                <script>
-                    document.querySelectorAll('.tab').forEach((tab) => {
-                        tab.addEventListener('click', (e) => {
-                            e.preventDefault();
-
-                            // Remove active state from all tabs
-                            document.querySelectorAll('.tab').forEach((tab) => {
-                                tab.classList.remove('border-indigo-500', 'text-indigo-600');
-                                tab.classList.add('border-transparent', 'text-gray-500');
-                            });
-
-                            // Add active state to clicked tab
-                            tab.classList.add('border-indigo-500', 'text-indigo-600');
-                            tab.classList.remove('border-transparent', 'text-gray-500');
-
-                            // Hide all tab contents
-                            document.querySelectorAll('.tab-content').forEach((content) => {
-                                content.classList.add('hidden');
-                            });
-
-                            // Show clicked tab's content
-                            document.querySelector(`.tab-content[data-tab="${tab.dataset.tab}"]`).classList.remove('hidden');
-                        });
-                    });
-                </script>
-
                 <script src="./../src/route.js"></script>
+
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory/Add Product Returns</title>
+    <title>Inventory/Delete Product Returns</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
@@ -15,11 +15,11 @@
     <main id="mainContent" class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
         <?php include "components/header.php" ?>
 
-        <h2 class="m-5 text-4xl font-bold">Add Product Returns</h2>
+        <h2 class="m-5 text-4xl font-bold">Delete Product Returns</h2>
         <div class="p-6">
-            <!-- Start: Add Prod Return -->
-            <div class=" mt-6">
-                <div action="/inv/Add" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <!-- Start: Delete Product Returns -->
+            <div class="ml-3 mt-6">
+                <form action="/inv/Add" method="POST" enctype="multipart/form-data" class="space-y-4">
                     <div class="flex items-center space-x-2">
                         <label for="image" class="w-20 text-right mx-4">Image:</label>
                         <input type="file" id="image" name="image" class="border p-1">
@@ -62,7 +62,7 @@
                             <!-- Add more options as needed -->
                         </select>
                     </div>
-                </>
+                    </div>
         <div class="flex justify-between mt-2 m-3">
             <input type="hidden" id="date_added" name="date_added">
             <input type="submit"

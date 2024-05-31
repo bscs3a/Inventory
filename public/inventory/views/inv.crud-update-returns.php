@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory/Update Returns</title>
+    <title>Inventory/Update Product Returns</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
@@ -17,8 +17,8 @@
 
         <h2 class="m-5 text-4xl font-bold">Update Product Returns</h2>
         <div class="p-6">
-            <!-- Start: Add Prod Return -->
-            <div class=" mt-6">
+            <!-- Start: Update Product Returns -->
+            <div class="ml-3 mt-6">
                 <form action="/inv/Add" method="POST" enctype="multipart/form-data" class="space-y-4">
                     <div class="flex items-center space-x-2">
                         <label for="image" class="w-20 text-right mx-4">Image:</label>
@@ -62,17 +62,17 @@
                             <!-- Add more options as needed -->
                         </select>
                     </div>
-                    <input type="hidden" id="date_added" name="date_added">
-                    <input type="submit"
-                        class="mt-4 mx-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                </form>
-
-                <div class="flex place-content-end mt-2 m-3">
-                    <button route='/inv/returns'
-                        class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                        Back
-                    </button>
-                </div>
+                </div>               
+        <div class="flex justify-between mt-2 m-3">
+            <input type="hidden" id="date_added" name="date_added">
+            <input type="submit"
+                class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
+                    </form>
+            <button route='/inv/returns'
+                class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Back
+            </button>
+        </div>
 
                 <script src="./../src/route.js"></script>
                 <script src="./../src/form.js"></script>

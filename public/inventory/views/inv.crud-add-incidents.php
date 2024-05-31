@@ -18,28 +18,64 @@
 
         <h2 class="m-5 text-4xl font-bold">Add Product Incidents</h2>
         <div class="p-6">
-
-            <div class="ml-3 mt-6">
-                <h1 class="text-lg font-medium text-gray-900">Update Product</h1>
-                <form action="/inv/Update" method="POST">
+             <!-- Start: Add Prod Inci -->
+             <div class="ml-3 mt-6">
+                <form action="/inv/Add" method="POST" enctype="multipart/form-data" class="space-y-4">
                     <div class="flex items-center space-x-2">
-                        <label for="product" class="w-20 text-right mx-4">Select Product:</label>
-                        <select id="product" name="product" class="border p-1 w-40">
-                            <option value="">Select a product</option>
-                            <option value="product1">Pliers x300</option>
-                            <option value="product2">Hammer T2000</option>
-                            <!-- Add more options as needed -->
-                        </select>
+                        <label for="image" class="w-20 text-right mx-4">Image:</label>
+                        <input type="file" id="image" name="image" class="border p-1">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <label for="stock_id" class="w-20 text-right mx-4">Incident ID:</label>
+                        <input type="text" id="stock_id" name="stock_id" class="border p-1">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <label for="stock_id" class="w-20 text-right mx-4">Product ID:</label>
+                        <input type="text" id="stock_id" name="stock_id" class="border p-1">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <label for="product" class="w-20 text-right mx-4">Product Name:</label>
+                        <input type="text" id="product" name="product" class="border p-1">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <label for="category" class="w-20 text-right mx-4">Category:</label>
+                        <input type="text" id="category" name="category" class="border p-1">
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" class="border p-1"
-                            onkeydown="return event.key !== 'e' && event.key !== 'E'">
+                        <input type="number" id="quantity" name="quantity" class="border p-1" onkeydown="return event.key !== 'e' && event.key !== 'E'">
                     </div>
-                    <input type="submit"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
-            </div>
-            </form>
+                    <div class="flex items-center space-x-2">
+                        <label for="category" class="w-20 text-right mx-4">Date of Incident:</label>
+                        <input type="date" id="category" name="category" class="border p-1">
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <label for="prod" class="w-20 text-right mx-4">Status:</label>
+                        <select id="product" name="product" class="border p-1 w-40">
+                            <option value="">Select Status</option>
+                            <option value="product1">Damage in Transit</option>
+                            <option value="product2">Not Delivered</option>
+                            <option value="product3">Truck Accident</option>
+                            <option value="product4">Cancelled</option>
+                            <option value="product1">Stolen</option>
+                            <option value="product2">Item Lost</option>
+                            <option value="product1">Defective</option>
+                            <option value="product2">Other</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    </div>
+        <div class="flex justify-between mt-2 m-3">
+            <input type="hidden" id="date_added" name="date_added">
+            <input type="submit"
+                class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
+                    </form>
+            <button route='/inv/reports'
+                class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Back
+            </button>
+        </div>
 
             <script src="./../src/route.js"></script>
             <script src="./../src/form.js"></script>

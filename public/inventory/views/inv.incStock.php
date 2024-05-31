@@ -97,20 +97,20 @@
         <!--End: Table-->
         <script src="./../src/route.js"></script>
 
-        <div>
-            <div class="flex place-content-end mt-2 m-3">
-                <button route='/inv/add-inc-stocks'
-                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                    Add Incoming Stocks
-                </button>
-            </div>
-            <div class="flex place-content-end mt-2 m-3">
-                <button route='/inv/update-inc-stocks'
-                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                    Update Incoming Stocks
-                </button>
-            </div>
-        </div>
+        <div class="flex justify-center mt-2 m-3 space-x-8">
+    <button route='/inv/add-inc-stocks'
+        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Add Incoming Stocks
+    </button>
+    <button route='/inv/update-inc-stocks'
+        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Update Incoming Stocks
+    </button>
+    <button route='/inv/delete-inc-stocks'
+        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Delete Incoming Stocks
+    </button>
+</div>
 
 </body>
 

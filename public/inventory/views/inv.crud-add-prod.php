@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory/Manage Products</title>
+    <title>Inventory/Add Products</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
@@ -18,9 +18,8 @@
 
         <h2 class="m-5 text-4xl font-bold">Add Products</h2>
         <div class="p-6">
-            <!-- Tab Contents -->
-            <!-- Start: Add -->
-            <div class="tab-content ml-3 mt-6" data-tab="1">
+            <!-- Start: Add Products -->
+            <div class="ml-3 mt-6">
                 <form action="/inv/Add" method="POST" enctype="multipart/form-data" class="space-y-4">
                     <div class="flex items-center space-x-2">
                         <label for="stock_id" class="w-20 text-right mx-4">Stock ID:</label>
@@ -51,47 +50,18 @@
                         <label for="prod_stat" class="w-20 text-right mx-4">Product Status:</label>
                         <input type="text" id="prod_stat" name="prod_stat" class="border p-1">
                     </div>
-                    <input type="hidden" id="date_added" name="date_added">
-                    <input type="submit"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
-                </form>
             </div>
             <!-- End: Add -->
-
-            <div class="tab-content ml-3 mt-6 hidden" data-tab="2">
-                <h1 class="text-lg font-medium text-gray-900">Update Product</h1>
-                <form action="/inv/Update" method="POST">
-                    <div class="flex items-center space-x-2">
-                        <label for="product" class="w-20 text-right mx-4">Select Product:</label>
-                        <select id="product" name="product" class="border p-1 w-40">
-                            <option value="">Select a product</option>
-                            <option value="product1">Pliers x300</option>
-                            <option value="product2">Hammer T2000</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" class="border p-1"
-                            onkeydown="return event.key !== 'e' && event.key !== 'E'">
-                    </div>
-                    <input type="submit"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
-            </div>
-            </form>
-
-            <div class="tab-content ml-3 mt-6 hidden" data-tab="3">
-                <h1 class="text-lg font-medium text-gray-900">Delete Product</h1>
-                <form action="/inv/delete" method="POST">
-                    <div class="flex items-center space-x-2">
-                        <label for="id" class="w-20 text-center mx-4">ID:</label>
-                        <input type="text" id="id" name="id" class="border p-1">
-                    </div>
-                    <input type="submit" value="Delete"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
+        <div class="flex justify-between mt-2 m-3">
+            <input type="hidden" id="date_added" name="date_added">
+            <input type="submit"
+                class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
                 </form>
-            </div>
-
+            <button route='/inv/inventoryProducts'
+                class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Back
+            </button>
+        </div>
 
             <script src="./../src/route.js"></script>
             <script src="./../src/form.js"></script>

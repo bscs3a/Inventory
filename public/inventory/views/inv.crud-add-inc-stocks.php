@@ -17,8 +17,9 @@
 
         <h2 class="m-5 text-4xl font-bold">Add Incoming Stocks</h2>
         <div class="p-6">
+            <!-- Start: Add Inc Stocks -->
             <div class="ml-3 mt-6">
-                <form action="/inv/Add" method="POST" enctype="multipart/form-data" class="space-y-4">
+                <div action="/inv/Add" method="POST" enctype="multipart/form-data" class="space-y-4">
                     <div class="flex items-center space-x-2">
                         <label for="image" class="w-20 text-right mx-4">Image:</label>
                         <input type="file" id="image" name="image" class="border p-1">
@@ -63,16 +64,17 @@
                             <!-- Add more options as needed -->
                         </select>
                     </div>
-                    <input type="hidden" id="date_added" name="date_added">
-                    <input type="submit"
-                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900">
-                </form>
-                <div class="flex place-content-end mt-2 m-3">
-                    <button route='/inv/incStock'
-                        class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                        Back
-                    </button>
                 </div>
+        <div class="flex justify-between mt-2 m-3">
+            <input type="hidden" id="date_added" name="date_added">
+            <input type="submit"
+                class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
+                    </form>
+            <button route='/inv/incStock'
+                class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Back
+            </button>
+        </div>
                 <!-- End: Add -->
 
                 <script src="./../src/route.js"></script>

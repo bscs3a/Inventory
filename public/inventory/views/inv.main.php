@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button route='/inv/inventoryProducts' class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md" id="openModal">
+                    <button route='/inv/inventoryProducts' class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900" id="openModal">
                         Go to Product List
                     </button>
                 </div>
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button data-modal-target="incomingstock-modal" data-modal-toggle="incomingstock-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    <button data-modal-target="incomingstock-modal" data-modal-toggle="incomingstock-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
                         View </button>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button data-modal-target="outstock-modal" data-modal-toggle="outstock-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    <button data-modal-target="outstock-modal" data-modal-toggle="outstock-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
                         View </button>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="flex place-content-end mt-2 m-3">
-                    <button data-modal-target="return-modal" data-modal-toggle="return-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md">
+                    <button data-modal-target="return-modal" data-modal-toggle="return-modal" class="items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
                         View </button>
                 </div>
             </div>

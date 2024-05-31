@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory/Delete Product</title>
+    <title>Inventory/Delete Product Incidents</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
@@ -16,27 +16,37 @@
         <?php include "components/header.php" ?>
 
 
-        <h2 class="m-5 text-4xl font-bold">Delete Product</h2>
+        <h2 class="m-5 text-4xl font-bold">Delete Product Incidents</h2>
         <div class="p-6">
-            <!-- Start: Delete Products -->
+            <!-- Start: Delete Prod Inci -->
             <div class="ml-3 mt-6">
-                <form action="/inv/delete" method="POST">
+                <form action="/inv/Update" method="POST">
                     <div class="flex items-center space-x-2">
-                        <label for="id" class="w-20 text-center mx-4">ID:</label>
-                        <input type="text" id="id" name="id" class="border p-1">
+                        <label for="product" class="w-20 text-right mx-4">Select Product:</label>
+                        <select id="product" name="product" class="border p-1 w-40">
+                            <option value="">Select a product</option>
+                            <option value="product1">Pliers x300</option>
+                            <option value="product2">Hammer T2000</option>
+                            <!-- Add more options as needed -->
+                        </select>
                     </div>
-                </div>
+                    <div class="flex items-center space-x-2">
+                        <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" class="border p-1"
+                            onkeydown="return event.key !== 'e' && event.key !== 'E'">
+                    </div>
+                    </div>
         <div class="flex justify-between mt-2 m-3">
             <input type="hidden" id="date_added" name="date_added">
             <input type="submit"
                 class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
                     </form>
-            <button route='/inv/inventoryProducts'
+            <button route='/inv/reports'
                 class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
                 Back
             </button>
         </div>
-
+            
             <script src="./../src/route.js"></script>
             <script src="./../src/form.js"></script>
 </body>

@@ -98,20 +98,20 @@
             </table>
         </div>
         <!--End: Table-->
-        <div>
-            <div class="flex place-content-end mt-2 m-3">
-                <button route='/inv/add-returns'
-                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                    Add Returns
-                </button>
-            </div>
-            <div class="flex place-content-end mt-2 m-3">
-                <button route='/inv/update-returns'
-                    class="items-end font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md">
-                    Update Returns
-                </button>
-            </div>
-        </div>
+<div class="flex justify-center mt-2 m-3 space-x-8">
+    <button route='/inv/add-returns'
+        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Add Returns
+    </button>
+    <button route='/inv/update-returns'
+        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Update Returns
+    </button>
+    <button route='/inv/delete-returns'
+        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Delete Returns
+    </button>
+</div>
         <script src="./../src/route.js"></script>
 </body>
 
