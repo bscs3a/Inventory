@@ -1,7 +1,7 @@
 <?php
 require_once 'db.php';
 
-$query = "SELECT * FROM total_stocks ORDER BY date_added DESC";
+$query = "SELECT * FROM inventory ORDER BY date_added DESC";
 
 $stmt = $conn->prepare($query);
 $stmt->execute();

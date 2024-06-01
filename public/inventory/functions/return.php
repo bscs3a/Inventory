@@ -1,7 +1,7 @@
 <?php
 require_once 'db.php';
 
-$query = "SELECT * FROM returns";
+$query = "SELECT * FROM returnproducts";
 
 $stmt = $conn->prepare($query);
 $stmt->execute();

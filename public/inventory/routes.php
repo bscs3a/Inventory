@@ -84,12 +84,12 @@ $inv = [
 
 //---------------CRUD OPERATIONS-------------------
 //------------Product List--------------------------
-
-Router::post('/inv/Add', function () {
+//ADD PRODUCTS
+Router::post('/inv/add-prod', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
     $date_added = date('Y-m-d H:i:s');
-    if (isset ($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
@@ -109,32 +109,33 @@ Router::post('/inv/Add', function () {
     $category = $_POST['category'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
-    $prod_stat = $_POST['prod_stat'];
-    $stmt = $conn->prepare("INSERT INTO total_stocks (stock_id, image, product, category, price, quantity, prod_stat, date_added) 
-                            VALUES (:stock_id, :image, :product, :category, :price, :quantity, :prod_stat, :date_added)");
+    $status = $_POST['status'];
+    $stmt = $conn->prepare("INSERT INTO inventory (stock_id, image, product, category, price, quantity, status, date_added) 
+                            VALUES (:stock_id, :image, :product, :category, :price, :quantity, :status, :date_added)");
     $stmt->bindParam(':stock_id', $stock_id);
     $stmt->bindParam(':image', $image);
     $stmt->bindParam(':product', $product);
     $stmt->bindParam(':category', $category);
     $stmt->bindParam(':price', $price);
     $stmt->bindParam(':quantity', $quantity);
-    $stmt->bindParam(':prod_stat', $prod_stat);
+    $stmt->bindParam(':status', $status);
     $stmt->bindParam(':date_added', $date_added);
     $stmt->execute();
     $rootFolder = dirname($_SERVER['PHP_SELF']);
-    header("Location: $rootFolder/inv/add");
+    header("Location: $rootFolder/inv/add-prod");
+    exit();
 });
-Router::post('/inv/Update', function () {
+Router::post('/inv/update-prod', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
 
     $product_id = $_POST['product_id'];
     $quantity = $_POST['quantity'];
 
-    if (empty ($product_id) || empty ($quantity)) {
+    if (empty($product_id) || empty($quantity)) {
         $rootFolder = dirname($_SERVER['PHP_SELF']);
         header("Location: $rootFolder/inv/update");
-        exit ();
+        exit();
     }
 
     $stmt = $conn->prepare("UPDATE total_stocks SET quantity = :quantity WHERE id = :product_id");
@@ -143,10 +144,10 @@ Router::post('/inv/Update', function () {
     $stmt->execute();
 
     $rootFolder = dirname($_SERVER['PHP_SELF']);
-    header("Location: $rootFolder/inv/update");
-    exit ();
+    header("Location: $rootFolder/inv/update-prod");
+    exit();
 });
-Router::post('/inv/delete', function () {
+Router::post('/inv/delete-prod', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
 
@@ -159,8 +160,8 @@ Router::post('/inv/delete', function () {
     $stmt->execute();
 
     $rootFolder = dirname($_SERVER['PHP_SELF']);
-    header("Location: $rootFolder/inv/delete");
-    exit ();
+    header("Location: $rootFolder/inv/delete-prod");
+    exit();
 });
 //------------END Product List----------------
 //-------------Incoming Stocks-----------------
@@ -168,7 +169,7 @@ Router::post('/inv/incoming', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
     $date_added = date('Y-m-d H:i:s');
-    if (isset ($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
@@ -213,7 +214,7 @@ Router::post('/inv/testreturns', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
 
-    if (isset ($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
@@ -255,7 +256,7 @@ Router::post('/inv/incidents', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
 
-    if (isset ($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
@@ -305,15 +306,15 @@ Router::post('/inv/prod-edit', function () {
     $date_added = date('Y-m-d H:i:s');
 
     // Sanitize and validate input
-    $prodId = isset ($_POST['id']) ? intval($_POST['id']) : null;
-    $quantity = isset ($_POST['quantity']) ? intval($_POST['quantity']) : 0;
+    $prodId = isset($_POST['id']) ? intval($_POST['id']) : null;
+    $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 0;
 
     // Check if required fields are empty
-    if (empty ($prodId) || empty ($quantity)) {
+    if (empty($prodId) || empty($quantity)) {
         // Redirect if required fields are empty
         $rootFolder = dirname($_SERVER['PHP_SELF']);
         header("Location: $rootFolder/inv/main");
-        exit ();
+        exit();
     }
 
     // Assuming you have a table called 'total_stocks' where product stock information is stored
@@ -326,7 +327,7 @@ Router::post('/inv/prod-edit', function () {
         // Redirect if product ID not found in total_stocks
         $rootFolder = dirname($_SERVER['PHP_SELF']);
         header("Location: $rootFolder/inv/main");
-        exit ();
+        exit();
     }
 
     $stockId = $result['stock_id'];
@@ -341,7 +342,7 @@ Router::post('/inv/prod-edit', function () {
     // Redirect after successful insertion
     $rootFolder = dirname($_SERVER['PHP_SELF']);
     header("Location: $rootFolder/inv/incStock");
-    exit ();
+    exit();
 });
 
 

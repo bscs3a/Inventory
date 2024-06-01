@@ -12,6 +12,7 @@
     $stmt = $conn->query("SELECT * FROM total_stocks");
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
+
     <table border="1">
         <tr>
             <th>ID</th>
@@ -23,7 +24,7 @@
             <th>Quantity</th>
             <th>Product Status</th>
         </tr>
-        <?php foreach ($rows as $row) : ?>
+        <?php foreach ($rows as $row): ?>
             <tr>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['stock_id']; ?></td>

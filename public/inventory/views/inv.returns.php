@@ -24,6 +24,12 @@
         </div>
 
         <!--Start: Table-->
+        <div class="inline-flex rounded-md shadow-sm mx-5" role="group">
+            <button type="button" onclick="printTable()"
+                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
+                <span class="p-2 mx-4 my-2">Print for product retrieval</span>
+            </button>
+        </div>
         <div class="ml-3 mr-3 flex justify-center overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
             <table class="w-full text-sm text-left rtl:text-right text-black">
                 <thead class="text-xs text-black uppercase bg-gray-200 ">
@@ -55,9 +61,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($returns as $row): ?>
+                    <?php foreach ($returns as $row):
+                        $stmt = $conn->prepare("SELECT * FROM products WHERE ProductID = :ProductID");
+                        $stmt->execute(['ProductID' => $row['ProductID']]);
+                        $productrow = $stmt->fetch(); ?>
                         <tr class="bg-white">
-                            <td class="px-6 py-4 font-semibold text-black whitespace-nowrap"><?= $row['return_id'] ?>
+                            <td class="px-6 py-4 font-semibold text-black whitespace-nowrap"><?= $row['ProductID'] ?>
                             </td>
                             <td class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                                 <?php if (empty($row['image'])): ?>
@@ -68,28 +77,17 @@
                                         style="width: 4em; height: 4em;">
                                 <?php endif; ?>
                             </td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['product_name'] ?></td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['category'] ?></td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['quantity'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $productrow['ProductName'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $productrow['Category'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $row['Quantity'] ?></td>
                             <td class="px-6 py-4 font-semibold text-black">
-                                <?php
-                                if ($row['reason'] == 'In Transit') {
-                                    echo "<span class='italic text-yellow-500'>{$row['reason']}</span>";
-                                } elseif ($row['reason'] == 'Shipped') {
-                                    echo "<span class='text-yellow-300'>{$row['reason']}</span>";
-                                } elseif ($row['reason'] == 'Delivered') {
-                                    echo "<span class='font-bold text-green-500'>{$row['reason']}</span>";
-                                } elseif ($row['reason'] == 'Pending') {
-                                    echo "<span class='italic text-red-500'>{$row['reason']}</span>";
-                                } else {
-                                    echo $row['reason'];
-                                }
-                                ?>
+                                <?php echo $row['Reason']; ?>
                             </td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['date_added'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $row['ReturnDate'] ?></td>
                             <td class="px-6 py-4 font-semibold text-black">
                                 <button
-                                    class="items-end rounded-full w-34 py-2 px-4 bg-violet-950 text-white shadow-md hover:bg-slate-600 active:bg-slate-700 duration-75">
+                                    class="items-end rounded-full w-34 py-2 px-4 bg-violet-950 text-white shadow-md hover:bg-slate-600 active:bg-slate-700 duration-75"
+                                    onclick="printTable()">
                                     Retrieve Product </button>
                             </td>
                         </tr>
@@ -98,20 +96,27 @@
             </table>
         </div>
         <!--End: Table-->
-<div class="flex justify-center mt-2 m-3 space-x-8">
-    <button route='/inv/add-returns'
-        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Add Returns
-    </button>
-    <button route='/inv/update-returns'
-        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Update Returns
-    </button>
-    <button route='/inv/delete-returns'
-        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Delete Returns
-    </button>
-</div>
+        <div class="flex justify-center mt-2 m-3 space-x-8">
+            <button route='/inv/delete-returns'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Delete Returns
+            </button>
+        </div>
+        <script>
+            function printTable() {
+                // Create a new window or tab
+                var printWindow = window.open('', '_blank');
+
+                // Write the HTML content of the table to the new window or tab
+                printWindow.document.write('<html><head><title>Product Retrieval</title></head><body>');
+                printWindow.document.write('<table border="1">' + document.getElementsByTagName("table")[0].innerHTML + '</table>');
+                printWindow.document.write('</body></html>');
+
+                // Trigger the print dialog for the new window or tab
+                printWindow.document.close(); // Close the document for writing
+                printWindow.print(); // Trigger the print dialog
+            }
+        </script>
         <script src="./../src/route.js"></script>
 </body>
 

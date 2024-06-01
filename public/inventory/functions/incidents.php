@@ -1,7 +1,7 @@
 <?php
 require_once 'db.php';
 
-$query = "SELECT * FROM incidents";
+$query = "SELECT * FROM returnproducts";
 
 $stmt = $conn->prepare($query);
 $stmt->execute();

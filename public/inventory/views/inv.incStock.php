@@ -57,9 +57,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($IncStock as $row): ?>
+                    <?php foreach ($IncStock as $row):
+                        $stmt = $conn->prepare("SELECT * FROM products WHERE ProductID = :ProductID");
+                        $stmt->execute(['ProductID' => $row['ProductID']]);
+                        $product = $stmt->fetch(); ?>
                         <tr class="bg-white">
-                            <td class="px-6 py-4 font-semibold text-black whitespace-nowrap"><?= $row['product_id'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black whitespace-nowrap"><?= $row['ProductID'] ?></td>
                             <td class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
                                 <?php if (empty($row['image'])): ?>
                                     <img src="../public/inventory/views/assets/default.png" class="mr-4"
@@ -69,26 +72,16 @@
                                         style="width: 4em; height: 4em;">
                                 <?php endif; ?>
                             </td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['product_name'] ?></td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['category'] ?></td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['quantity'] ?></td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['weight'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $product['ProductName'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $product['Category'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $row['Quantity'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $row['ProductWeight'] ?></td>
                             <td class="px-6 py-4 font-semibold text-black">
                                 <?php
-                                if ($row['status'] == 'In Transit') {
-                                    echo "<span class='italic text-yellow-500'>{$row['status']}</span>";
-                                } elseif ($row['status'] == 'Shipped') {
-                                    echo "<span class='text-yellow-300'>{$row['status']}</span>";
-                                } elseif ($row['status'] == 'Delivered') {
-                                    echo "<span class='font-bold text-green-500'>{$row['status']}</span>";
-                                } elseif ($row['status'] == 'Pending') {
-                                    echo "<span class='italic text-red-500'>{$row['status']}</span>";
-                                } else {
-                                    echo $row['status'];
-                                }
+                                echo $row['DeliveryStatus'];
                                 ?>
                             </td>
-                            <td class="px-6 py-4 font-semibold text-black"><?= $row['delivery_date'] ?></td>
+                            <td class="px-6 py-4 font-semibold text-black"><?= $row['DeliveryDate'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -96,21 +89,6 @@
         </div>
         <!--End: Table-->
         <script src="./../src/route.js"></script>
-
-        <div class="flex justify-center mt-2 m-3 space-x-8">
-    <button route='/inv/add-inc-stocks'
-        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Add Incoming Stocks
-    </button>
-    <button route='/inv/update-inc-stocks'
-        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Update Incoming Stocks
-    </button>
-    <button route='/inv/delete-inc-stocks'
-        class="font-bold rounded-full w-64 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Delete Incoming Stocks
-    </button>
-</div>
 
 </body>
 
