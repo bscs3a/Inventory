@@ -1,9 +1,12 @@
 <!-- Start: Sidebar -->
 
-<div id="sidebar-menu" class="fixed bg-sidebar left-0 top-0 w-64 h-full p-4 z-50 sidebar-menu transition-transform hide-sidebar:hidden">
+<div id="sidebar-menu"
+    class="fixed bg-sidebar left-0 top-0 w-64 h-full p-4 z-50 sidebar-menu transition-transform hide-sidebar:hidden">
 
-    <div route="/" class="flex items-center pb-4">
-        <img src="https://placehold.co/50x50" alt="" class="w-10 h-10 rounded object-cover">
+    <div route='/' class="flex items-center pb-4">
+        <div class="w-12 h-12 rounded bg-cover bg-[url('../public/finance/img/logo_reports.png')]">
+
+        </div>
 
         <span class="cursor-pointer text-4xl font-russo text-white ml-3">BSCS 3A</span>
     </div>
@@ -19,7 +22,8 @@
         </li>
 
         <li class="mb-1 hover:bg-slate-400 rounded-xl">
-            <a route='/inv/inventoryProducts' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+            <a route='/inv/inventoryProducts'
+                class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
                 <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
                 <span class="text-sm font-medium">Product List</span>
                 <i class="ri-arrow-down-s-line ml-auto"></i>
@@ -59,7 +63,8 @@
         </li>
 
         <li class="mb-1 hover:bg-slate-400 rounded-xl">
-            <a route='/inv/req-finance' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+            <a route='/inv/req-finance/page=1'
+                class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
                 <i class="ri-draft-line mr-3 text-lg"></i>
                 <span class="text-sm font-medium">Finance Request</span>
                 <i class="ri-arrow-down-s-line ml-auto"></i>

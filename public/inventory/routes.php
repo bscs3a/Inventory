@@ -21,7 +21,10 @@ $inv = [
     // Account Settings
     '/inv/accountsett' => $basePath . "accountsett.php",
     // Finance Request
-    '/inv/req-finance' => $basePath . "fin.request.php",
+    '/inv/req-finance/page={pageNumber}' => function ($pageNumber) use ($basePath) {
+        $_GET['page'] = $pageNumber;
+        include $basePath . "fin.request.php";
+    },
     // Manage Products
     '/inv/manageProducts' => $basePath . "manage-prod.php",
 
