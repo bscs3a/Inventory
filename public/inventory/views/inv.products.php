@@ -231,7 +231,11 @@
             }
         </script>
         <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
-<div class="flex justify-center mt-2 m-3 space-x-8">
+        <div class="flex justify-center mt-2 m-3 space-x-8">
+<button route='/inv/request-prod-ord'
+        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+        Request Products
+    </button>
     <button route='/inv/add-prod'
         class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
         Add Products
@@ -245,6 +249,8 @@
         Delete Products
     </button>
 </div>
+
+
 
 
 </body>
