@@ -1,7 +1,8 @@
 <?php
 require_once "public\\finance\\functions\\reportGeneration\\OwnersEquityReport.php";
 
-function generateTrialBalance($year, $month) {
+function generateTrialBalance($year, $month)
+{
     $db = Database::getInstance();
     $conn = $db->connect();
     $asset = getGroupCode("Asset");
@@ -13,7 +14,7 @@ function generateTrialBalance($year, $month) {
     $ledger_data = $conn->query('SELECT * FROM ledger')->fetchAll();
 
     // Sort grouptype_data(in descending order -- needed)
-    usort($grouptype_data, function($a, $b) {
+    usort($grouptype_data, function ($a, $b) {
         return strcmp($a['grouptype'], $b['grouptype']);
     });
 
@@ -39,9 +40,9 @@ function generateTrialBalance($year, $month) {
                 $html .= "</tr>";
                 foreach ($ledger_data as $ledger) {
                     if ($ledger['AccountType'] == $account['AccountType']) {
-                        $balance = abs(getAccountBalanceV2($ledger['ledgerno'],true, $year, $month));
+                        $balance = abs(getAccountBalanceV2($ledger['ledgerno'], true, $year, $month));
                         // dont show ledger if balance is 0
-                        if($balance == 0){
+                        if ($balance == 0) {
                             continue;
                         }
                         $balance = abs($balance);
@@ -61,7 +62,7 @@ function generateTrialBalance($year, $month) {
         $html .= "<tfoot>";
         $html .= "<tr>";
         $html .= "<td>{$resultText}</td>";
-        $html .= "<td>{$total}</td>";
+        $html .= "<td class='content-amount'>{$total}</td>";
         $html .= "</tr>";
         $html .= "</tfoot>";
         $html .= "</table>";

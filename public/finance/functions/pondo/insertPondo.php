@@ -1,11 +1,12 @@
-<?php 
+<?php
 require_once 'public/finance/functions/generalFunctions.php';
 
 
 
-function addTransactionPondo($debitLedger, $creditLedger, $amount, $department = null){
+function addTransactionPondo($debitLedger, $creditLedger, $amount, $department = null)
+{
 
-    if ($department === null){
+    if ($department === null) {
         $e_id = $_SESSION['user']['employee_id'];
         $department = $_SESSION['user']['role'];
     } else {
@@ -14,7 +15,7 @@ function addTransactionPondo($debitLedger, $creditLedger, $amount, $department =
 
     $db = Database::getInstance();
     $conn = $db->connect();
-    
+
     $details = "Pondo expense for $department";
     $lt_id = insertLedgerXact($debitLedger, $creditLedger, $amount, $details);
 
@@ -22,16 +23,17 @@ function addTransactionPondo($debitLedger, $creditLedger, $amount, $department =
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':lt_id', $lt_id);
     $stmt->bindParam(':e_id', $e_id);
-    try{
+    try {
         $stmt->execute();
-    }catch(Exception $e){
+    } catch (Exception $e) {
         throw new Exception("Transaction failed");
     }
 
     return $conn->lastInsertId();
 }
 
-function validDebit(){
+function validDebit()
+{
     $assetCode = getGroupCode('Asset');
     $expenseCode = getGroupCode('Expenses');
 
@@ -39,7 +41,7 @@ function validDebit(){
     $inventoryCode = getLedgerCode('Inventory');
     $payrollCode = getLedgerCode('Payroll');
     $interestExpense = getLedgerCode('Interest Expense');
-    $incomeTax = getLedgerCode('Income Tax');
+    $incomeTax = getLedgerCode('Tax Expense');
     $cashOnHand = getLedgerCode('Cash on Hand');
     $cashOnBank = getLedgerCode('Cash on Bank');
 
@@ -68,19 +70,21 @@ function validDebit(){
     return $result;
 }
 
-function validCredit(){
+function validCredit()
+{
     $inventory = getLedgerCode('Inventory');
     $insurance = getLedgerCode('Insurance');
 
     $allLedgerAccounts = getAllLedgerAccounts("Current assets");
 
-    $filteredLedgerAccounts = array_filter($allLedgerAccounts, function($ledgerAccount) use ($inventory, $insurance) {
+    $filteredLedgerAccounts = array_filter($allLedgerAccounts, function ($ledgerAccount) use ($inventory, $insurance) {
         return $ledgerAccount['ledgerno'] !== $inventory && $ledgerAccount['ledgerno'] !== $insurance;
     });
     return $filteredLedgerAccounts;
 }
 
-function getRandomEmployee($department){
+function getRandomEmployee($department)
+{
     $db = Database::getInstance();
     $conn = $db->connect();
     $sql = "SELECT id FROM employees WHERE department = :department";

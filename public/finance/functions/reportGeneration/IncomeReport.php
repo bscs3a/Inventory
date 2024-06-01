@@ -9,7 +9,8 @@ require_once 'public\finance\functions\generalFunctions.php';
 
 //calculate net sales
 //returns negative if d kumita; positive if kumita
-function calculateNetSalesOrLoss($year, $month) {
+function calculateNetSalesOrLoss($year, $month)
+{
     if ($year === null || $month === null) {
         throw new Exception("Year and month must not be null.");
     }
@@ -21,18 +22,19 @@ function calculateNetSalesOrLoss($year, $month) {
 }
 
 //close an account - responsible for inserting the retained earnings/loss
-function closeAccount($ledgerCode, $amount, $year, $month){
+function closeAccount($ledgerCode, $amount, $year, $month)
+{
     $retainedCode = getLedgerCode("Retained Earnings/Loss");
-    
+
     //expenses default
     $debitLedger = $retainedCode;
     $creditLedger = $ledgerCode;
     //if amount is 0 dont insert
-    if($amount == 0){
+    if ($amount == 0) {
         return;
     }
     // if amount 0 interchange -- sales
-    if($amount < 0){
+    if ($amount < 0) {
         $debitLedger = $ledgerCode;
         $creditLedger = $retainedCode;
     }
@@ -41,7 +43,8 @@ function closeAccount($ledgerCode, $amount, $year, $month){
 }
 
 // close all the accounts
-function closeAllAccounts($year, $month) {
+function closeAllAccounts($year, $month)
+{
     $db = Database::getInstance();
     $conn = $db->connect();
     // get the all of the ledger(code) that has a group type of IC or EP
@@ -62,7 +65,8 @@ function closeAllAccounts($year, $month) {
 }
 
 // read the retained earnings/loss
-function getAccountBalanceInRetainedAccount($ledger, $year, $month){
+function getAccountBalanceInRetainedAccount($ledger, $year, $month)
+{
     $retained = getLedgerCode("Retained Earnings/Loss");
     $ledger = getLedgerCode($ledger);
 
@@ -96,7 +100,8 @@ function getAccountBalanceInRetainedAccount($ledger, $year, $month){
 }
 
 // get the total of a group in retained earnings
-function getGroupInRetainedAccount($groupType, $year = null, $month = null) {
+function getGroupInRetainedAccount($groupType, $year = null, $month = null)
+{
     $db = Database::getInstance();
     $conn = $db->connect();
     $retained = getLedgerCode("Retained Earnings/Loss");
@@ -151,7 +156,8 @@ function getGroupInRetainedAccount($groupType, $year = null, $month = null) {
     return $netAmount;
 }
 
-function generateIncomeReport($year, $month) {
+function generateIncomeReport($year, $month)
+{
     closeAllAccounts($year, $month);
     $income = getGroupCode("Income");
     $expense = getGroupCode("Expenses");
@@ -165,7 +171,7 @@ function generateIncomeReport($year, $month) {
     $ledger_data = $conn->query('SELECT * FROM ledger')->fetchAll();
 
     // Sort grouptype_data(in descending order -- needed)
-    usort($grouptype_data, function($a, $b) {
+    usort($grouptype_data, function ($a, $b) {
         return strcmp($b['grouptype'], $a['grouptype']);
     });
 
@@ -190,7 +196,7 @@ function generateIncomeReport($year, $month) {
                     if ($ledger['AccountType'] == $account['AccountType']) {
                         $balance = abs(getAccountBalanceInRetainedAccount($ledger['ledgerno'], $year, $month));
                         // dont show ledger if balance is 0
-                        if($balance == 0){
+                        if ($balance == 0) {
                             continue;
                         }
                         $balance = abs($balance);
@@ -210,7 +216,7 @@ function generateIncomeReport($year, $month) {
         $html .= "<tfoot>";
         $html .= "<tr>";
         $html .= "<td>{$resultText}</td>";
-        $html .= "<td>{$total}</td>";
+        $html .= "<td class='content-amount'>{$total}</td>";
         $html .= "</tr>";
         $html .= "</tfoot>";
         $html .= "</table>";
@@ -226,7 +232,7 @@ function generateIncomeReport($year, $month) {
     $html .= "<tfoot>";
     $html .= "<tr>";
     $html .= "<td>{$textSalesOrLoss}</td>";
-    $html .= "<td>{$netSalesOrLoss}</td>";
+    $html .= "<td class='content-amount'>{$netSalesOrLoss}</td>";
     $html .= "</tr>";
     $html .= "</tfoot>";
     $html .= "</table>";
