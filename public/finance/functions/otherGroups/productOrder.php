@@ -2,60 +2,61 @@
 require_once 'public/finance/functions/generalFunctions.php';
 require_once 'public\finance\functions\pondo\insertPondo.php';
 require_once 'public\finance\functions\pondo\generalPondo.php';
-function recordBuyingInventory($amount){
+function recordBuyingInventory($amount, $paymentMethod)
+{
     $inventory = getLedgerCode('Inventory');
     $department = "Product Order";
 
     if ($amount <= 0) {
         throw new Exception("Amount is less than or equal to 0");
     }
-    
+    if ($paymentMethod !== "Cash on hand" && $paymentMethod !== "Cash on bank") {
+        throw new Exception("Payment must be cash on hand or cash on bank");
+    }
 
-    $cashOnHand = 'Cash on hand';
-    $cashOnBank = 'Cash on bank';
+    $remValue = getRemainingProductOrderPondo($paymentMethod);
 
-
-    $handValue = getRemainingPondo($department, $cashOnHand);
-    $bankValue = getRemainingPondo($department, $cashOnBank);
-    $total = $handValue + $bankValue;
-
-    if($amount > $total){
+    if ($amount > $remValue) {
         throw new Exception("Amount to be bought is greater than the remaining pondo of the department");
     }
 
-    //get percentage
-    $handPercentage = $handValue / $total;
-    $bankPercentage = $bankValue / $total;
-
-    //gets the value to insert
-    $insertHand = $amount * $handPercentage;
-    $insertBank = $amount * $bankPercentage;
-    // fraction error handling
-    if($insertHand + $insertBank != $amount){
-        if($handValue > $bankValue){
-            $insertHand += $amount - ($insertHand + $insertBank);
-        }else{
-            $insertBank += $amount - ($insertHand + $insertBank);
-        }
-    }
-
     // divide it to the 2; to avoid error
-    addTransactionPondo($inventory, $cashOnHand, $insertHand);
-    addTransactionPondo($inventory, $cashOnBank, $insertBank);
-
-    return;
+    return addTransactionPondo($inventory, $paymentMethod, $amount);
 }
 
 // only use when you want to get your remaining pondo
-function getRemainingProductOrderPondo(){
+function getRemainingProductOrderPondo($paymentMethod)
+{
 
     $department = "Product Order";
 
-    $cashOnHand = 'Cash on hand';
-    $cashOnBank = 'Cash on bank';
+    if ($paymentMethod !== "Cash on hand" && $paymentMethod !== "Cash on bank") {
+        throw new Exception("Payment must be cash on hand or cash on bank");
+    }
 
-    $handValue = getRemainingPondo($department, $cashOnHand);
-    $bankValue = getRemainingPondo($department, $cashOnBank);
-    return $handValue + $bankValue;
+    $remValue = getRemainingPondo($department, $paymentMethod);
+    return $remValue;
+}
+
+function cancelOrder($id)
+{
+    $db = Database::getInstance();
+    $conn = $db->connect();
+
+    $sql = "SELECT lt_id FROM funds_transaction WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetchColumn();
+
+    $sql = "DELETE FROM funds_transaction WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    $sql = "DELETE FROM ledgertransaction WHERE LedgerXactID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$result]);
+
+    return;
 }
 ?>

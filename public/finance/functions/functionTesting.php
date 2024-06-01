@@ -1,11 +1,15 @@
 <?php
-require_once 'generalFunctions.php';
+require_once 'otherGroups/salary.php';
+require_once 'pondo/generalPondo.php';
+// require_once 'ponod/insertPondo.php';
+
+$department = 'Product Order';
+$cashAccount = 'Cash on hand';
 
 
-$year = 2024;
-$bool = true;
-$month = 4;
-$retained = getLedgerCode("Retained Earnings/Loss");
+var_dump(pondoForEveryone($department));
 
+echo getExpensesPondo($department, $cashAccount);
 
-echo getAccountBalance($retained,$bool,$year,$month);
+echo getRemainingPondo($department, "Cash on hand") + getRemainingPondo($department, "Cash on bank");
+// echo getRemainingHRPondo($paymentMethod);

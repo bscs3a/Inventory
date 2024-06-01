@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 $department = $_SESSION['user']['role'];
 $db = Database::getInstance();
 $conn = $db->connect();
@@ -8,9 +7,9 @@ $stmt->bindParam(':department', $department);
 $stmt->execute();
 $totalRecords = $stmt->fetchColumn();
 
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; 
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $displayPerPage = 10;
-$totalPages = ceil( $totalRecords / $displayPerPage) ;
+$totalPages = ceil($totalRecords / $displayPerPage);
 
 // changes here
 $totalExpenses = getExpensesPondo($department, 'Cash on hand') + getExpensesPondo($department, 'Cash on bank');
@@ -31,13 +30,13 @@ $remainingPondo = $cashOnHand + $cashOnBank;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
 
-<body>
+<body class="flex">
 
     <?php require_once "components/sidebar.php" ?>
 
     <!-- Start: Dashboard -->
 
-    <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
+    <main class="flex-1 transition-all main">
 
         <!-- Start: Header -->
 
@@ -45,7 +44,7 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
             <!-- Start: Active Menu -->
 
-            <button type="button" class="text-lg sidebar-toggle">
+            <button type="button" class="text-lg sidebar-toggle" id='toggleSidebar'>
                 <i class="ri-menu-line"></i>
             </button>
 
@@ -60,14 +59,14 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
             <!-- Start: Profile -->
 
-            <?php require_once __DIR__ . "/components/logout/logout.php"?>
+            <?php require_once __DIR__ . "/components/logout/logout.php" ?>
             <!-- End: Profile -->
 
         </div>
 
         <!-- End: Header -->
 
-        
+
         <div class="w-full p-6 bg-white">
             <!-- department choice header -->
             <div class="justify-between items-start mb-4">
@@ -100,9 +99,8 @@ $remainingPondo = $cashOnHand + $cashOnBank;
                                 </a>
                                 <a route='/fin/funds/finance/page=1'
                                     class="cursor-pointer shrink-0 border-b-2 border-sidebar px-1 pb-4 text-sm font-medium text-sidebar"
-                                    aria-current="page"
-                                    >
-                                   Finance
+                                    aria-current="page">
+                                    Finance
                                 </a>
 
 
@@ -161,7 +159,8 @@ $remainingPondo = $cashOnHand + $cashOnBank;
                                             EmployeeID
                                         </label>
                                         <input type="text" id="employee_id" name="employee_id" required readonly
-                                            class="mt-1 py-1 px-3 w-full rounded-md border border-gray-400 shadow-md sm:text-sm" value = "<?php echo $_SESSION['user']['employee_id']?>"/>
+                                            class="mt-1 py-1 px-3 w-full rounded-md border border-gray-400 shadow-md sm:text-sm"
+                                            value="<?php echo $_SESSION['user']['employee_id'] ?>" />
                                     </div>
                                     <div class="mb-4 relative">
                                         <label for="amount" class="block text-xs font-medium text-gray-900"> Amount
@@ -173,21 +172,21 @@ $remainingPondo = $cashOnHand + $cashOnBank;
                                             oninput="validateInput(this)" />
 
                                         <script>
-                                        var cashOnHand = <?php echo json_encode($cashOnHand); ?>;
-                                        var cashOnBank = <?php echo json_encode($cashOnBank); ?>;
+                                            var cashOnHand = <?php echo json_encode($cashOnHand); ?>;
+                                            var cashOnBank = <?php echo json_encode($cashOnBank); ?>;
 
-                                        function validateInput(input) {
-                                            var limit = document.getElementById('payUsing').value === 'Cash on hand' ? cashOnHand : cashOnBank;
-                                            var value = parseFloat(input.value);
-                                            if (isNaN(value) || value > limit) {
-                                                input.setCustomValidity('Please enter a number not greater than ' + limit);
-                                            } else {
-                                                input.setCustomValidity('');
+                                            function validateInput(input) {
+                                                var limit = document.getElementById('payUsing').value === 'Cash on hand' ? cashOnHand : cashOnBank;
+                                                var value = parseFloat(input.value);
+                                                if (isNaN(value) || value > limit) {
+                                                    input.setCustomValidity('Please enter a number not greater than ' + limit);
+                                                } else {
+                                                    input.setCustomValidity('');
+                                                }
                                             }
-                                            }
-                                            window.addEventListener('DOMContentLoaded', function() {
-                                                document.getElementById('payUsing').addEventListener('change', function() {
-                                                validateInput(document.getElementById('amount'));
+                                            window.addEventListener('DOMContentLoaded', function () {
+                                                document.getElementById('payUsing').addEventListener('change', function () {
+                                                    validateInput(document.getElementById('amount'));
                                                 });
                                             });
                                         </script>
@@ -197,26 +196,30 @@ $remainingPondo = $cashOnHand + $cashOnBank;
                                     </div>
                                     <div class="flex justify-between">
                                         <div class="mb-4 relative p-1 grow">
-                                            <label for="payFor" class="block text-xs font-medium text-gray-900"> Pay For: </label>
-                                            <select id="payFor" name="payFor" required class="mt-1 py-1 px-3 w-full rounded-md border border-gray-400 shadow-md sm:text-sm">
+                                            <label for="payFor" class="block text-xs font-medium text-gray-900"> Pay
+                                                For: </label>
+                                            <select id="payFor" name="payFor" required
+                                                class="mt-1 py-1 px-3 w-full rounded-md border border-gray-400 shadow-md sm:text-sm">
                                                 <option value="" selected>...</option>
                                                 <?php
-                                                    $validDebit = validDebit();
-                                                    foreach($validDebit as $row){
-                                                        echo "<option value='".$row['ledgerno']."'>".$row['name']."</option>";
-                                                    }
+                                                $validDebit = validDebit();
+                                                foreach ($validDebit as $row) {
+                                                    echo "<option value='" . $row['ledgerno'] . "'>" . $row['name'] . "</option>";
+                                                }
                                                 ?>
                                             </select>
                                         </div>
                                         <div class="mb-4 relative p-1 grow">
-                                            <label for="payUsing" class="block text-xs font-medium text-gray-900"> Pay Using: </label>
-                                            <select id="payUsing" name="payUsing" required class="mt-1 py-1 px-3 w-full rounded-md border border-gray-400 shadow-md sm:text-sm">
+                                            <label for="payUsing" class="block text-xs font-medium text-gray-900"> Pay
+                                                Using: </label>
+                                            <select id="payUsing" name="payUsing" required
+                                                class="mt-1 py-1 px-3 w-full rounded-md border border-gray-400 shadow-md sm:text-sm">
                                                 <option value="" selected>...</option>
-                                                <?php 
+                                                <?php
                                                 $validCredit = validCredit();
-                                                foreach($validCredit as $row){
+                                                foreach ($validCredit as $row) {
                                                     $value = $row['name'] == 'Cash on hand' ? $cashOnHand : $cashOnBank;
-                                                    echo "<option value='".$row['name']."'>".$row['name']. "-". $value ."</option>";
+                                                    echo "<option value='" . $row['name'] . "'>" . $row['name'] . "-" . $value . "</option>";
                                                 }
                                                 ?>
                                             </select>
@@ -263,19 +266,20 @@ $remainingPondo = $cashOnHand + $cashOnBank;
                     <div class=" col-span-1 bg-gradient-to-b from-[#F8B721] to-[#FBCF68] rounded-xl">
                         <div class="mx-5 my-5 py-3 px-3 text-white">
                             <h1 class="text-2xl font-bold">Given Allowance This Month</h1>
-                            <p class="mt-5 text-4xl font-medium"><?php echo pondoForEveryone($department)['total'];?></p>
+                            <p class="mt-5 text-4xl font-medium"><?php echo pondoForEveryone($department)['total']; ?>
+                            </p>
                         </div>
                     </div>
                     <div class=" col-span-1 bg-gradient-to-b from-[#F8B721] to-[#FBCF68] rounded-xl">
                         <div class="mx-5 my-5 py-3 px-3 text-white">
                             <h1 class="text-2xl font-bold">Total Expenses This Month</h1>
-                            <p class="mt-5 text-4xl font-medium"><?php echo $totalExpenses;?></p>
+                            <p class="mt-5 text-4xl font-medium"><?php echo $totalExpenses; ?></p>
                         </div>
                     </div>
                     <div class=" col-span-1 bg-gradient-to-b from-[#F8B721] to-[#FBCF68] rounded-xl">
                         <div class="mx-5 my-5 py-3 px-3 text-white">
                             <h1 class="text-2xl font-bold">Remaining Funds This Month</h1>
-                            <p class="mt-5 text-4xl font-medium"><?php echo $remainingPondo;?></p>
+                            <p class="mt-5 text-4xl font-medium"><?php echo $remainingPondo; ?></p>
                         </div>
                     </div>
                 </div>
@@ -285,7 +289,7 @@ $remainingPondo = $cashOnHand + $cashOnBank;
             <!-- Table -->
             <div class="overflow-x-auto rounded-lg border border-gray-400">
                 <table class="min-w-full divide-y-2 divide-gray-400 bg-white text-sm">
-                    
+
                     <thead class="ltr:text-left rtl:text-right bg-gray-200">
                         <tr>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">ID</th>
@@ -297,24 +301,25 @@ $remainingPondo = $cashOnHand + $cashOnBank;
                     </thead>
 
                     <tbody class="divide-y divide-gray-200 text-center">
-                        <?php 
-                        $pondoTable = getAllTransactions($department,$page, $displayPerPage);
-                        foreach($pondoTable as $row){
-                        ?>
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row['id'];?></td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row['details']?></td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo "₱". number_format($row['amount'], 2)?></td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row['department']?></td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row['datetime']?></td>
-                        </tr>
+                        <?php
+                        $pondoTable = getAllTransactions($department, $page, $displayPerPage);
+                        foreach ($pondoTable as $row) {
+                            ?>
+                            <tr>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row['id']; ?></td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row['details'] ?></td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                    <?php echo "₱" . number_format($row['amount'], 2) ?></td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row['department'] ?></td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row['datetime'] ?></td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
             </div>
 
             <!-- pages -->
-            <?php 
+            <?php
             $link = "";
             switch ($department) {
                 case 'Delivery':
@@ -353,12 +358,12 @@ $remainingPondo = $cashOnHand + $cashOnBank;
                     </li>
                 <?php endif; ?>
                 <!-- links for pages -->
-                <?php 
-                    $start = max(1, $page - 2);
-                    $end = min($totalPages, $page + 2);
+                <?php
+                $start = max(1, $page - 2);
+                $end = min($totalPages, $page + 2);
 
-                    for ($i = $start; $i <= $end; $i++): 
-                ?>
+                for ($i = $start; $i <= $end; $i++):
+                    ?>
                     <li>
                         <a route="<?php echo $link . $i ?>"
                             class="block size-8 rounded border <?= $i == $page ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-100 bg-white text-gray-900' ?> text-center leading-8">
@@ -383,7 +388,7 @@ $remainingPondo = $cashOnHand + $cashOnBank;
             </ol>
         </div>
 
-            
+
     </main>
     <script src="./../../../src/route.js"></script>
     <script src="./../../../src/form.js"></script>
