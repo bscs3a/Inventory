@@ -10,23 +10,21 @@
 
     <ul class="mt-3">
 
-    <ul class="mt-3">
-    <li class="mb-1 hover:bg-slate-400 rounded-xl <?php echo ($_SERVER['REQUEST_URI'] == '/inv/main') ? 'bg-green-300' : ''; ?>">
-        <a route='/inv/main' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
-            <i class="ri-speed-up-line mr-3 text-lg"></i>
-            <span class="text-sm font-medium">Dashboard</span>
-            <i class="ri-arrow-down-s-line ml-auto"></i>
-        </a>
-    </li>
+        <li class="mb-1 hover:bg-slate-400 rounded-xl">
+            <a route='/inv/main' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+                <i class="ri-speed-up-line mr-3 text-lg"></i>
+                <span class="text-sm font-medium">Dashboard</span>
+                <i class="ri-arrow-down-s-line ml-auto"></i>
+            </a>
+        </li>
 
-    <li class="mb-1 hover:bg-slate-400 rounded-xl <?php echo ($_SERVER['REQUEST_URI'] == '/inv/inventoryProducts') ? 'bg-green-300' : ''; ?>">
-        <a route='/inv/inventoryProducts' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
-            <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
-            <span class="text-sm font-medium">Product List</span>
-            <i class="ri-arrow-down-s-line ml-auto"></i>
-        </a>
-    </li>
-</ul>
+        <li class="mb-1 hover:bg-slate-400 rounded-xl">
+            <a route='/inv/inventoryProducts' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
+                <i class="ri-shopping-cart-fill mr-3 text-lg"></i>
+                <span class="text-sm font-medium">Product List</span>
+                <i class="ri-arrow-down-s-line ml-auto"></i>
+            </a>
+        </li>
 
         <li class="mb-1 hover:bg-slate-400 rounded-xl">
             <a route='/inv/incStock' class="flex items-center py-2 px-4 text-white hover:text-black cursor-pointer">
