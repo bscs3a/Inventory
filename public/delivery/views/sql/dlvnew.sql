@@ -1,6 +1,5 @@
--- Audit Trail Table
+-- (Sales) Audit Trail Table
 CREATE TABLE tbl_sls_audit (
-
     id INT AUTO_INCREMENT PRIMARY KEY,
     employee_name VARCHAR(255),
     log_action VARCHAR(255),
@@ -10,17 +9,15 @@ CREATE TABLE tbl_sls_audit (
 -- INSERT INTO tbl_sls_audit (employee_name, log_action) VALUES ('Alfaro, Aian Louise', 'Log in');
 -- INSERT INTO tbl_sls_audit (employee_name, log_action) VALUES ('Alfaro, Aian Louise', 'Log out');
 
-SELECT * FROM tbl_sls_audit;
-
--- Categories Table
-CREATE TABLE Categories (
+-- (Sales) Categories Table
+CREATE TABLE IF NOT EXISTS Categories (
     Category_ID INT(11) NOT NULL AUTO_INCREMENT,
     Category_Name VARCHAR(50) NOT NULL,
     PRIMARY KEY (Category_ID)
 );
 
--- Products Table
-CREATE TABLE Products (
+-- (Sales) Products Table
+CREATE TABLE IF NOT EXISTS Products (
     ProductID INT(11) NOT NULL AUTO_INCREMENT,
     Supplier_ID INT(11) NOT NULL,
     Category_ID INT(11) NOT NULL,
@@ -38,25 +35,16 @@ CREATE TABLE Products (
     PRIMARY KEY (ProductID)
 );
 
--- Customers Table
+-- (Sales) Customers Table
 CREATE TABLE IF NOT EXISTS Customers (
     CustomerID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(200),
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
     Phone VARCHAR(20),
     Email VARCHAR(100)
 );
 
--- Employees Table -- Filler OnLy
-CREATE TABLE IF NOT EXISTS Employees (
-    EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(100),
-    LastName VARCHAR(100),
-    Position VARCHAR(100),
-    Email VARCHAR(100),
-    Phone VARCHAR(20)
-);
-
--- Sales Table with DeliveryDate column
+-- (Sales) Table with DeliveryDate column
 CREATE TABLE IF NOT EXISTS Sales (
     SaleID INT AUTO_INCREMENT PRIMARY KEY,
     SaleDate DATETIME,
@@ -66,15 +54,14 @@ CREATE TABLE IF NOT EXISTS Sales (
     CardNumber VARCHAR(16),
     ExpiryDate TEXT,
     CVV VARCHAR(3),
-    Discount DECIMAL(10, 2),
     TotalAmount DECIMAL(10, 2),
     EmployeeID INT,
     CustomerID INT,
-    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
+ -- FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
--- SaleDetails Table
+-- (Sales) SaleDetails Table
 CREATE TABLE IF NOT EXISTS SaleDetails (
     SaleDetailID INT AUTO_INCREMENT PRIMARY KEY,
     SaleID INT,
@@ -88,16 +75,16 @@ CREATE TABLE IF NOT EXISTS SaleDetails (
     FOREIGN KEY (SaleID) REFERENCES Sales(SaleID),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
-
--- Trucks Table -- Filler Only
+-- (DLV) Trucks Table
 CREATE TABLE IF NOT EXISTS Trucks (
     TruckID INT AUTO_INCREMENT PRIMARY KEY,
-    TruckName VARCHAR(100),
-    TruckType VARCHAR(50),
-    Capacity DECIMAL(10, 2)
+    PlateNumber VARCHAR(20),
+    TruckType ENUM('Light-Duty', 'Heavy-Duty'),
+    Capacity DECIMAL(10, 2),
+    TruckStatus ENUM('Available', 'In Transit', 'Unavailable') DEFAULT 'Available'
 );
 
--- DeliveryOrders Table
+-- (SALES) DeliveryOrders Table
 CREATE TABLE IF NOT EXISTS DeliveryOrders (
     DeliveryOrderID INT AUTO_INCREMENT PRIMARY KEY,
     SaleID INT,  
@@ -109,22 +96,64 @@ CREATE TABLE IF NOT EXISTS DeliveryOrders (
     StreetBarangayAddress VARCHAR(255),
     DeliveryDate DATE,
     ReceivedDate DATE,  
-    DeliveryStatus ENUM('Pending', 'In Transit', 'Delivered') DEFAULT 'Pending',
+    DeliveryStatus ENUM('Pending', 'In Transit', 'Delivered', 'Failed to Deliver') DEFAULT 'Pending',
     TruckID INT,
     FOREIGN KEY (SaleID) REFERENCES Sales(SaleID),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
     FOREIGN KEY (TruckID) REFERENCES Trucks(TruckID)
 );
 
--- TargetSales Table
+-- (HR) Create a table for employees
+CREATE TABLE employees (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+	image_url VARCHAR(255) NULL DEFAULT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    middle_name VARCHAR(30),
+    last_name VARCHAR(30) NOT NULL,
+    dateofbirth DATE NOT NULL,
+    gender ENUM('Male','Female') NOT NULL,
+    nationality VARCHAR(30) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    contact_no VARCHAR(20) DEFAULT 'N/A',
+    email VARCHAR(30) DEFAULT 'N/A',
+    civil_status ENUM('Single','Married','Divorced','Widowed') NOT NULL,
+    department ENUM('Product Order','Human Resources','Point of Sales', 'Inventory','Finance','Delivery') NOT NULL,
+	position VARCHAR(50) NOT NULL,
+    sss_number varchar(20) DEFAULT NULL,
+    philhealth_number varchar(20) DEFAULT NULL,
+    tin_number varchar(20) DEFAULT NULL,
+    pagibig_number varchar(20) DEFAULT NULL
+    PRIMARY KEY (id)
+);
+-- (HR) attendance table
+CREATE TABLE IF NOT EXISTS attendance (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    attendance_date DATETIME NOT NULL,
+    clock_in TIMESTAMP NOT NULL DEFAULT current_timestamp(),
+    clock_out TIMESTAMP DEFAULT current_timestamp(),
+    employees_id INT(10) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (employees_id) REFERENCES employees (id)
+);
+
+-- (DLV) Create a new table to associate employees with trucks
+CREATE TABLE IF NOT EXISTS EmployeeTrucks (
+    EmployeeID INT,
+    TruckID INT,
+    FOREIGN KEY (EmployeeID) REFERENCES employees(id),
+    FOREIGN KEY (TruckID) REFERENCES Trucks(TruckID)
+);
+
+-- (Sales) TargetSales Table
 CREATE TABLE IF NOT EXISTS TargetSales (
     TargetID INT AUTO_INCREMENT PRIMARY KEY,
     MonthYear DATE,
     TargetAmount DECIMAL(10, 2),
     EmployeeID INT,
-    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+--  FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
 );
 
+-- (Sales) ReturnProducts Table
 CREATE TABLE ReturnProducts (
     ReturnID INT AUTO_INCREMENT PRIMARY KEY,
     SaleID INT,
@@ -138,8 +167,15 @@ CREATE TABLE ReturnProducts (
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 
--- Assuming the categories already exist in the Categories table
--- You should adjust the following INSERT statements according to the Category_ID values in your Categories table
+
+-- INSERT
+INSERT INTO Categories (Category_Name) 
+VALUES 
+    ('Tools'),
+    ('Building Materials'),
+    ('Art Supplies'),
+    ('Safety Gear'),
+    ('Paints and Chemicals');
 
 INSERT INTO Products (Supplier_ID, Category_ID, ProductImage, ProductName, Supplier, Description, DeliveryRequired, Price, Stocks, UnitOfMeasurement, TaxRate, ProductWeight) 
 VALUES 
@@ -178,112 +214,66 @@ VALUES
     (33, 5, 'uploads/Paint_Roller_Set.png', 'Paint Roller Set', 'Supplier R', 'Set of paint rollers for applying paint smoothly on surfaces', 'No', 300.00, 35, 'set', 0.12, 0.8),
     (34, 5, 'uploads/Adhesive_Primer_(1_gallon).png', 'Adhesive Primer (1 gallon)', 'Supplier S', 'Adhesive primer for preparing surfaces before painting', 'No', 210.00, 20, 'gallon', 0.12, 8);
 
+    INSERT INTO trucks (TruckType, PlateNumber, Capacity) VALUES ('Light-Duty', 'ALD123', '4000');
+    INSERT INTO trucks (TruckType, PlateNumber, Capacity) VALUES ('Light-Duty', 'DUY234', '4000');
+    INSERT INTO trucks (TruckType, PlateNumber, Capacity) VALUES ('Light-Duty', 'VRR125', '4000');
 
+    INSERT INTO trucks (TruckType, PlateNumber, Capacity) VALUES ('Heavy-Duty', 'DJD233', '20000');
+    INSERT INTO trucks (TruckType, PlateNumber, Capacity) VALUES ('Heavy-Duty', 'PGD994', '20000');
+    INSERT INTO trucks (TruckType, PlateNumber, Capacity) VALUES ('Heavy-Duty', 'UHD535', '20000');
 
-    INSERT INTO Categories (Category_Name) 
-    VALUES 
-        ('Tools'),
-        ('Building Materials'),
-        ('Art Supplies'),
-        ('Safety Gear'),
-        ('Paints and Chemicals');
+    INSERT INTO employees (first_name, middle_name, last_name, dateofbirth, gender, nationality, address, contact_no, email, civil_status, department, position) VALUES
+    ('FName1', 'M1', 'LName1', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f1@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName2', 'M2', 'LName2', '1980-01-01', 'Male', 'Filipino', 'Manila, Philippines', '09123456789', 'f2@sample.com', 'Single', 'Delivery', 'Driver'),
+    ('FName3', 'M3', 'LName3', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f3@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName4', 'M4', 'LName4', '1980-01-01', 'Male', 'Filipino', 'Manila, Philippines', '09123456789', 'f4@sample.com', 'Single', 'Delivery', 'Driver'),
+    ('FName5', 'M5', 'LName5', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f5@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName6', 'M6', 'LName6', '1980-01-01', 'Male', 'Filipino', 'Manila, Philippines', '09123456789', 'f6@sample.com', 'Single', 'Delivery', 'Driver'),
+    ('FName7', 'M7', 'LName7', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f7@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName8', 'M8', 'LName8', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f8@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName9', 'M9', 'LName9', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f9@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName10', 'M10', 'LName10', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f10@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName11', 'M11', 'LName11', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f11@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName12', 'M12', 'LName12', '1980-01-01', 'Male', 'Filipino', 'Manila, Philippines', '09123456789', 'f12@sample.com', 'Single', 'Delivery', 'Driver'),
+    ('FName13', 'M13', 'LName13', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f13@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName14', 'M14', 'LName14', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f14@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName15', 'M15', 'LName15', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f15@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName16', 'M16', 'LName16', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f16@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName17', 'M17', 'LName17', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f17@sample.com', 'Married', 'Delivery', 'Driver'),
+    ('FName18', 'M18', 'LName18', '1997-06-18', 'Male', 'Filipino', 'Manila, Philippines', '09123456772', 'f18@sample.com', 'Married', 'Delivery', 'Driver');
 
+-- Assign 3 employees to each truck
+INSERT INTO EmployeeTrucks (EmployeeID, TruckID) VALUES
+    (1, 1),
+    (2, 1),
+    (3, 1),
+    (4, 2),
+    (5, 2),
+    (6, 2),
+    (7, 3),
+    (8, 3),
+    (9, 3),
+    (10, 4),
+    (11, 4),
+    (12, 4),
+    (13, 5),
+    (14, 5),
+    (15, 5),
+    (16, 6),
+    (17, 6),
+    (18, 6);
 
-    -- Dummy Sales Data for 2022
-    INSERT INTO `sales` (`SaleDate`, `SalePreference`, `ShippingFee`, `PaymentMode`, `TotalAmount`, `EmployeeID`, `CustomerID`) 
-    VALUES 
-        ('2022-01-15 10:30:00', 'Delivery', 10.00, 'Cash', 150.00, 1, NULL),
-        ('2022-02-05 14:45:00', 'Pick-up', 0.00, 'Card', 250.00, 2, NULL),
-        ('2022-03-20 11:00:00', 'Delivery', 20.00, 'Cash', 180.00, 3, NULL),
-        ('2022-04-10 09:15:00', 'Delivery', 15.00, 'Cash', 200.00, 1, NULL),
-        ('2022-05-22 13:00:00', 'Pick-up', 0.00, 'Cash', 300.00, 2, NULL),
-        ('2022-06-08 16:30:00', 'Delivery', 25.00, 'Card', 350.00, 3, NULL),
-        ('2022-07-14 10:00:00', 'Delivery', 10.00, 'Cash', 180.00, 1, NULL),
-        ('2022-08-29 12:45:00', 'Pick-up', 0.00, 'Cash', 270.00, 2, NULL),
-        ('2022-09-05 15:20:00', 'Delivery', 20.00, 'Card', 400.00, 3, NULL),
-        ('2022-10-18 09:30:00', 'Delivery', 15.00, 'Cash', 220.00, 1, NULL),
-        ('2022-11-25 11:45:00', 'Pick-up', 0.00, 'Cash', 280.00, 2, NULL),
-        ('2022-12-30 14:00:00', 'Delivery', 25.00, 'Card', 320.00, 3, NULL);
+    -- Attendance check
+    INSERT INTO attendance (attendance_date, clock_in, clock_out, employees_id) VALUES
+    (CURDATE(), NOW(), CONCAT(CURDATE(), ' 20:30:00'), 1),
+    (CURDATE(), NOW(), CONCAT(CURDATE(), ' 20:30:00'), 2),
+    (CURDATE(), NOW(), CONCAT(CURDATE(), ' 20:30:00'), 3),
+    (CURDATE(), NOW(), CONCAT(CURDATE(), ' 20:30:00'), 16),
+    (CURDATE(), NOW(), CONCAT(CURDATE(), ' 20:30:00'), 17),
+    (CURDATE(), NOW(), CONCAT(CURDATE(), ' 20:30:00'), 18);
 
-    -- Dummy Target Sales Data for 2022
-    INSERT INTO `targetsales` (`MonthYear`, `TargetAmount`, `EmployeeID`) 
-    VALUES 
-        ('2022-01-01', 5000.00, 1),
-        ('2022-02-01', 6000.00, 2),
-        ('2022-03-01', 7000.00, 3),
-        ('2022-04-01', 5500.00, 1),
-        ('2022-05-01', 6500.00, 2),
-        ('2022-06-01', 7500.00, 3),
-        ('2022-07-01', 6000.00, 1),
-        ('2022-08-01', 7000.00, 2),
-        ('2022-09-01', 8000.00, 3),
-        ('2022-10-01', 6000.00, 1),
-        ('2022-11-01', 6500.00, 2),
-        ('2022-12-01', 7500.00, 3);
-
-    -- Dummy Sales Data for 2023
-    INSERT INTO `sales` (`SaleDate`, `SalePreference`, `ShippingFee`, `PaymentMode`, `TotalAmount`, `EmployeeID`, `CustomerID`) 
-    VALUES 
-        ('2023-01-15 10:30:00', 'Delivery', 10.00, 'Cash', 200.00, 1, NULL),
-        ('2023-02-05 14:45:00', 'Pick-up', 0.00, 'Card', 300.00, 2, NULL),
-        ('2023-03-20 11:00:00', 'Delivery', 20.00, 'Cash', 250.00, 3, NULL),
-        ('2023-04-10 09:15:00', 'Delivery', 15.00, 'Cash', 350.00, 1, NULL),
-        ('2023-05-22 13:00:00', 'Pick-up', 0.00, 'Cash', 400.00, 2, NULL),
-        ('2023-06-08 16:30:00', 'Delivery', 25.00, 'Card', 450.00, 3, NULL),
-        ('2023-07-14 10:00:00', 'Delivery', 10.00, 'Cash', 300.00, 1, NULL),
-        ('2023-08-29 12:45:00', 'Pick-up', 0.00, 'Cash', 350.00, 2, NULL),
-        ('2023-09-05 15:20:00', 'Delivery', 20.00, 'Card', 500.00, 3, NULL),
-        ('2023-10-18 09:30:00', 'Delivery', 15.00, 'Cash', 400.00, 1, NULL),
-        ('2023-11-25 11:45:00', 'Pick-up', 0.00, 'Cash', 450.00, 2, NULL),
-        ('2023-12-30 14:00:00', 'Delivery', 25.00, 'Card', 500.00, 3, NULL);
-
-    -- Dummy Target Sales Data for 2023
-    INSERT INTO `targetsales` (`MonthYear`, `TargetAmount`, `EmployeeID`) 
-    VALUES 
-        ('2023-01-01', 6000.00, 1),
-        ('2023-02-01', 7000.00, 2),
-        ('2023-03-01', 8000.00, 3),
-        ('2023-04-01', 6500.00, 1),
-        ('2023-05-01', 7500.00, 2),
-        ('2023-06-01', 8500.00, 3),
-        ('2023-07-01', 7000.00, 1),
-        ('2023-08-01', 8000.00, 2),
-        ('2023-09-01', 9000.00, 3),
-        ('2023-10-01', 7000.00, 1),
-        ('2023-11-01', 7500.00, 2),
-        ('2023-12-01', 8500.00, 3);
-
-    -- Dummy Sales Data for 2024
-    INSERT INTO `sales` (`SaleDate`, `SalePreference`, `ShippingFee`, `PaymentMode`, `TotalAmount`, `EmployeeID`, `CustomerID`) 
-    VALUES 
-        ('2024-01-15 10:30:00', 'Delivery', 10.00, 'Cash', 210.00, 1, NULL),
-        ('2024-02-05 14:45:00', 'Pick-up', 0.00, 'Card', 310.00, 2, NULL),
-        ('2024-03-20 11:00:00', 'Delivery', 20.00, 'Cash', 260.00, 3, NULL);
-
-    -- Dummy Target Sales Data for 2024
-    INSERT INTO `targetsales` (`MonthYear`, `TargetAmount`, `EmployeeID`) 
-    VALUES 
-        ('2024-01-01', 6100.00, 1),
-        ('2024-02-01', 7100.00, 2),
-        ('2024-03-01', 8100.00, 3);
-
-    -- Adjust TotalAmount for each sale to be close to or above the target sales
-    UPDATE `sales` s
-    JOIN (
-        SELECT 
-            ts.`EmployeeID`,
-            ts.`MonthYear`,
-            ts.`TargetAmount`,
-            SUM(s.`TotalAmount`) AS `TotalSalesAmount`
-        FROM 
-            `targetsales` ts
-        LEFT JOIN 
-            `sales` s ON ts.`EmployeeID` = s.`EmployeeID`
-        GROUP BY 
-            ts.`EmployeeID`, ts.`MonthYear`, ts.`TargetAmount`
-    ) t ON s.`EmployeeID` = t.`EmployeeID`
-    SET 
-        s.`TotalAmount` = CASE 
-            WHEN t.`TotalSalesAmount` < t.`TargetAmount` THEN s.`TotalAmount` + (t.`TargetAmount` - t.`TotalSalesAmount`)
-            ELSE s.`TotalAmount`
-        END;
+    -- To update delivery orders to 'Pending' status and clear the TruckID and ReceivedDate
+    UPDATE deliveryorders
+    SET DeliveryStatus = 'Pending',
+    ReceivedDate = NULL,
+    TruckID = NULL;

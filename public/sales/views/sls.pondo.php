@@ -1,6 +1,6 @@
 
 <?php 
-$department = "Product Order";
+$department = $_SESSION['user']['role'];
 $db = Database::getInstance();
 $conn = $db->connect();
 $searchQuery = isset($_SESSION['postdata']['generalLedgerSelected']) ? $_SESSION['postdata']['generalLedgerSelected'] : null;
@@ -78,49 +78,6 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
         
         <div class="w-full p-6 bg-white">
-            <!-- department choice header -->
-            <div class="justify-between items-start mb-4">
-                <!-- Tabs -->
-                <div class="mb-4">
-
-
-                    <div class="hidden sm:block">
-                        <div class="border-b border-gray-200">
-                            <nav class="-mb-px flex gap-6" aria-label="Tabs">
-                                <a route='/fin/funds/HR/page=1'
-                                class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                    Human Resources
-                                </a>
-                                <a route='/fin/funds/PO/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-sidebar px-1 pb-4 text-sm font-medium text-sidebar"
-                                    aria-current="page"
-                                   >
-                                    Product Order
-                                </a>
-                                <a route='/fin/funds/Sales/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                    Sales
-                                </a>
-                                <a route='/fin/funds/Inventory/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                                >
-                                    Inventory
-                                </a>
-                                <a route='/fin/funds/Delivery/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                    Delivery
-                                </a>
-                                <a route='/fin/funds/finance/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                    Finance
-                                </a>
-
-
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- for adding transaction -->
             <div class="w-full px-6 py-3 bg-white">
@@ -325,13 +282,13 @@ $remainingPondo = $cashOnHand + $cashOnBank;
             <!-- changes here -->
             <div class=" mb-6">
                 <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6 ">
-                    <div class=" col-span-1 bg-gradient-to-b from-[#F8B721] to-[#FBCF68] rounded-xl">
+                    <div class=" col-span-1 bg-green-800 rounded-xl">
                         <div class="mx-5 my-5 py-3 px-3 text-white">
                             <h1 class="text-2xl font-bold">Given Allowance This Month</h1>
                             <p class="mt-5 text-4xl font-medium"><?php echo pondoForEveryone($department)['total'];?></p>
                         </div>
                     </div>
-                    <div class=" col-span-1 bg-gradient-to-b from-[#F8B721] to-[#FBCF68] rounded-xl">
+                    <div class=" col-span-1 bg-red-600 rounded-xl">
                         <div class="mx-5 my-5 py-3 px-3 text-white">
                             <h1 class="text-2xl font-bold">Total Expenses This Month</h1>
                             <p class="mt-5 text-4xl font-medium"><?php echo $totalExpenses;?></p>
@@ -382,27 +339,9 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
             <!-- pages -->
             <?php 
-            $link = "";
-            switch ($department) {
-                case 'Delivery':
-                    $link = "/fin/funds/Delivery/page=";
-                    break;
-                case 'Finance':
-                    $link = "/fin/funds/finance/page=";
-                    break;
-                case 'Point of Sales':
-                    $link = "/fin/funds/Sales/page=";
-                    break;
-                case 'Product Order':
-                    $link = "/fin/funds/PO/page=";
-                    break;
-                case 'Inventory':
-                    $link = "/fin/funds/Inventory/page=";
-                    break;
-                case 'Human Resources':
-                    $link = "/fin/funds/HR/page=";
-                    break;
-            } ?>
+            // PUT YOUR LINK HERE
+            $link = "/sls/funds/Sales/page={pageNumber}";
+            ?>
             <ol class="flex justify-end mr-8 gap-1 text-xs font-medium mt-5">
                 <!-- Next & Previous -->
                 <?php if ($page > 1): ?>

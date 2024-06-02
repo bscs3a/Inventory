@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
 
-<body class="flex">
+<body>
     <!-- Start: Sidebar -->
-    <?php include "components/sidebar.php" ?>
+    <?php include "component/sidebar.php" ?>
     <!-- End: Sidebar -->
     <!-- Start: Dashboard -->
-    <main class="flex-1 transition-all main">
+    <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main font-sans">
 
 
         <!-- Start: Header -->
@@ -23,7 +23,7 @@
 
             <!-- Start: Active Menu -->
 
-            <button type="button" class="text-lg sidebar-toggle" id = 'toggleSidebar'>
+            <button type="button" class="text-lg sidebar-toggle">
                 <i class="ri-menu-line"></i>
             </button>
 
@@ -39,7 +39,7 @@
 
             <!-- Start: Profile -->
 
-            <?php require_once "components/logout/logout.php"?>
+            <?php require_once __DIR__ . "/logout.php"?>
 
             <!-- End: Profile -->
 
@@ -154,15 +154,13 @@
                 $stmt = $pdo->prepare("SELECT COUNT(*) FROM audit_log as al 
                        INNER JOIN account_info as ai ON ai.id = al.account_id
                        INNER JOIN employees as e ON e.id = ai.employees_id
-                       WHERE e.department = :department AND (ai.username LIKE :searchQuery OR CONCAT(e.first_name, ' ', e.last_name) LIKE :searchQuery OR al.action LIKE :searchQuery OR CAST(al.id AS CHAR) LIKE :searchQuery OR CAST(al.datetime AS CHAR) LIKE :searchQuery)");
+                       WHERE ai.username LIKE :searchQuery OR CONCAT(e.first_name, ' ', e.last_name) LIKE :searchQuery OR al.action LIKE :searchQuery OR CAST(al.id AS CHAR) LIKE :searchQuery OR CAST(al.datetime AS CHAR) LIKE :searchQuery");
                 $stmt->bindParam(':searchQuery', $searchQuery);
-                $stmt->bindParam(':department', $department, PDO::PARAM_STR);
-
                 $stmt->execute();
                 $totalPages = $stmt->fetchColumn();
                 
                 // PUT YOUR LINK HERE
-                $link = "/fin/logs/page=";
+                $link = "/dlv/audit/page=";
                 ?>
                 <ol class="flex justify-end mr-8 gap-1 text-xs font-medium mt-5">
                     <!-- Next & Previous -->

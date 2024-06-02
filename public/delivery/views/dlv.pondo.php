@@ -1,6 +1,6 @@
 
 <?php 
-$department = "Product Order";
+$department = $_SESSION['user']['role'];
 $db = Database::getInstance();
 $conn = $db->connect();
 $searchQuery = isset($_SESSION['postdata']['generalLedgerSelected']) ? $_SESSION['postdata']['generalLedgerSelected'] : null;
@@ -36,13 +36,13 @@ $remainingPondo = $cashOnHand + $cashOnBank;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Department Fund Expenses</title>
-    <link href="./../../../src/tailwind.css" rel="stylesheet">
+    <link href="./../../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 </head>
 
 <body>
 
-    <?php require_once "components/sidebar.php" ?>
+    <?php require_once "component/sidebar.php" ?>
 
     <!-- Start: Dashboard -->
 
@@ -69,7 +69,7 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
             <!-- Start: Profile -->
 
-            <?php require_once __DIR__ . "/components/logout/logout.php"?>
+            <?php require_once "logout.php" ?>
             <!-- End: Profile -->
 
         </div>
@@ -78,49 +78,7 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
         
         <div class="w-full p-6 bg-white">
-            <!-- department choice header -->
-            <div class="justify-between items-start mb-4">
-                <!-- Tabs -->
-                <div class="mb-4">
-
-
-                    <div class="hidden sm:block">
-                        <div class="border-b border-gray-200">
-                            <nav class="-mb-px flex gap-6" aria-label="Tabs">
-                                <a route='/fin/funds/HR/page=1'
-                                class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                    Human Resources
-                                </a>
-                                <a route='/fin/funds/PO/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-sidebar px-1 pb-4 text-sm font-medium text-sidebar"
-                                    aria-current="page"
-                                   >
-                                    Product Order
-                                </a>
-                                <a route='/fin/funds/Sales/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                    Sales
-                                </a>
-                                <a route='/fin/funds/Inventory/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                                >
-                                    Inventory
-                                </a>
-                                <a route='/fin/funds/Delivery/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                    Delivery
-                                </a>
-                                <a route='/fin/funds/finance/page=1'
-                                    class="cursor-pointer shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                    Finance
-                                </a>
-
-
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
             <!-- for adding transaction -->
             <div class="w-full px-6 py-3 bg-white">
@@ -250,10 +208,8 @@ $remainingPondo = $cashOnHand + $cashOnBank;
                                             }
                                         }
 
-                                        window.addEventListener('DOMContentLoaded', function() {
-                                            document.getElementById('payUsing').addEventListener('change', function() {
+                                        document.getElementById('payUsing').addEventListener('change', function() {
                                             validateInput(document.getElementById('amount'));
-                                            });
                                         });
                                         </script>
                                         <!-- upto here -->
@@ -382,27 +338,9 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
             <!-- pages -->
             <?php 
-            $link = "";
-            switch ($department) {
-                case 'Delivery':
-                    $link = "/fin/funds/Delivery/page=";
-                    break;
-                case 'Finance':
-                    $link = "/fin/funds/finance/page=";
-                    break;
-                case 'Point of Sales':
-                    $link = "/fin/funds/Sales/page=";
-                    break;
-                case 'Product Order':
-                    $link = "/fin/funds/PO/page=";
-                    break;
-                case 'Inventory':
-                    $link = "/fin/funds/Inventory/page=";
-                    break;
-                case 'Human Resources':
-                    $link = "/fin/funds/HR/page=";
-                    break;
-            } ?>
+            // PUT YOUR LINK HERE
+            $link = "/dlv/pondo/page=";
+            ?>
             <ol class="flex justify-end mr-8 gap-1 text-xs font-medium mt-5">
                 <!-- Next & Previous -->
                 <?php if ($page > 1): ?>
@@ -452,8 +390,8 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
             
     </main>
-    <script src="./../../../src/route.js"></script>
-    <script src="./../../../src/form.js"></script>
+    <script src="./../../src/route.js"></script>
+    <script src="./../../src/form.js"></script>
     <!-- Start: Sidebar -->
     <!-- End: Dashboard -->
 </body>
