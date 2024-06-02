@@ -1334,6 +1334,10 @@ video {
   height: 2.5rem;
 }
 
+.h-12{
+  height: 3rem;
+}
+
 .h-14{
   height: 3.5rem;
 }
@@ -1429,10 +1433,6 @@ video {
 
 .h-screen{
   height: 100vh;
-}
-
-.h-12{
-  height: 3rem;
 }
 
 .max-h-40{
