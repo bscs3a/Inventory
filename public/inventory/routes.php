@@ -20,6 +20,8 @@ $inv = [
     '/inv/incStock' => $basePath . "incStock.php",
     // Account Settings
     '/inv/accountsett' => $basePath . "accountsett.php",
+    // Request Product Order
+    '/inv/request-prod-ord' => $basePath . "req-prod-ord.php",
     // Finance Request
     '/inv/req-finance/page={pageNumber}' => function ($pageNumber) use ($basePath) {
         $_GET['page'] = $pageNumber;

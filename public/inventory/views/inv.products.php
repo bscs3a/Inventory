@@ -245,6 +245,26 @@
                 Delete Products
             </button>
         </div>
+        <div class="flex justify-center mt-2 m-3 space-x-8">
+            <button route='/inv/request-prod-ord'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Request Products
+            </button>
+            <button route='/inv/add-prod'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Add Products
+            </button>
+            <button route='/inv/update-prod'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Update Products
+            </button>
+            <button route='/inv/delete-prod'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Delete Products
+            </button>
+        </div>
+
+
 
 
 </body>
