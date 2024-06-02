@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+</head>
 
 
 </head>
@@ -28,7 +30,7 @@
             <h1>Product List</h1>
         </div>
 
-  
+
 
         <!-- Start: Date Filter Panel-->
         <div class="flex justify-evenly mt-0 px-6 w-24 ">
@@ -69,6 +71,10 @@
                 class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
                 <span class="p-2 mx-4 my-2">Print</span>
             </button>
+            <button type="button" onclick="generateReport()"
+                class="mx-0 my-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-200 active:bg-gray-300">
+                <span class="p-2 mx-4 my-2">Generate Monthly Report</span>
+            </button>
         </div>
 
         <!-- End: ShowEntries & Excel Print Buttons-->
@@ -76,6 +82,7 @@
         <!-- End: Filter Panel-->
 
         <!--Start: Table-->
+
         <div class="ml-3 mr-3 flex overflow-x-auto shadow-md sm:rounded-lg border border-gray-600 m-4">
             <table class="w-full text-sm text-left rtl:text-right text-black">
                 <thead class="text-xs text-black uppercase bg-gray-200 ">
@@ -211,26 +218,70 @@
                 printWindow.document.close(); // Close the document for writing
                 printWindow.print(); // Trigger the print dialog
             }
+
+            async function generateReport() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                doc.setFontSize(18);
+                doc.text('Monthly Product Report', 14, 22);
+
+                doc.setFontSize(12);
+                doc.text('Generated on: ' + new Date().toLocaleDateString(), 14, 30);
+
+                const table = document.querySelector('table');
+                const rows = table.querySelectorAll('tr');
+
+                // Prepare headers and data for autoTable
+                const headers = [];
+                const data = [];
+                rows.forEach((row, rowIndex) => {
+                    const cells = row.querySelectorAll('th, td');
+                    const rowData = [];
+                    cells.forEach((cell, cellIndex) => {
+                        const text = cell.innerText;
+                        if (rowIndex === 0) {
+                            headers.push({ content: text, styles: { halign: 'center' } });
+                        } else {
+                            rowData.push(text);
+                        }
+                    });
+                    if (rowIndex > 0) {
+                        data.push(rowData);
+                    }
+                });
+
+                doc.autoTable({
+                    head: [headers],
+                    body: data,
+                    startY: 40,
+                    styles: { fontSize: 10, cellPadding: 2 },
+                    headStyles: { fillColor: [22, 160, 133] },
+                    alternateRowStyles: { fillColor: [241, 241, 241] }
+                });
+
+                doc.save('Monthly_Product_Report.pdf');
+            }
         </script>
         <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
         <div class="flex justify-center mt-2 m-3 space-x-8">
-<button route='/inv/request-prod-ord'
-        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Request Products
-    </button>
-    <button route='/inv/add-prod'
-        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Add Products
-    </button>
-    <button route='/inv/update-prod'
-        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Update Products
-    </button>
-    <button route='/inv/delete-prod'
-        class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-        Delete Products
-    </button>
-</div>
+            <button route='/inv/request-prod-ord'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Request Products
+            </button>
+            <button route='/inv/add-prod'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Add Products
+            </button>
+            <button route='/inv/update-prod'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Update Products
+            </button>
+            <button route='/inv/delete-prod'
+                class="font-bold rounded-full w-48 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                Delete Products
+            </button>
+        </div>
 
 
 
