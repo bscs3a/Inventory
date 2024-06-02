@@ -100,15 +100,27 @@ Router::post('/inv/add-prod', function () {
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $status = $_POST['status'];
-    $stmt = $conn->prepare("INSERT INTO inventory (stock_id, product, category, price, quantity, status, date_added) 
-                            VALUES (:stock_id, :product, :category, :price, :quantity, :status, :date_added)");
-    $stmt->bindParam(':stock_id', $stock_id);
-    $stmt->bindParam(':product', $product);
-    $stmt->bindParam(':category', $category);
-    $stmt->bindParam(':price', $price);
-    $stmt->bindParam(':quantity', $quantity);
-    $stmt->bindParam(':status', $status);
-    $stmt->bindParam(':date_added', $date_added);
+
+    $stmt = $conn->prepare("SELECT * FROM inventory WHERE stock_id = ?");
+    $stmt->execute([$stock_id]);
+    $existingStock = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($existingStock) {
+        $stmt = $conn->prepare("UPDATE inventory SET quantity = quantity + :quantity WHERE stock_id = :stock_id");
+        $stmt->bindParam(':quantity', $quantity);
+        $stmt->bindParam(':stock_id', $stock_id);
+    } else {
+        $stmt = $conn->prepare("INSERT INTO inventory (stock_id, product, category, price, quantity, status, date_added) 
+                                VALUES (:stock_id, :product, :category, :price, :quantity, :status, :date_added)");
+        $stmt->bindParam(':stock_id', $stock_id);
+        $stmt->bindParam(':product', $product);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':quantity', $quantity);
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':date_added', $date_added);
+    }
+
     $stmt->execute();
     $rootFolder = dirname($_SERVER['PHP_SELF']);
     header("Location: $rootFolder/inv/add-prod");
@@ -127,7 +139,7 @@ Router::post('/inv/update-prod', function () {
         exit();
     }
 
-    $stmt = $conn->prepare("UPDATE total_stocks SET quantity = :quantity WHERE id = :product_id");
+    $stmt = $conn->prepare("UPDATE inventory SET quantity = :quantity WHERE id = :product_id");
     $stmt->bindParam(':product_id', $product_id);
     $stmt->bindParam(':quantity', $quantity);
     $stmt->execute();
@@ -136,13 +148,14 @@ Router::post('/inv/update-prod', function () {
     header("Location: $rootFolder/inv/update-prod");
     exit();
 });
+//DELETE PRODUCTS
 Router::post('/inv/delete-prod', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
 
     $id = $_POST['id'];
 
-    $stmt = $conn->prepare("DELETE FROM total_stocks WHERE id = :id");
+    $stmt = $conn->prepare("DELETE FROM inventory WHERE id = :id");
     $stmt->bindParam(':id', $id);
 
     // Execute the statement
@@ -152,7 +165,44 @@ Router::post('/inv/delete-prod', function () {
     header("Location: $rootFolder/inv/delete-prod");
     exit();
 });
-//------------END Product List----------------
+// ------------END Product List----------------
+// ------------Delete Incidents-----------------
+Router::post('/inv/delete-incidents', function () {
+    $db = Database::getInstance();
+    $conn = $db->connect();
+
+    $id = $_POST['id'];
+
+    $stmt = $conn->prepare("DELETE FROM inventory WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+
+    // Execute the statement
+    $stmt->execute();
+
+    $rootFolder = dirname($_SERVER['PHP_SELF']);
+    header("Location: $rootFolder/inv/delete-incidents");
+    exit();
+});
+// ------------END Delete Incidents-----------------
+// ------------Delete Retturns-----------------
+Router::post('/inv/delete-returns', function () {
+    $db = Database::getInstance();
+    $conn = $db->connect();
+
+    $id = $_POST['ReturnID'];
+
+    $stmt = $conn->prepare("DELETE FROM returnproducts WHERE ReturnID = :ReturnID");
+    $stmt->bindParam(':ReturnID', $id);
+
+    // Execute the statement
+    $stmt->execute();
+
+    $rootFolder = dirname($_SERVER['PHP_SELF']);
+    header("Location: $rootFolder/inv/delete-returns");
+    exit();
+});
+// ------------END Delete Returns-----------------
+
 //-------------Incoming Stocks-----------------
 Router::post('/inv/incoming', function () {
     $db = Database::getInstance();
@@ -333,7 +383,38 @@ Router::post('/inv/prod-edit', function () {
     header("Location: $rootFolder/inv/incStock");
     exit();
 });
+//Request Products
+Router::post('/inv/request-prod-ord', function () {
+    $db = Database::getInstance();
+    $conn = $db->connect();
+    $date_ordered = date('Y-m-d H:i:s');
+    $product_name = $_POST['product_name'];
+    $product_id = $_POST['product_id'];
+    $quantity = $_POST['quantity'];
 
+    $stmt = $conn->prepare("SELECT * FROM inventoryorders WHERE product_id = ?");
+    $stmt->execute([$product_id]);
+    $existingStock = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($existingStock) {
+        $stmt = $conn->prepare("UPDATE inventoryorders SET quantity = quantity + :quantity WHERE product_id = :product_id");
+        $stmt->bindParam(':quantity', $quantity);
+        $stmt->bindParam(':product_id', $product_id);
+
+    } else {
+        $stmt = $conn->prepare("INSERT INTO inventoryorders (product_id, product_name, quantity, date_ordered) 
+                                VALUES (:product_id, :product_name, :quantity, :date_ordered)");
+        $stmt->bindParam(':product_id', $product_id);
+        $stmt->bindParam(':product_name', $product_name);
+        $stmt->bindParam(':quantity', $quantity);
+        $stmt->bindParam(':date_ordered', $date_ordered);
+    }
+
+    $stmt->execute();
+    $rootFolder = dirname($_SERVER['PHP_SELF']);
+    header("Location: $rootFolder/inv/request-prod-ord");
+    exit();
+});
 
 
 

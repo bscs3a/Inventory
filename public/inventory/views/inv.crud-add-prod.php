@@ -32,19 +32,20 @@
 
             <form action="/inv/add-prod" method="POST" enctype="multipart/form-data">
                 <div class="ml-3 mt-6">
-                    <div class="flex items-center space-x-2">
-                        <label for="product" class="w-20 text-right mx-4">Product</label>
-                        <select id="product" name="product" class="border p-1">
-                            <?php
-                            $stmt = $conn->prepare("SELECT * FROM products");
-                            $stmt->execute();
-                            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                            foreach ($stmt->fetchAll() as $product) {
-                                echo "<option value='" . $product['ProductID'] . "'>" . $product['ProductName'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
+                    <label for="product" class="w-20 text-right mx-4">Select Product:</label>
+                    <select id="product" name="product" class="border p-1">
+                        <?php
+                        $stmt = $conn->prepare("SELECT * FROM products");
+                        $stmt->execute();
+                        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                        foreach ($stmt->fetchAll() as $product) {
+                            echo "<option value='" . $product['ProductName'] . "' 
+              data-stock-id='" . $product['ProductID'] . "' 
+              data-category='" . $product['Category'] . "' 
+              data-price='" . $product['Price'] . "'>" . $product['ProductName'] . "</option>";
+                        }
+                        ?>
+                    </select>
                     <div class="flex items-center space-x-2">
                         <label for="stock_id" class="w-20 text-right mx-4">Stock ID(SKU):</label>
                         <input type="text" id="stock_id" name="stock_id" class="border p-1" readonly>
@@ -52,27 +53,15 @@
 
                     <div class="flex items-center space-x-2">
                         <label for="category" class="w-20 text-right mx-4">Category:</label>
-                        <select id="category" name="category" class="border p-1">
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['Category_name']; ?>">
-                                    <?php echo $category['Category_name']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
+                        <input type="text" id="category" name="category" class="border p-1" readonly>
                     </div>
-                    <?php
-                    $stmt = $conn->prepare("SELECT ProductID, Price FROM products");
-                    $stmt->execute();
-                    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    ?>
                     <div class="flex items-center space-x-2">
                         <label for="price" class="w-20 text-right mx-4">Price:</label>
                         <input type="text" id="price" name="price" class="border p-1">
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="quantity" class="w-20 text-right mx-4">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" class="border p-1"
-                            onkeydown="return event.key !== 'e' && event.key !== 'E'">
+                        <input type="number" id="quantity" name="quantity" class="border p-1">
                     </div>
                     <div class="flex items-center space-x-2">
                         <label for="status" class="w-20 text-right mx-4">Product Status:</label>
@@ -147,19 +136,12 @@
                     statusField.value = 'Overstock';
                 }
             });
-            $(document).ready(function () {
-                $('#product').change(function () {
-                    var productId = $(this).val();
-                    $('#stock_id').val(productId);
-                });
-            });
-            var productPrices = <?php echo json_encode(array_column($products, 'Price', 'ProductID')); ?>;
-
             document.getElementById('product').addEventListener('change', function () {
-                document.getElementById('price').value = productPrices[this.value];
+                var selectedOption = this.options[this.selectedIndex];
+                document.getElementById('stock_id').value = selectedOption.getAttribute('data-stock-id');
+                document.getElementById('category').value = selectedOption.getAttribute('data-category');
+                document.getElementById('price').value = selectedOption.getAttribute('data-price');
             });
-
-
         </script>
     </main>
     <script src="./../src/route.js"></script>
