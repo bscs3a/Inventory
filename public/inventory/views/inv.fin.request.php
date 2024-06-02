@@ -340,7 +340,7 @@ $remainingPondo = $cashOnHand + $cashOnBank;
 
     </main>
     <script src="../../src/route.js"></script>
-    <script src=".../../src/form.js"></script>
+    <script src="../../src/form.js"></script>
 
     <!-- Start: Sidebar -->
     <!-- End: Dashboard -->

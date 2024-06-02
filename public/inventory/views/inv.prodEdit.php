@@ -141,7 +141,7 @@
             <div class="">
                 <button route='/inv/inventoryProducts' ;
                     class="rounded-full text-lg bg-sidebar text-white px-6 py-1 hover:bg-slate-600 active:bg-slate-700 duration-75">
-                    Details
+                    Back
                 </button>
             </div>
         </div>

@@ -125,7 +125,7 @@
             </div>
             <div class="flex items-center">
                 <!-- Dropdown button -->
-        </div>
+            </div>
         </div>
         <!--End: Product-->
 
@@ -310,7 +310,7 @@
                                         <td class="px-6 py-4 font-semibold text-black">
                                             <button
                                                 onclick="location.href='/master/inv/prod-edit=<?php echo $rowNoStock['stock_id']; ?>'"
-                                                class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4">Order</button>
+                                                class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4">Details</button>
 
                                         </td>
                                     </tr>
