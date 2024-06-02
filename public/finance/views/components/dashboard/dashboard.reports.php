@@ -676,7 +676,7 @@
             },
             options: {
                 cutout: '70%',
-                responsive: true,
+                responsive: false,
                 maintainAspectRatio: true,
 
                 plugins: {
