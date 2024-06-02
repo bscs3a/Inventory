@@ -94,31 +94,15 @@ Router::post('/inv/add-prod', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
     $date_added = date('Y-m-d H:i:s');
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $fileTmpPath = $_FILES['image']['tmp_name'];
-        $fileName = $_FILES['image']['name'];
-        $fileSize = $_FILES['image']['size'];
-        $fileType = $_FILES['image']['type'];
-        $fileNameCmps = explode(".", $fileName);
-        $fileExtension = strtolower(end($fileNameCmps));
-        $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
-        $uploadDirectory = '/assets/uploads/';
-        $destPath = $uploadDirectory . $newFileName;
-        move_uploaded_file($fileTmpPath, $destPath);
-        $image = $newFileName;
-    } else {
-        $image = '';
-    }
     $stock_id = $_POST['stock_id'];
     $product = $_POST['product'];
     $category = $_POST['category'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $status = $_POST['status'];
-    $stmt = $conn->prepare("INSERT INTO inventory (stock_id, image, product, category, price, quantity, status, date_added) 
-                            VALUES (:stock_id, :image, :product, :category, :price, :quantity, :status, :date_added)");
+    $stmt = $conn->prepare("INSERT INTO inventory (stock_id, product, category, price, quantity, status, date_added) 
+                            VALUES (:stock_id, :product, :category, :price, :quantity, :status, :date_added)");
     $stmt->bindParam(':stock_id', $stock_id);
-    $stmt->bindParam(':image', $image);
     $stmt->bindParam(':product', $product);
     $stmt->bindParam(':category', $category);
     $stmt->bindParam(':price', $price);
