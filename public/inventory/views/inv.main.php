@@ -125,72 +125,7 @@
             </div>
             <div class="flex items-center">
                 <!-- Dropdown button -->
-                <div class="relative inline-block text-left">
-                    <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-2 px-4 mr-0"
-                        id="dropdownButton">
-                        Filter
-                    </button>
-                    <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden overflow-auto max-h-60"
-                        id="dropdownMenu">
-                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
-                                <input type="radio" name="filter" class="mr-1" value="All">
-                                All
-                            </label>
-                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
-                                <input type="radio" name="filter" class="mr-1" value="Pliers">
-                                Pliers
-                            </label>
-                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
-                                <input type="radio" name="filter" class="mr-1" value="Grippers">
-                                Grippers
-                            </label>
-                            <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">
-                                <input type="radio" name="filter" class="mr-1" value="Hammers">
-                                Hammers
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- JavaScript for Dropdown -->
-                <script>
-                    document.getElementById('dropdownButton').addEventListener('click', function () {
-                        document.getElementById('dropdownMenu').classList.toggle('hidden');
-                    });
-                </script>
-                <!-- Dropdown end-->
-                <!-- Search Bar -->
-                <div class="relative">
-                    <input type="text" id="simple-search" class="py-2 px-4 text-md text-black border border-black w-80"
-                        placeholder="Search by ID...">
-                </div>
-                <!-- Searchbar end -->
-            </div>
         </div>
-        <!-- Dropdown menu -->
-        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
-            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Pliers</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Hammers</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Grippers</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Guns</a>
-                </li>
-            </ul>
-        </div>
-        </div>
-
         </div>
         <!--End: Product-->
 

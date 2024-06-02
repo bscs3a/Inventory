@@ -28,25 +28,7 @@
             <h1>Product List</h1>
         </div>
 
-        <!-- Filter Searchbar Start -->
-        <div class="flex justify-between mt-4 p-6">
-            <div class="flex items-center ">
-                <!-- Dropdown button -->
-                <button class="bg-white hover:bg-gray-200 text-black border border-black font-bold py-1 px-4 mr-0">
-                    Filter
-                </button>
-                <!-- Dropdown end-->
-                <!-- Search Bar -->
-                <div class="relative">
-                    <input type="text" id="simple-search"
-                        class="py-1 px-4 text-md text-black border border-black w-80 mobile:w-96"
-                        placeholder="Search by Category...">
-                </div>
-                <!-- Searchbar end -->
-            </div>
-            <!-- Product Request End -->
-        </div>
-
+  
 
         <!-- Start: Date Filter Panel-->
         <div class="flex justify-evenly mt-0 px-6 w-24 ">

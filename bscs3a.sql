@@ -577,10 +577,10 @@ CREATE TABLE `inventory` (
   `product` varchar(255) NOT NULL,
   `price` bigint NOT NULL,
   `quantity` int NOT NULL,
-  `category` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `category` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `inventory`
@@ -601,7 +601,7 @@ CREATE TABLE `inventoryorders` (
   `product_id` int NOT NULL,
   `quantity` int NOT NULL,
   `date_ordered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `inventoryorders`

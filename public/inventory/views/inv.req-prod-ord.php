@@ -60,22 +60,17 @@
                         <input type="number" id="quantity" name="quantity" class="border p-1">
                     </div>
                 </div>
-                <input type="hidden" id="date_added" name="date_added">
-                <input type="submit"
-                    class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
-            </form>
-        </div>
-        <!-- End: Add -->
-        <div class="flex justify-between mt-2 m-3">
+                <div class="flex justify-between">
             <input type="hidden" id="date_added" name="date_added">
             <input type="submit"
                 class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
-            </form>
-            <button route='/inv/inventoryProducts'
-                class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-                Back
-            </button>
+                <button type="button" route='/inv/inventoryProducts'
+    class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+    Back
+</button>
         </div>
+    </form>
+</div>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
