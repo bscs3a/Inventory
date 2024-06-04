@@ -61,16 +61,16 @@
                     </div>
                 </div>
                 <div class="flex justify-between">
-            <input type="hidden" id="date_added" name="date_added">
-            <input type="submit"
-                class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
-                <button type="button" route='/inv/inventoryProducts'
-    class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-    Back
-</button>
+                    <input type="hidden" id="date_added" name="date_added">
+                    <input type="submit"
+                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
+                    <button type="button" route='/inv/inventoryProducts'
+                        class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                        Back
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -86,6 +86,8 @@
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Quantity</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Date Ordered</th>
                 </tr>
             </thead>
@@ -96,6 +98,7 @@
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product_id']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product_name']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['quantity']; ?></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['status']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['date_ordered']; ?></td>
                     </tr>
                 <?php endforeach; ?>
@@ -113,7 +116,7 @@
                 document.getElementById('price').value = selectedOption.getAttribute('data-price');
             });
         </script>
-                <script src="./../src/route.js"></script>
+        <script src="./../src/route.js"></script>
         <script src="./../src/form.js"></script>
     </main>
 </body>
