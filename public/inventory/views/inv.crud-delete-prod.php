@@ -45,11 +45,10 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            ID
+                            Stock ID
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Stock
-                            ID</th>
+                            Product ID</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Image
                         </th>
@@ -67,20 +66,33 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <?php foreach ($rows as $row): ?>
+                    <?php foreach ($rows as $row):
+                        $quantity = $row['quantity'];
+
+                        if ($quantity == 0) {
+                            $status = 'No Stock';
+                        } else if ($quantity >= 1 && $quantity <= 499) {
+                            $status = 'Understock';
+                        } else if ($quantity >= 500 && $quantity <= 999) {
+                            $status = 'On Stock';
+                        } else if ($quantity >= 1000) {
+                            $status = 'Overstock';
+                        }
+                        ?>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['id']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['stock_id']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product_id']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['image']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['category']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['price']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['quantity']; ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['status']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $status; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+
 
             <script src="./../src/route.js"></script>
             <script src="./../src/form.js"></script>

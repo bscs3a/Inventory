@@ -40,15 +40,17 @@
                         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                         foreach ($stmt->fetchAll() as $product) {
                             echo "<option value='" . $product['ProductName'] . "' 
-              data-stock-id='" . $product['ProductID'] . "' 
-              data-category='" . $product['Category'] . "' 
-              data-price='" . $product['Price'] . "'>" . $product['ProductName'] . "</option>";
+                            data-product_id='" . $product['ProductID'] . "' 
+                            data-category='" . $product['Category'] . "' 
+                            data-price='" . $product['Price'] . "'
+                            data-image='" . $product['ProductImage'] . "'>" . $product['ProductName'] . "</option>";
                         }
                         ?>
                     </select>
+                    </select>
                     <div class="flex items-center space-x-2">
-                        <label for="stock_id" class="w-20 text-right mx-4">Stock ID(SKU):</label>
-                        <input type="text" id="stock_id" name="stock_id" class="border p-1" readonly>
+                        <label for="product_id" class="w-20 text-right mx-4">Product ID(SKU):</label>
+                        <input type="text" id="product_id" name="product_id" class="border p-1" readonly>
                     </div>
 
                     <div class="flex items-center space-x-2">
@@ -67,27 +69,27 @@
                         <label for="status" class="w-20 text-right mx-4">Product Status:</label>
                         <input type="text" id="status" name="status" class="border p-1" readonly>
                     </div>
+                    <input type="hidden" id="image" name="image">
                 </div>
                 <div class="flex justify-between">
-            <input type="hidden" id="date_added" name="date_added">
-            <input type="submit"
-                class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
-                <button type="button" route='/inv/inventoryProducts'
-    class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
-    Back
-</button>
+                    <input type="hidden" id="date_added" name="date_added">
+                    <input type="submit"
+                        class="mt-4 font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md cursor-pointer active:bg-violet-900 hover:bg-violet-900">
+                    <button type="button" route='/inv/inventoryProducts'
+                        class="mt-4 items-end font-bold rounded-full w-24 py-2 bg-violet-950 text-white duration-300 shadow-md hover:bg-violet-900">
+                        Back
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        ID
+                        Stock ID
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Stock
-                        ID</th>
+                        Product ID</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Image
                     </th>
@@ -105,20 +107,33 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                <?php foreach ($rows as $row): ?>
+                <?php foreach ($rows as $row):
+                    $quantity = $row['quantity'];
+
+                    if ($quantity == 0) {
+                        $status = 'No Stock';
+                    } else if ($quantity >= 1 && $quantity <= 499) {
+                        $status = 'Understock';
+                    } else if ($quantity >= 500 && $quantity <= 999) {
+                        $status = 'On Stock';
+                    } else if ($quantity >= 1000) {
+                        $status = 'Overstock';
+                    }
+                    ?>
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['id']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['stock_id']; ?></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product_id']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['image']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['category']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['price']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['quantity']; ?></td>
-                        <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['status']; ?></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><?php echo $status; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+
         <script>
             document.getElementById('quantity').addEventListener('input', function (e) {
                 var quantity = e.target.value;
@@ -126,20 +141,20 @@
 
                 if (quantity == 0) {
                     statusField.value = 'No Stock';
-                } else if (quantity < 499 && quantity > 1) {
+                } else if (quantity >= 1 && quantity <= 499) {
                     statusField.value = 'Understock';
                 } else if (quantity >= 500 && quantity <= 999) {
                     statusField.value = 'On Stock';
-
                 } else if (quantity >= 1000) {
                     statusField.value = 'Overstock';
                 }
             });
             document.getElementById('product').addEventListener('change', function () {
                 var selectedOption = this.options[this.selectedIndex];
-                document.getElementById('stock_id').value = selectedOption.getAttribute('data-stock-id');
+                document.getElementById('product_id').value = selectedOption.getAttribute('data-product_id');
                 document.getElementById('category').value = selectedOption.getAttribute('data-category');
                 document.getElementById('price').value = selectedOption.getAttribute('data-price');
+                document.getElementById('image').value = selectedOption.getAttribute('data-image');
             });
         </script>
     </main>

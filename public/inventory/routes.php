@@ -77,8 +77,8 @@ $inv = [
 
 
     // Edit Product
-    '/inv/prod-edit={stock_id}' => function ($stock_id) use ($basePath) {
-        $_SESSION['stock_id'] = $stock_id;
+    '/inv/prod-edit={product_id}' => function ($product_id) use ($basePath) {
+        $_SESSION['product_id'] = $product_id;
         include $basePath . "prodEdit.php";
     },
 
@@ -94,31 +94,32 @@ Router::post('/inv/add-prod', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
     $date_added = date('Y-m-d H:i:s');
-    $stock_id = $_POST['stock_id'];
+    $product_id = $_POST['product_id'];
     $product = $_POST['product'];
     $category = $_POST['category'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
-    $status = $_POST['status'];
+    $image = $_POST['image'];
 
-    $stmt = $conn->prepare("SELECT * FROM inventory WHERE stock_id = ?");
-    $stmt->execute([$stock_id]);
+    $stmt = $conn->prepare("SELECT * FROM inventory WHERE product_id = ?");
+    $stmt->execute([$product_id]);
     $existingStock = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($existingStock) {
-        $stmt = $conn->prepare("UPDATE inventory SET quantity = quantity + :quantity WHERE stock_id = :stock_id");
+        $stmt = $conn->prepare("UPDATE inventory SET quantity = quantity + :quantity WHERE product_id = :product_id");
         $stmt->bindParam(':quantity', $quantity);
-        $stmt->bindParam(':stock_id', $stock_id);
+        $stmt->bindParam(':product_id', $product_id);
     } else {
-        $stmt = $conn->prepare("INSERT INTO inventory (stock_id, product, category, price, quantity, status, date_added) 
-                                VALUES (:stock_id, :product, :category, :price, :quantity, :status, :date_added)");
-        $stmt->bindParam(':stock_id', $stock_id);
+        $stmt = $conn->prepare("INSERT INTO inventory (product_id, product, image, category, price, quantity, date_added) 
+                                VALUES (:product_id, :product, :image, :category, :price, :quantity, :date_added)");
+        $stmt->bindParam(':product_id', $product_id);
         $stmt->bindParam(':product', $product);
+        $stmt->bindParam(':image', $image);
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':quantity', $quantity);
-        $stmt->bindParam(':status', $status);
         $stmt->bindParam(':date_added', $date_added);
+
     }
 
     $stmt->execute();
@@ -357,7 +358,7 @@ Router::post('/inv/prod-edit', function () {
     }
 
     // Assuming you have a table called 'total_stocks' where product stock information is stored
-    $stmt = $conn->prepare("SELECT stock_id FROM total_stocks WHERE prodID = :prodID");
+    $stmt = $conn->prepare("SELECT product_id FROM total_stocks WHERE prodID = :prodID");
     $stmt->bindParam(':prodID', $prodId);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -369,11 +370,11 @@ Router::post('/inv/prod-edit', function () {
         exit();
     }
 
-    $stockId = $result['stock_id'];
+    $stockId = $result['product_id'];
 
     // Inserting data into 'inventory_orders'
-    $stmt = $conn->prepare("INSERT INTO inventory_orders (stock_id, quantity, date_added) VALUES (:stock_id, :quantity, :date_added)");
-    $stmt->bindParam(':stock_id', $stockId);
+    $stmt = $conn->prepare("INSERT INTO inventory_orders (product_id, quantity, date_added) VALUES (:product_id, :quantity, :date_added)");
+    $stmt->bindParam(':product_id', $stockId);
     $stmt->bindParam(':quantity', $quantity);
     $stmt->bindParam(':date_added', $date_added);
     $stmt->execute();

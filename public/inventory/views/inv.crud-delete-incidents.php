@@ -44,34 +44,49 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Return ID
+                            Stock ID
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Product Name</th>
+                            Product ID</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Quantity
+                            Image
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Reason</th>
+                            Product</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Category</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Price
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Quantity</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Product Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Return Date
-                        </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     <?php foreach ($rows as $row):
-                        $stmt = $conn->prepare("SELECT ProductName FROM products WHERE ProductID = :ProductID");
-                        $stmt->execute(['ProductID' => $row['ProductID']]);
-                        $product = $stmt->fetch(); ?>
+                        $quantity = $row['quantity'];
+
+                        if ($quantity == 0) {
+                            $status = 'No Stock';
+                        } else if ($quantity >= 1 && $quantity <= 499) {
+                            $status = 'Understock';
+                        } else if ($quantity >= 500 && $quantity <= 999) {
+                            $status = 'On Stock';
+                        } else if ($quantity >= 1000) {
+                            $status = 'Overstock';
+                        }
+                        ?>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['ReturnID']; ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $product['ProductName']; ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['Quantity']; ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['Reason']; ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['ProductStatus']; ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['ReturnDate']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['stock_id']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product_id']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['image']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['category']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['price']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['quantity']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $status; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

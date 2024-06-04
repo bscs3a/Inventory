@@ -64,11 +64,12 @@
                         <tr class="bg-white">
                             <td class="px-6 py-4 font-semibold text-black whitespace-nowrap"><?= $row['ProductID'] ?></td>
                             <td class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
-                                <?php if (empty($row['image'])): ?>
+                                <?php if (empty($product['ProductImage'])): ?>
                                     <img src="../public/inventory/views/assets/default.png" class="mr-4"
                                         style="width: 4em; height: 4em;">
                                 <?php else: ?>
-                                    <img src="<?php echo '/' . $row['image']; ?>" alt="Image" class="mr-4"
+                                    <?php $imagePath = './../' . $product['ProductImage']; ?>
+                                    <img src="<?php echo $imagePath; ?>" alt="Image" class="mr-4"
                                         style="width: 4em; height: 4em;">
                                 <?php endif; ?>
                             </td>

@@ -27,25 +27,28 @@
                 <?php if (empty($product['image'])): ?>
                     <img src="../public/inventory/views/assets/default.png" class="mr-4">
                 <?php else: ?>
-                    <img src="<?php echo '/' . $product['image']; ?>" alt="Image" class="mr-4">
+                    <?php $imagePath = './../' . $product['image']; ?>
+                    <img src="<?php echo $imagePath; ?>" alt="Image" class="mr-4">
                 <?php endif; ?>
             </div>
+
 
             <div class="flex-1 p-4 w-full max-w-5xl">
 
                 <div class="flex items-start">
                     <!-- ID div -->
                     <div class="mb-6 ml-3 w-1/4 flex-shrink-0">
-                        <input type="hidden" name="id" value="<?php echo $product['id']; ?>" disabled>
+                        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>" disabled>
                         <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                             ID</label>
-                        <input type="text" id="product" name="product" value="<?php echo $product['id']; ?>" disabled
+                        <input type="text" id="product" name="product" value="<?php echo $product['product_id']; ?>"
+                            disabled
                             class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500">
                     </div>
 
                     <!-- Product Name div -->
                     <div class="mb-6 ml-3 flex-1">
-                        <input type="hidden" name="id" value="<?php echo $product['id']; ?>" disabled>
+                        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>" disabled>
                         <label for="large-input" class="block mb-2 text-lg font-medium text-gray-900 my-2">Product
                             Name</label>
                         <input type="text" id="product" name="product" value="<?php echo $product['product']; ?>"
@@ -121,7 +124,7 @@
 
                 <?php
                 $stmt = $conn->prepare("SELECT Description FROM products WHERE ProductID = :ProductID");
-                $stmt->execute(['ProductID' => $product['id']]);
+                $stmt->execute(['ProductID' => $product['product_id']]);
                 $productDescription = $stmt->fetch();
                 ?>
 
