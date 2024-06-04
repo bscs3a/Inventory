@@ -89,6 +89,7 @@
         </div>
         <!--End: Table-->
         <script src="./../src/route.js"></script>
+        <script src="./../src/form.js"></script>
 
 </body>
 

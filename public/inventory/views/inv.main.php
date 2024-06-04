@@ -423,6 +423,9 @@
                 });
             });
         </script>
+        
+        <script src="./../src/route.js"></script>
+        <script src="./../src/form.js"></script>
         <!-- Return Stock Modal JS End -->
 </body>
 

@@ -188,7 +188,8 @@
                         printWindow.print(); // Trigger the print dialog
                     }
                 </script>
-                <script src="./../src/route.js"></script>
+                       <script src="./../src/route.js"></script>
+        <script src="./../src/form.js"></script>
 
 </body>
 

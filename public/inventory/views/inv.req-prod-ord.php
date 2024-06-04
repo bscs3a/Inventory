@@ -113,6 +113,8 @@
                 document.getElementById('price').value = selectedOption.getAttribute('data-price');
             });
         </script>
+                <script src="./../src/route.js"></script>
+        <script src="./../src/form.js"></script>
     </main>
 </body>
 
