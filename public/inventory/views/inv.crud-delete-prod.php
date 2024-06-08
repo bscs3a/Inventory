@@ -27,8 +27,8 @@
             <div class="ml-3 mt-6">
                 <form action="/inv/delete-prod" method="POST">
                     <div class="flex items-center space-x-2">
-                        <label for="id" class="w-20 text-center mx-4">ID:</label>
-                        <input type="text" id="id" name="id" class="border p-1">
+                        <label for="id" class="w-20 text-center mx-4">Product ID:</label>
+                        <input type="text" id="product_id" name="product_id" class="border p-1">
                     </div>
             </div>
             <div class="flex justify-between mt-2 m-3">
@@ -82,7 +82,16 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['stock_id']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product_id']; ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['image']; ?></td>
+                            <td scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
+                                <?php if (empty($row['image'])): ?>
+                                    <img src="../public/inventory/views/assets/default.png" class="mr-4"
+                                        style="width: 4em; height: 4em;">
+                                <?php else: ?>
+                                    <?php $imagePath = './../' . $row['image']; ?>
+                                    <img src="<?php echo $imagePath; ?>" alt="Image" class="mr-4"
+                                        style="width: 4em; height: 4em;">
+                                <?php endif; ?>
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['category']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['price']; ?></td>

@@ -30,12 +30,12 @@
                         <label for="product" class="w-20 text-right mx-4">Select Product:</label>
                         <select id="product" name="product_id">
                             <?php
-                            $stmt = $conn->query("SELECT stock_id, product FROM inventory");
+                            $stmt = $conn->query("SELECT product_id, product FROM inventory");
                             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             // Generate options for each product
                             foreach ($products as $product) {
-                                echo "<option value=\"{$product['stock_id']}\">{$product['product']}</option>";
+                                echo "<option value=\"{$product['product_id']}\">{$product['product']}</option>";
                             }
                             ?>
                         </select>
@@ -97,7 +97,16 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['stock_id']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product_id']; ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['image']; ?></td>
+                            <td scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
+                                <?php if (empty($row['image'])): ?>
+                                    <img src="../public/inventory/views/assets/default.png" class="mr-4"
+                                        style="width: 4em; height: 4em;">
+                                <?php else: ?>
+                                    <?php $imagePath = './../' . $row['image']; ?>
+                                    <img src="<?php echo $imagePath; ?>" alt="Image" class="mr-4"
+                                        style="width: 4em; height: 4em;">
+                                <?php endif; ?>
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['category']; ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['price']; ?></td>

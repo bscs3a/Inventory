@@ -123,7 +123,15 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['stock_id']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product_id']; ?></td>
-                        <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['image']; ?></td>
+                        <td scope="row" class="px-6 py-4 font-semibold text-black whitespace-nowrap flex items-center">
+                            <?php if (empty($row['image'])): ?>
+                                <img src="../public/inventory/views/assets/default.png" class="mr-4"
+                                    style="width: 4em; height: 4em;">
+                            <?php else: ?>
+                                <?php $imagePath = './../' . $row['image']; ?>
+                                <img src="<?php echo $imagePath; ?>" alt="Image" class="mr-4" style="width: 4em; height: 4em;">
+                            <?php endif; ?>
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['product']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['category']; ?></td>
                         <td class="px-6 py-4 whitespace-nowrap"><?php echo $row['price']; ?></td>

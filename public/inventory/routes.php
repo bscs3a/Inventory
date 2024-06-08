@@ -140,7 +140,7 @@ Router::post('/inv/update-prod', function () {
         exit();
     }
 
-    $stmt = $conn->prepare("UPDATE inventory SET quantity = :quantity WHERE id = :product_id");
+    $stmt = $conn->prepare("UPDATE inventory SET quantity = :quantity WHERE product_id = :product_id");
     $stmt->bindParam(':product_id', $product_id);
     $stmt->bindParam(':quantity', $quantity);
     $stmt->execute();
@@ -154,10 +154,10 @@ Router::post('/inv/delete-prod', function () {
     $db = Database::getInstance();
     $conn = $db->connect();
 
-    $id = $_POST['id'];
+    $id = $_POST['product_id'];
 
-    $stmt = $conn->prepare("DELETE FROM inventory WHERE id = :id");
-    $stmt->bindParam(':id', $id);
+    $stmt = $conn->prepare("DELETE FROM inventory WHERE product_id = :product_id");
+    $stmt->bindParam(':product_id', $id);
 
     // Execute the statement
     $stmt->execute();
